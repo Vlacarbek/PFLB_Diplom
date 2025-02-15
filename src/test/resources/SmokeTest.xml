@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="3" name="SauceDemo SmokeTest" parallel="tests">
+    <listeners>
+        <listener class-name="tests.TestListener"/>
+        <listener class-name="tests.AnnotationTransformer"/>
+    </listeners>
+    <test name="Thread#1">
+        <classes>
+            <class name="tests.LoginTest"/>
+        </classes>
+    </test> <!-- Test -->
+    <test name="Thread#2">
+        <classes>
+            <class name="tests.CartTest"/>
+            <class name="tests.ProductsTest"/>
+        </classes>
+    </test> <!-- Test -->
+</suite>
