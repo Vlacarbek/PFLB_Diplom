@@ -6,6 +6,7 @@ import UI.Pages.Cars.ReadAllCarsPage;
 import UI.Pages.Houses.CreateNewHousesPage;
 import UI.Pages.Houses.ReadOneByIDPage;
 import UI.Pages.Houses.SettleOrEvictUserPage;
+import UI.Pages.Login.LoginPage;
 import UI.Pages.Users.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -36,6 +37,10 @@ public class BaseTest {
     ReadAllUsersPage readAllUsersPage;
     ReadUserWithCarsPage readUserWithCarsPage;
     SettleToHousePage settleToHousePage;
+    protected LoginPage loginPage;
+    public  String user = System.getProperty("user");
+    public String password = System.getProperty("password ");
+
 
     @BeforeMethod
     public void setup(@Optional("chrome") String browser) {
@@ -43,6 +48,7 @@ public class BaseTest {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("start-maximized");
             options.addArguments("--headless");
+            options.setCapability("unhandledPromptBehavior", "accept");
             driver = new ChromeDriver(options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
         } else if (browser.equalsIgnoreCase("internetexplorer")) {
@@ -62,6 +68,7 @@ public class BaseTest {
         readAllUsersPage = new ReadAllUsersPage(driver);
         readUserWithCarsPage = new ReadUserWithCarsPage(driver);
         settleToHousePage = new SettleToHousePage(driver);
+        loginPage = new LoginPage(driver);
 
     }
 
