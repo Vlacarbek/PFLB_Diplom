@@ -5,7 +5,7 @@ import io.restassured.response.Response;
 
 public class LoginTest {
 
-    //Корректная авторизация, возвращает Bearer token
+    //Корректная авторизация, возвращает Bearer tokens
     public static  String  GetToken() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4879";
         String requestBody = "{"
