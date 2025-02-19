@@ -1,6 +1,14 @@
 package ui.tests;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
 import ui.pages.cars.BuyOrSellCarPage;
 import ui.pages.cars.CreateNewCarsPage;
 import ui.pages.cars.ReadAllCarsPage;
@@ -9,14 +17,6 @@ import ui.pages.houses.ReadOneByIDPage;
 import ui.pages.houses.SettleOrEvictUserPage;
 import ui.pages.login.LoginPage;
 import ui.pages.users.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Optional;
 import utils.AllureUtils;
 
 import java.time.Duration;
@@ -40,7 +40,7 @@ public class BaseTest {
     public ReadAllUsersPage readAllUsersPage;
     SettleToHousePage settleToHousePage;
     protected LoginPage loginPage;
-    public  String user = System.getProperty("user");
+    public String user = System.getProperty("user");
     public String password = System.getProperty("password ");
 
 
