@@ -1,10 +1,11 @@
 package ui.tests.users;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ui.tests.BaseTest;
-
 import java.util.List;
 
 public class ReadAllUsersTest extends BaseTest {
@@ -35,4 +36,21 @@ public class ReadAllUsersTest extends BaseTest {
         readAllUsersPage.open();
         Assert.assertTrue(readAllUsersPage.checkAttribute());
     }
+
+    @Test(testName = "Проверка работы кнопки Reload")
+    public void reloadButtonTest() {
+        readAllUsersPage.open();
+        List startList = readAllUsersPage.getActualSortList("ID");
+        readAllUsersPage.clickButton("ID");
+        readAllUsersPage.clickButton("Reload");
+        //Явное ожидание пока пока отработает Reload
+        String expectedValue = (String) startList.get(0); //Получаем первый id изначальной таблицы
+        wait.until(driver -> {
+            WebElement element = driver.findElement(By.xpath("//tbody/tr[1]/td[1]")); //Получаем первый элемент id таблицы
+            return element.getText().equals(expectedValue); //Сравниваем первый id таблицы с первым id  изначальной таблицы
+        });
+        List reloadedList = readAllUsersPage.getActualSortList("ID");
+        Assert.assertEquals(reloadedList, startList);
+    }
+
 }
