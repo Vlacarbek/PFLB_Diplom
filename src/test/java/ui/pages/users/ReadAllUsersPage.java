@@ -15,13 +15,20 @@ public class ReadAllUsersPage {
 
     WebDriver driver;
 
-    //    By reloadButton = By.xpath("//button[text()='Reload']");
-//    By sortByIdButton = By.xpath("//button[contains((text()), 'ID')]");
-//    By sortByFirstNameButton = By.xpath("//button[contains((text()), 'First')]");
-//    By sortByLastNameButton = By.xpath("//button[contains((text()), 'Last')]");
-//    By sortByAgeButton = By.xpath("//button[contains((text()), 'Age')]");
-//    By sortBySexButton = By.xpath("//button[contains((text()), 'Sex')]");
-//    By sortByMoneyButton = By.xpath("//button[contains((text()), 'Money')]");
+    By reloadButton = By.xpath("//button[text()='Reload']");
+    By sortByIdButton = By.xpath("//button[contains((text()), 'ID')]");
+    By sortByFirstNameButton = By.xpath("//button[contains((text()), 'First')]");
+    By sortByLastNameButton = By.xpath("//button[contains((text()), 'Last')]");
+    By sortByAgeButton = By.xpath("//button[contains((text()), 'Age')]");
+    By sortBySexButton = By.xpath("//button[contains((text()), 'Sex')]");
+    By sortByMoneyButton = By.xpath("//button[contains((text()), 'Money')]");
+    By idColumnHeader = By.xpath("//tr/th[text()=' ID:']");
+    By firstNameColumnHeader = By.xpath("//tr/th[text()=' First\u00A0name:']");
+    By lastNameColumnHeader = By.xpath("//tr/th[text()=' Last\u00A0name:']");
+    By ageColumnHeader = By.xpath("//tr/th[text()=' Age:']");
+    By sexColumnHeader = By.xpath("//tr/th[text()=' Sex:']");
+    By moneyColumnHeader = By.xpath("//tr/th[text()=' Money:']");
+    By table = By.xpath("//tbody");
     String buttonPattern = "//button[contains((text()), '%s')]";
     String listOfEntitiesPattern = "//tbody/tr/td[%s]";
 
@@ -67,10 +74,23 @@ public class ReadAllUsersPage {
             case "Age" -> "4";
             case "Sex" -> "5";
             case "Money" -> "6";
-            default -> "0"; // Возвращает 0, если символ не является римской цифрой
+            default -> "0";
         };
     }
 
+    @Step("Проверка атрибутного состава")
+    public boolean checkAttribute() {
+        By[] elementsToCheck = {reloadButton, sortByIdButton, sortByFirstNameButton, sortByLastNameButton,
+                sortByAgeButton, sortBySexButton, sortByMoneyButton, idColumnHeader, firstNameColumnHeader,
+                lastNameColumnHeader, ageColumnHeader, sexColumnHeader, moneyColumnHeader, table};
+        for (By element : elementsToCheck) {
+            if (driver.findElements(element).isEmpty()) {
+                System.out.println(element);
+                return false; // Если хотя бы один элемент отсутствует, возвращаем false
+            }
+        }
+        return true; // Все элементы присутствуют
+    }
 
 }
 
