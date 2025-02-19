@@ -1,8 +1,6 @@
-package UI.tests.login;
+package ui.tests.login;
 
-import UI.tests.BaseTest;
-import io.qameta.allure.*;
-import jdk.jfr.Description;
+import ui.tests.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
