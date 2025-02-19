@@ -40,4 +40,4 @@ jobs:
         browser: chrome
         version: latest
     - name: Run Test
-      run: mvn clean test  -Duser = $USERNAME -Dpassword = $PASSWORD
+      run: mvn clean test -Duser=$USERNAME -Dpassword=$PASSWORD
