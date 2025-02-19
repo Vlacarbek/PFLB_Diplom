@@ -1,5 +1,6 @@
 package ui.tests;
 
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.pages.cars.BuyOrSellCarPage;
 import ui.pages.cars.CreateNewCarsPage;
 import ui.pages.cars.ReadAllCarsPage;
@@ -23,6 +24,7 @@ import java.time.Duration;
 public class BaseTest {
 
     WebDriver driver;
+    protected WebDriverWait wait;
 
     BuyOrSellCarPage buyOrSellCarPage;
     CreateNewCarsPage createNewCarsPage;
@@ -51,6 +53,8 @@ public class BaseTest {
             options.setCapability("unhandledPromptBehavior", "accept");
             driver = new ChromeDriver(options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
+            int timeoutInSeconds = 10;
+            wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
         } else if (browser.equalsIgnoreCase("internetexplorer")) {
             driver = new InternetExplorerDriver();
         }
