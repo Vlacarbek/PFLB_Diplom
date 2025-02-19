@@ -1,4 +1,4 @@
-package UI.Pages.Login;
+package ui.pages.login;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
