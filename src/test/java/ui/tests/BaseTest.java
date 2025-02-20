@@ -1,5 +1,6 @@
 package ui.tests;
 
+import org.testng.annotations.Test;
 import ui.pages.cars.BuyOrSellCarPage;
 import ui.pages.cars.CreateNewCarsPage;
 import ui.pages.cars.ReadAllCarsPage;
@@ -17,12 +18,15 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import utils.AllureUtils;
+import org.testng.asserts.SoftAssert;
+import utils.PropertyReader;
 
 import java.time.Duration;
 
 public class BaseTest {
 
     WebDriver driver;
+    public SoftAssert softAssert;
 
     BuyOrSellCarPage buyOrSellCarPage;
     CreateNewCarsPage createNewCarsPage;
@@ -38,16 +42,17 @@ public class BaseTest {
     public ReadAllUsersPage readAllUsersPage;
     SettleToHousePage settleToHousePage;
     protected LoginPage loginPage;
-    public  String user = System.getProperty("user");
-    public String password = System.getProperty("password ");
-
+    //public  String user = System.getProperty("user");
+    //public String password = System.getProperty("password");
+    public  String user = System.getProperty("user", PropertyReader.getProperty("user"));
+    public String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
     @BeforeMethod
     public void setup(@Optional("chrome") String browser) {
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("start-maximized");
-            options.addArguments("--headless");
+           // options.addArguments("--headless");
             options.setCapability("unhandledPromptBehavior", "accept");
             driver = new ChromeDriver(options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
@@ -69,6 +74,7 @@ public class BaseTest {
         readUserWithCarsPage = new ReadUserWithCarsPage(driver);
         settleToHousePage = new SettleToHousePage(driver);
         loginPage = new LoginPage(driver);
+        softAssert = new SoftAssert();
 
     }
 

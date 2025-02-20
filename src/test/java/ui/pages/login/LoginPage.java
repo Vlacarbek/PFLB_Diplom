@@ -11,10 +11,10 @@ import java.awt.*;
 
 
 public class LoginPage {
-    WebDriver driver;
-    By emailField = By.xpath("//*[@type =\"email\"]");
-    By passwordField = By.xpath("//*[@type =\"text\"]");
-    public By loginButton = By.cssSelector(".Nav-btn.btn.btn-primary");
+    static WebDriver driver;
+    static By emailField = By.xpath("//*[@type =\"email\"]");
+    static By passwordField = By.xpath("//*[@type =\"text\"]");
+    public static By loginButton = By.cssSelector(".Nav-btn.btn.btn-primary");
     public By logoutButton = By.cssSelector(".Nav-btn.btn.btn-danger");
     public By buttonSectionAlLPOSTForCheck = By.xpath("//*[@data-rr-ui-event-key=\"#/create/all\"]");
     public By buttonStatusForCheck = By.cssSelector(".status.btn.btn-secondary");
@@ -24,12 +24,12 @@ public class LoginPage {
     }
 
     @Step("Открытие странички авторизации ")
-    public void open() {
+    public static void open() {
         driver.get("http://82.142.167.37:4881/");
     }
 
     @Step("Вход в систему с логином {user} и паролем {password} ")
-    public void login(String user, String password) {
+    public static void login(String user, String password) {
         driver.findElement(emailField).sendKeys(user);
         driver.findElement(passwordField).sendKeys(password);
         driver.findElement(loginButton).click();
