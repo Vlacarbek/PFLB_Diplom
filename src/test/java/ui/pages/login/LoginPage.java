@@ -3,7 +3,6 @@ package ui.pages.login;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +17,7 @@ public class LoginPage {
     public By logoutButton = By.cssSelector(".Nav-btn.btn.btn-danger");
     public By buttonSectionAlLPOSTForCheck = By.xpath("//*[@data-rr-ui-event-key=\"#/create/all\"]");
     public By buttonStatusForCheck = By.cssSelector(".status.btn.btn-secondary");
+
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -57,5 +57,22 @@ public class LoginPage {
         String text = driver.findElement(buttonStatusForCheck).getText();
         return text;
     }
-}
 
+    @Step("Проверка текста ошибки")
+    public boolean  checkErrorText(String textError)  {
+        String pageSource = null;
+        try {
+            Thread.sleep(2000);
+            pageSource = driver.getPageSource();
+            Thread.sleep(2000);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return pageSource.contains(textError);
+
+
+
+    }
+}
