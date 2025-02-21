@@ -5,6 +5,8 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.json.JSONObject;
+
 
 import static org.hamcrest.core.IsEqual.equalTo;
 
@@ -39,19 +41,19 @@ public class UsersTest  {
     @Test
     public void PostUser() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4879";
-        String requestBody = "{"
-                + "\"firstName\": \"Alina7\","
-                + "\"sex\": \"MALE\","
-                + "\"age\": 25,"
-                + "\"money\": 350,"
-                + "\"id\": 110,"
-                + "\"secondName\": \"Vershinina\""
-                + "}";
-        Response  response = RestAssured.given()
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("firstName", "Alina7");
+        requestBody.put("sex", "MALE");
+        requestBody.put("age", 25);
+        requestBody.put("money", 350);
+        requestBody.put("id", 110);
+        requestBody.put("secondName", "Vershinina");
+
+        Response response = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .header("host", "82.142.167.37")
                 .header("Authorization", "Bearer " + LoginTest.GetToken())
-                .body(requestBody)
+                .body(requestBody.toString())
                 .when()
                 .post("/user")
                 .then()
@@ -63,19 +65,20 @@ public class UsersTest  {
     @Test
     public void PutUser() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4879";
-        String requestBody = "{"
-                + "\"firstName\": \"Alina2\","
-                + "\"sex\": \"MALE\","
-                + "\"age\": 26,"
-                + "\"money\": 350,"
-                + "\"id\": 110,"
-                + "\"secondName\": \"Vershinina2\""
-                + "}";
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("firstName", "Alina2");
+        requestBody.put("sex", "MALE");
+        requestBody.put("age", 26);
+        requestBody.put("money", 350);
+        requestBody.put("id", 110);
+        requestBody.put("secondName", "Vershinina2");
+
+
         Response  response = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .header("host", "82.142.167.37")
                 .header("Authorization", "Bearer " + LoginTest.GetToken())
-                .body(requestBody)
+                .body(requestBody.toString())
                 .when()
                 .post("/user")
                 .then()

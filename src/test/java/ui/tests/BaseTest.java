@@ -48,8 +48,8 @@ public class BaseTest {
 
     //public  String user = System.getProperty("user");
     //public String password = System.getProperty("password");
-    public  String user = System.getProperty("user", PropertyReader.getProperty("user"));
-    public String password = System.getProperty("password", PropertyReader.getProperty("password"));
+   // public  String user = System.getProperty("user", PropertyReader.getProperty("user"));
+   // public String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
 
     @BeforeMethod
