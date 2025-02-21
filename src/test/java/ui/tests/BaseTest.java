@@ -1,6 +1,15 @@
 package ui.tests;
 
 import org.testng.annotations.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
 import ui.pages.cars.BuyOrSellCarPage;
 import ui.pages.cars.CreateNewCarsPage;
 import ui.pages.cars.ReadAllCarsPage;
@@ -9,14 +18,6 @@ import ui.pages.houses.ReadOneByIDPage;
 import ui.pages.houses.SettleOrEvictUserPage;
 import ui.pages.login.LoginPage;
 import ui.pages.users.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Optional;
 import utils.AllureUtils;
 import org.testng.asserts.SoftAssert;
 import utils.PropertyReader;
@@ -26,7 +27,9 @@ import java.time.Duration;
 public class BaseTest {
 
     WebDriver driver;
-    public SoftAssert softAssert;
+
+  public SoftAssert softAssert;
+  protected WebDriverWait wait;
 
     BuyOrSellCarPage buyOrSellCarPage;
     CreateNewCarsPage createNewCarsPage;
@@ -42,10 +45,12 @@ public class BaseTest {
     public ReadAllUsersPage readAllUsersPage;
     SettleToHousePage settleToHousePage;
     protected LoginPage loginPage;
+
     //public  String user = System.getProperty("user");
     //public String password = System.getProperty("password");
     public  String user = System.getProperty("user", PropertyReader.getProperty("user"));
     public String password = System.getProperty("password", PropertyReader.getProperty("password"));
+
 
     @BeforeMethod
     public void setup(@Optional("chrome") String browser) {
@@ -56,6 +61,8 @@ public class BaseTest {
             options.setCapability("unhandledPromptBehavior", "accept");
             driver = new ChromeDriver(options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
+            int timeoutInSeconds = 10;
+            wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
         } else if (browser.equalsIgnoreCase("internetexplorer")) {
             driver = new InternetExplorerDriver();
         }
