@@ -1,5 +1,6 @@
 package ui.tests;
 
+import org.testng.annotations.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -18,13 +19,17 @@ import ui.pages.houses.SettleOrEvictUserPage;
 import ui.pages.login.LoginPage;
 import ui.pages.users.*;
 import utils.AllureUtils;
+import org.testng.asserts.SoftAssert;
+import utils.PropertyReader;
 
 import java.time.Duration;
 
 public class BaseTest {
 
     WebDriver driver;
-    protected WebDriverWait wait;
+
+  public SoftAssert softAssert;
+  protected WebDriverWait wait;
 
     BuyOrSellCarPage buyOrSellCarPage;
     CreateNewCarsPage createNewCarsPage;
@@ -40,8 +45,11 @@ public class BaseTest {
     public ReadAllUsersPage readAllUsersPage;
     SettleToHousePage settleToHousePage;
     protected LoginPage loginPage;
-    public String user = System.getProperty("user");
-    public String password = System.getProperty("password ");
+
+    //public  String user = System.getProperty("user");
+    //public String password = System.getProperty("password");
+    public  String user = System.getProperty("user", PropertyReader.getProperty("user"));
+    public String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
 
     @BeforeMethod
@@ -73,6 +81,7 @@ public class BaseTest {
         readUserWithCarsPage = new ReadUserWithCarsPage(driver);
         settleToHousePage = new SettleToHousePage(driver);
         loginPage = new LoginPage(driver);
+        softAssert = new SoftAssert();
 
     }
 
