@@ -4,6 +4,9 @@ import ui.tests.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static api.LoginTest.password;
+import static api.LoginTest.user;
+
 public class
 LoginTest extends BaseTest {
 

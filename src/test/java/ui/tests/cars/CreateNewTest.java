@@ -7,6 +7,9 @@ import ui.pages.cars.CreateNewCarsPage;
 import ui.pages.login.LoginPage;
 import ui.tests.BaseTest;
 
+import static api.LoginTest.password;
+import static api.LoginTest.user;
+
 
 public class CreateNewTest extends BaseTest {
 
