@@ -19,8 +19,8 @@ on:
     - cron: '59 23 31 12 6'
 
 env:
-  USERNAME: ${{ secrets.USER }}
-  PASSWORD: ${{ secrets.PASSWORD }}
+  USERNAME: ${{secrets.USER}}
+  PASSWORD: ${{secrets.PASSWORD}}
 
 jobs:
   build:
