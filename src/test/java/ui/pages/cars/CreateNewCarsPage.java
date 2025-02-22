@@ -29,7 +29,7 @@ public class CreateNewCarsPage extends BaseTest {
     private static final By createNewCarsPage = By.xpath("//*[@id=\"basic-navbar-nav\"]/div/div[2]/div/a[2]");
 
 
-    private static WebDriver driver;
+    public static WebDriver driver;
 
 
     public CreateNewCarsPage(WebDriver driver) {
