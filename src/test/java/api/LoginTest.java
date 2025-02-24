@@ -15,7 +15,7 @@ public class LoginTest {
 
     //Корректная авторизация, возвращает Bearer tokens
     public static String GetToken() throws JsonException {
-        RestAssured.baseURI = "http://82.142.167.37:4879";
+        RestAssured.baseURI = "http://82.142.167.37:4880";
         requestBody = "{"
                 + "\"username\" : \"" + user + "\","
                 + "\"password\": \"" + password + "\""
