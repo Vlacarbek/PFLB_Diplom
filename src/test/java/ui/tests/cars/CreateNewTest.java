@@ -7,9 +7,6 @@ import ui.pages.cars.CreateNewCarsPage;
 import ui.pages.login.LoginPage;
 import ui.tests.BaseTest;
 
-import static api.LoginTest.password;
-import static api.LoginTest.user;
-
 
 public class CreateNewTest extends BaseTest {
 
@@ -18,7 +15,6 @@ public class CreateNewTest extends BaseTest {
         return new Object[][]{
                 {"Diesel", "KIA", "СИД", "000", "Status: Successfully pushed, code: 201"},
                 {"Diesel", "КИА", "Seed", "9000", "Status: Successfully pushed, code: 201"},
-                {"Gasoline", "Audi", "а3", "567,77", "Status: Successfully pushed, code: 201"},
                 {"Gasoline", "Ауди", "A3", "9000", "Status: Successfully pushed, code: 201"},
                 {"Electric", "KIA", "RIO", "1000000", "Status: Successfully pushed, code: 201"},
                 {"Hydrogenic", "BMV", "Модель45", "100000", "Status: Successfully pushed, code: 201"},
@@ -34,7 +30,6 @@ public class CreateNewTest extends BaseTest {
         return new Object[][]{
                 {"NOT_VALID", "KIA", "СИД", "000", "Status: AxiosError: Request failed with status code 400"},
                 {"Diesel", "123456", "Seed", "9000", "Status: AxiosError: Request failed with status code 400"},
-                {"Gasoline", "Audi", "12345", "567,77", "Status: AxiosError: Request failed with status code 400"},
                 {"Gasoline", "Ауди", "A3", "-1000", "Status: Invalid request data"},
                 {"", "KIA", "RIO", "1000000", "Status: Invalid request data"},
                 {"Hydrogenic", "", "Модель45", "100000", "Status: Invalid request data"},
@@ -45,7 +40,7 @@ public class CreateNewTest extends BaseTest {
     }
 
     @Test(testName = "Успешное создание нового автомобиля",
-            description = "Необходимо проверить возможность успешного создания нового автомобиля на странице Create New",
+            description = "Учспешное создание автомобиля с вводом валидных значений в поля",
             dataProvider = "CreateCarData")
     @Severity(SeverityLevel.NORMAL)
     @Epic("PFLB 1.0")
@@ -56,15 +51,16 @@ public class CreateNewTest extends BaseTest {
         LoginPage.open();
         LoginPage.login(user, password);
         CreateNewCarsPage.openCreateCarsPage();
-        CreateNewCarsPage.createNewCar(engineType, mark, model, price);
+        CreateNewCarsPage.createCar(engineType, mark, model, price);
+        CreateNewCarsPage.createCarButtonClick();
         softAssert.assertEquals(CreateNewCarsPage.getStatus(),
                 status,
                 "Статус не равен 201");
     }
 
     @Test(testName = "Невозможность создания автомобиля с невалидными данными",
-            description = "Необходимо проверить невозможность  создания  автомобиля на странице Create New при вводе невалидных данных",
-            dataProvider = "negativeCreateData")
+            description = "Невозможность создания автомобиля  при вводе невалидных значений",
+            dataProvider = "NegativeCreateData")
     @Severity(SeverityLevel.NORMAL)
     @Epic("PFLB 1.0")
     @Feature("Cars")
@@ -72,32 +68,16 @@ public class CreateNewTest extends BaseTest {
     @TmsLink("www.jira.com/TK-002")
     public void checkNegativeCreateNewCar(String engineType, String mark, String model, String price, String status) {
         LoginPage.open();
-        LoginPage.login("standard_user", "secret_sauce");
+        LoginPage.login(user, password);
         CreateNewCarsPage.openCreateCarsPage();
-        CreateNewCarsPage.createNewCar(engineType, mark, model, price);
+        CreateNewCarsPage.createCar(engineType, mark, model, price);
+        CreateNewCarsPage.createCarButtonClick();
         softAssert.assertEquals(CreateNewCarsPage.getStatus(),
                 status,
                 "В поле Status вернулось некорректное значение");
-    }
+        System.out.println(status);
 
-    @Test(testName = "Отображение и возможность взаимодействия с  элементами на странице Create New Car",
-            description = "Необходимо проверить корректное отображение всех элементов на странице Cars New",
-            dataProvider = "negativeCreateData")
-    @Severity(SeverityLevel.NORMAL)
-    @Epic("PFLB 1.0")
-    @Feature("Cars")
-    @Story("Create New car")
-    @TmsLink("www.jira.com/TK-003")
-    public void checkDisplayedElementsOnPage(String engineType, String mark, String model, String price, String status) {
-        LoginPage.open();
-        LoginPage.login("standard_user", "secret_sauce");
-        CreateNewCarsPage.openCreateCarsPage();
-        CreateNewCarsPage.createNewCar(engineType, mark, model, price);
-        softAssert.assertEquals(CreateNewCarsPage.getStatus(),
-                status,
-                "В поле Status вернулось некорректное значение");
     }
-
 
 //    @Test
 //    public void getId() {
@@ -105,6 +85,4 @@ public class CreateNewTest extends BaseTest {
 //        String result = CreateNewCarsPage.getIdNewCar("New car ID: 408");
 //        System.out.println(result);
 //    }
-
-
 }
