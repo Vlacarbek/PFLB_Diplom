@@ -7,7 +7,6 @@ import org.json.JSONArray;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.json.JSONObject;
-
 import static org.hamcrest.core.IsEqual.equalTo;
 
 public class UsersTest {
@@ -171,10 +170,11 @@ public class UsersTest {
                 .then()
                 .extract().response();
 
+        Assert.assertEquals(response.getStatusCode(), 201,"Если тест упал с 409 вероятно снова проблема с сервером ");
         JSONObject UserAfterUpdate = UserList();
         Assert.assertNotEquals(firstNameUser, UserAfterUpdate.get("firstName"));
         Assert.assertNotEquals(secondNameUser, UserAfterUpdate.get("secondName"));
-        Assert.assertEquals(response.getStatusCode(), 201);
+
     }
 
     //Проверка PUT запроса с некорректными данными
@@ -223,10 +223,10 @@ public class UsersTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Assert.assertEquals(response.getStatusCode(), 204, "Если тест упал с 409 вероятно снова проблема с сервером ");
         JSONObject UserAfterDelete = UserList();
         Object idAfterDelete = UserAfterDelete.get("id");
         Assert.assertNotEquals(idAfterDelete, idUser);
-        Assert.assertEquals(response.getStatusCode(), 204);
     }
 
     //Негативная проверка Delete запроса на несуществующего пользователя

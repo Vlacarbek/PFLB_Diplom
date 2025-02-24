@@ -14,6 +14,7 @@ import ui.pages.cars.BuyOrSellCarPage;
 import ui.pages.cars.CreateNewCarsPage;
 import ui.pages.cars.ReadAllCarsPage;
 import ui.pages.houses.CreateNewHousesPage;
+import ui.pages.users.CreateNewUsersPage;
 import ui.pages.houses.ReadOneByIDPage;
 import ui.pages.houses.SettleOrEvictUserPage;
 import ui.pages.login.LoginPage;
@@ -45,8 +46,8 @@ public class BaseTest {
     public ReadAllUsersPage readAllUsersPage;
     public SettleToHousePage settleToHousePage;
     protected LoginPage loginPage;
-    public  String user = System.getProperty("user", PropertyReader.getProperty("user"));
-    public String password = System.getProperty("password", PropertyReader.getProperty("password"));
+    public static String user = System.getProperty("user", PropertyReader.getProperty("user"));
+    public static String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
 
     @BeforeMethod
@@ -54,11 +55,12 @@ public class BaseTest {
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("start-maximized");
-            options.addArguments("--headless");
+            //options.addArguments("--headless");
             options.setCapability("unhandledPromptBehavior", "accept");
             driver = new ChromeDriver(options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
             int timeoutInSeconds = 10;
+            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(4));
             wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
         } else if (browser.equalsIgnoreCase("internetexplorer")) {
             driver = new InternetExplorerDriver();
