@@ -29,27 +29,24 @@ public class BaseTest {
     WebDriver driver;
 
   public SoftAssert softAssert;
-  protected WebDriverWait wait;
+  public static WebDriverWait wait;
 
-    BuyOrSellCarPage buyOrSellCarPage;
-    CreateNewCarsPage createNewCarsPage;
-    ReadAllCarsPage readAllCarsPage;
-    CreateNewHousesPage createNewHousesPage;
-    ReadOneByIDPage readOneByIDPage;
-    SettleOrEvictUserPage settleOrEvictUserPage;
-    AddMoneyPage addMoneyPage;
-    BuyOrSellCarUsersPage buyOrSellCarUsersPage;
-    CreateNewUsersPage createNewUsersPage;
-    IssueALoanPage issueALoanPage;
-    ReadUserWithCarsPage readUserWithCarsPage;
+    public BuyOrSellCarPage buyOrSellCarPage;
+    public CreateNewCarsPage createNewCarsPage;
+    public ReadAllCarsPage readAllCarsPage;
+    public CreateNewHousesPage createNewHousesPage;
+    public ReadOneByIDPage readOneByIDPage;
+    public SettleOrEvictUserPage settleOrEvictUserPage;
+    public AddMoneyPage addMoneyPage;
+    public BuyOrSellCarUsersPage buyOrSellCarUsersPage;
+    public CreateNewUsersPage createNewUsersPage;
+    public IssueALoanPage issueALoanPage;
+    public ReadUserWithCarsPage readUserWithCarsPage;
     public ReadAllUsersPage readAllUsersPage;
-    SettleToHousePage settleToHousePage;
+    public SettleToHousePage settleToHousePage;
     protected LoginPage loginPage;
-
-    //public  String user = System.getProperty("user");
-    //public String password = System.getProperty("password");
-   // public  String user = System.getProperty("user", PropertyReader.getProperty("user"));
-   // public String password = System.getProperty("password", PropertyReader.getProperty("password"));
+    public  String user = System.getProperty("user", PropertyReader.getProperty("user"));
+    public String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
 
     @BeforeMethod
@@ -65,6 +62,7 @@ public class BaseTest {
             wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
         } else if (browser.equalsIgnoreCase("internetexplorer")) {
             driver = new InternetExplorerDriver();
+
         }
 
         buyOrSellCarPage = new BuyOrSellCarPage(driver);
