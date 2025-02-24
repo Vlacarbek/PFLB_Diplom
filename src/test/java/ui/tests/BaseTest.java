@@ -55,7 +55,7 @@ public class BaseTest {
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("start-maximized");
-            //options.addArguments("--headless");
+            options.addArguments("--headless");
             options.setCapability("unhandledPromptBehavior", "accept");
             driver = new ChromeDriver(options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
