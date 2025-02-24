@@ -35,7 +35,6 @@
             <artifactId>json</artifactId>
             <version>20210307</version>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
         <dependency>
             <groupId>io.rest-assured</groupId>
@@ -43,7 +42,6 @@
             <version>${rest-assured}</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -60,6 +58,7 @@
             <artifactId>allure-testng</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -88,7 +87,5 @@
             </plugin>
         </plugins>
     </build>
-
-
 
 </project>
