@@ -10,7 +10,7 @@ import java.awt.*;
 
 
 public class LoginPage {
-    static WebDriver driver;
+    public static WebDriver driver;
     static By emailField = By.xpath("//*[@type =\"email\"]");
     static By passwordField = By.xpath("//*[@type =\"text\"]");
     public static By loginButton = By.cssSelector(".Nav-btn.btn.btn-primary");
