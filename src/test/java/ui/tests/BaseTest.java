@@ -45,8 +45,8 @@ public class BaseTest {
     public ReadAllUsersPage readAllUsersPage;
     public SettleToHousePage settleToHousePage;
     protected LoginPage loginPage;
-    public  String user = System.getProperty("user", PropertyReader.getProperty("user"));
-    public String password = System.getProperty("password", PropertyReader.getProperty("password"));
+    public static String user = System.getProperty("user", PropertyReader.getProperty("user"));
+    public static String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
 
     @BeforeMethod
