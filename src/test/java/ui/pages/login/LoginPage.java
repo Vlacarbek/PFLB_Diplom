@@ -1,5 +1,4 @@
 package ui.pages.login;
-
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,7 +6,6 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.*;
-
 
 public class LoginPage {
     public static WebDriver driver;
@@ -44,11 +42,6 @@ public class LoginPage {
         }
     }
 
-    @Step("Пользователь совершает логаут ")
-    public void logout() {
-        driver.findElement(logoutButton).click();
-    }
-
     @Step("Проверка авторизации ")
     public String checkAut() {
         driver.findElement(buttonSectionAlLPOSTForCheck).click();
@@ -69,7 +62,6 @@ public class LoginPage {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return pageSource.contains(textError);
 
 

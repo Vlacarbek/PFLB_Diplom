@@ -1,6 +1,7 @@
 package api;
 
 import groovy.json.JsonException;
+import io.qameta.allure.*;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.json.JSONArray;
@@ -11,7 +12,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 
 public class UsersTest {
 
-    //Метод используемый в тестах, где нужны данные пользователей ,которые в системе
+    //Метод используемый в тестах, где нужны данные пользователей, которые в системе
     public JSONObject UserList() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
         Response response = null;
@@ -28,8 +29,13 @@ public class UsersTest {
         return firstUser;
     }
 
-    //Позитивная проверка GET запроса с существующим пользователем
-    @Test
+    @Test(testName = "GET запрос /user с существующим пользователем",
+            description = "Позитивная проверка GET запроса с существующим пользователем")
+    @Severity(SeverityLevel.CRITICAL)
+    @Epic("PFLB 1.0")
+    @Feature("Create users API")
+    @Story("Create users API")
+    @TmsLink("www.jira.com/C-1")
     public void GetUser() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
         Response response = null;
@@ -47,7 +53,6 @@ public class UsersTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String responseBody = response.getBody().asString();
         response.then()
                 .body("id", equalTo(idUser))
                 .body("firstName", equalTo(firstNameUser))
@@ -57,8 +62,13 @@ public class UsersTest {
         Assert.assertEquals(response.getStatusCode(), 200);
     }
 
-    //Позитивная проверка GET запроса с несуществующим пользователем
-    @Test
+    @Test(testName = "GET запрос /user с несуществующим пользователем",
+            description = "Позитивная проверка GET запроса с несуществующим пользователем")
+    @Severity(SeverityLevel.NORMAL)
+    @Epic("PFLB 1.0")
+    @Feature("Create users API")
+    @Story("Create users API")
+    @TmsLink("www.jira.com/C-1")
     public void GetUserNonExistent() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
         Response response = null;
@@ -75,16 +85,20 @@ public class UsersTest {
         Assert.assertEquals(response.getStatusCode(), 204);
     }
 
-    //Проверка GET запроса с корректными данными
-    @Test
+    @Test(testName = "GET /users запрос  с корректными данными",
+            description = "Проверка GET /users запроса  с корректными данными")
+    @Severity(SeverityLevel.CRITICAL)
+    @Epic("PFLB 1.0")
+    @Feature("Create users API")
+    @Story("Create users API")
+    @TmsLink("www.jira.com/C-1")
     public void GetUsers() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
         Response response = null;
         try {
             response = RestAssured.given()
                     .when()
-                    .get("/users")
-            ;
+                    .get("/users");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -94,8 +108,13 @@ public class UsersTest {
         Assert.assertEquals(response.getStatusCode(), 200);
     }
 
-    //Позитивная проверка POST запроса с корректными данными
-    @Test
+    @Test(testName = "POST запрос /user с корректными данными",
+            description = "Позитивная проверка POST запроса /user с корректными данными")
+    @Severity(SeverityLevel.CRITICAL)
+    @Epic("PFLB 1.0")
+    @Feature("Create users API")
+    @Story("Create users API")
+    @TmsLink("www.jira.com/C-1")
     public void PostUser() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
         JSONObject requestBody = new JSONObject();
@@ -122,8 +141,13 @@ public class UsersTest {
         Assert.assertEquals(response.getStatusCode(), 201);
     }
 
-    //Негативная проверка POST запроса с не корректными данными
-    @Test
+    @Test(testName = "POST запрос /user с не корректными данными",
+            description = "Негативная проверка POST запроса /user с не корректными данными")
+    @Severity(SeverityLevel.NORMAL)
+    @Epic("PFLB 1.0")
+    @Feature("Create users API")
+    @Story("Create users API")
+    @TmsLink("www.jira.com/C-1")
     public void PostUserInvalidDate() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
         JSONObject requestBody = new JSONObject();
@@ -146,7 +170,14 @@ public class UsersTest {
     }
 
     //Проверка PUT запроса с корректными данными
-    @Test
+    @Flaky
+    @Test(testName = "PUT запрос /user с корректными данными",
+            description = "Проверка PUT запроса /user с корректными данными")
+    @Severity(SeverityLevel.CRITICAL)
+    @Epic("PFLB 1.0")
+    @Feature("Create users API")
+    @Story("Create users API")
+    @TmsLink("www.jira.com/C-1")
     public void PutUser() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
         JSONObject User = UserList();
@@ -177,8 +208,13 @@ public class UsersTest {
 
     }
 
-    //Проверка PUT запроса с некорректными данными
-    @Test
+    @Test(testName = "PUT запрос /user с некорректными данными",
+            description = "Проверка PUT запроса /user с некорректными данными")
+    @Severity(SeverityLevel.NORMAL)
+    @Epic("PFLB 1.0")
+    @Feature("Create users API")
+    @Story("Create users API")
+    @TmsLink("www.jira.com/C-1")
     public void PutUseInvalidDate() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
         JSONObject User = UserList();
@@ -190,6 +226,7 @@ public class UsersTest {
         requestBody.put("money", 999);
         requestBody.put("id", idUser);
         requestBody.put("secondName", "");
+
         Response response = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .header("host", "82.142.167.37")
@@ -203,8 +240,14 @@ public class UsersTest {
         Assert.assertEquals(response.getStatusCode(), 400);
     }
 
-    //Позитивная проверка Delete запроса на существующего пользователя
-    @Test
+
+    @Test(testName = "Delete запрос /user  на существующего пользователя",
+            description = "Позитивная проверка Delete запроса /user  на существующего пользователя")
+    @Severity(SeverityLevel.CRITICAL)
+    @Epic("PFLB 1.0")
+    @Feature("Create users API")
+    @Story("Create users API")
+    @TmsLink("www.jira.com/C-1")
     public void DeleteUser() throws JsonException {
         JSONObject User = UserList();
         Object idUser = User.get("id");
@@ -229,10 +272,14 @@ public class UsersTest {
         Assert.assertNotEquals(idAfterDelete, idUser);
     }
 
-    //Негативная проверка Delete запроса на несуществующего пользователя
-    @Test
+    @Test(testName = "Delete запрос /user на несуществующего пользователя",
+            description = "Негативная проверка Delete запроса на несуществующего пользователя")
+    @Severity(SeverityLevel.NORMAL)
+    @Epic("PFLB 1.0")
+    @Feature("Create users API")
+    @Story("Create users API")
+    @TmsLink("www.jira.com/C-1")
     public void DeleteUserNonExistent() throws JsonException {
-
         RestAssured.baseURI = "http://82.142.167.37:4880";
         Response response = null;
         try {
