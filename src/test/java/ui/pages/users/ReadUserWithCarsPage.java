@@ -1,9 +1,7 @@
 package ui.pages.users;
-
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
 import static java.lang.Thread.sleep;
 
 public class ReadUserWithCarsPage {
@@ -14,8 +12,6 @@ public class ReadUserWithCarsPage {
     static By textResultButton = By.cssSelector(".status.btn.btn-secondary");
     static By countLineCar = By.cssSelector(".tableCars tbody tr");
     static By countCar = By.cssSelector("tbody > tr > td:nth-child(7)");
-
-
 
     public ReadUserWithCarsPage(WebDriver driver) {
         this.driver = driver;
@@ -36,25 +32,21 @@ public class ReadUserWithCarsPage {
     public static void clickButton() throws InterruptedException {
         sleep(1000);
         driver.findElement(pushButton).click();
-
     }
 
     @Step("Проверка текста о результатах ")
     public static String checkResultText() throws InterruptedException {
         sleep(2000);
-        String text = driver.findElement(textResultButton).getText();
-        return text;
+        return driver.findElement(textResultButton).getText();
     }
     @Step("Проверка количества строк машин ")
     public static int checkCountLineCars() throws InterruptedException {
         sleep(2000);
-        int count = driver.findElements(countLineCar).size();
-        return count;
+        return driver.findElements(countLineCar).size();
     }
     @Step("Проверка количества  машин в поле  Cars")
     public static int checkCountCars() throws InterruptedException {
         sleep(2000);
-        int count = Integer.valueOf(driver.findElement(countCar).getText());
-        return count;
+        return Integer.valueOf(driver.findElement(countCar).getText());
     }
 }

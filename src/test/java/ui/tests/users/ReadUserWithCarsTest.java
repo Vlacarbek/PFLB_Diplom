@@ -1,5 +1,6 @@
 package ui.tests.users;
 
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ui.pages.login.LoginPage;
@@ -14,8 +15,13 @@ import static ui.tests.BaseTest.user;
 
 public class ReadUserWithCarsTest extends BaseTest
 {
-    //Позитивная проверка с пользователем с 1 машинами. Количество машин в поле  Cars совпадает с количеством строчек в таблице Cars
-    @Test
+    @Test(testName = "Позитивная проверка с пользователем с 1 машинами",
+            description = "Позитивная проверка с пользователем с 1 машинами. Количество машин в поле  Cars совпадает с количеством строчек в таблице Cars")
+    @Severity(SeverityLevel.CRITICAL)
+    @Epic("PFLB 1.0")
+    @Feature("ReadUserWithCars")
+    @Story("Read User With Cars")
+    @TmsLink("www.jira.com/Car-1")
     public static void readUserWith1Car () throws InterruptedException {
         LoginPage.open();
         LoginPage.login(user, password);
@@ -24,8 +30,14 @@ public class ReadUserWithCarsTest extends BaseTest
         Assert.assertEquals(ReadUserWithCarsPage.checkCountLineCars(),ReadUserWithCarsPage.checkCountCars());
         Assert.assertEquals(checkResultText(), "Status: 200 ok");
     }
-    //Позитивная проверка с пользователем с 2 машинами. Количество машин в поле  Cars совпадает с количеством строчек в таблице Cars
-    @Test
+
+    @Test(testName = "Позитивная проверка с пользователем с 2 машинами",
+            description = "Позитивная проверка с пользователем с 2 машинами. Количество машин в поле  Cars совпадает с количеством строчек в таблице Cars")
+    @Severity(SeverityLevel.CRITICAL)
+    @Epic("PFLB 1.0")
+    @Feature("ReadUserWithCars")
+    @Story("Read User With Cars")
+    @TmsLink("www.jira.com/Car-1")
     public static void
     readUserWith2Car () throws InterruptedException {
         LoginPage.open();
@@ -38,8 +50,13 @@ public class ReadUserWithCarsTest extends BaseTest
 
     }
 
-    //Позитивная проверка с пользователем без машин
-    @Test
+    @Test(testName = "Позитивная проверка с пользователем без машин",
+            description = "Позитивная проверка с пользователем без машин")
+    @Severity(SeverityLevel.CRITICAL)
+    @Epic("PFLB 1.0")
+    @Feature("ReadUserWithCars")
+    @Story("Read User With Cars")
+    @TmsLink("www.jira.com/Car-1")
     public static void readUserWithoutCar () throws InterruptedException {
         LoginPage.open();
         LoginPage.login(user, password);
@@ -49,8 +66,14 @@ public class ReadUserWithCarsTest extends BaseTest
         Assert.assertEquals(ReadUserWithCarsPage.checkCountLineCars(),0);
         Assert.assertEquals(checkResultText(), "Status: 200 ok");
     }
-    //Негативная проверка с несуществующим пользователем
-    @Test
+
+    @Test(testName = "Негативная проверка с несуществующим пользователем",
+            description = "Негативная проверка с несуществующим пользователем")
+    @Severity(SeverityLevel.NORMAL)
+    @Epic("PFLB 1.0")
+    @Feature("ReadUserWithCars")
+    @Story("Read User With Cars")
+    @TmsLink("www.jira.com/Car-1")
     public static void
     readUserNonExist () throws InterruptedException {
         LoginPage.open();
@@ -61,10 +84,13 @@ public class ReadUserWithCarsTest extends BaseTest
         Assert.assertEquals(checkResultText(), "Status: 204 user not found");
     }
 
-    //Негативная проверка с невалидными данными
-    @Test
-
-
+    @Test(testName = "Негативная проверка с невалидными данными",
+            description = "Негативная проверка с невалидными данными")
+    @Severity(SeverityLevel.NORMAL)
+    @Epic("PFLB 1.0")
+    @Feature("ReadUserWithCars")
+    @Story("Read User With Cars")
+    @TmsLink("www.jira.com/Car-1")
     public static void readUserInvalidData () throws InterruptedException {
         LoginPage.open();
         LoginPage.login(user, password);
@@ -72,7 +98,8 @@ public class ReadUserWithCarsTest extends BaseTest
         ReadUserWithCarsPage.fillFields("-1");
         ReadUserWithCarsPage.clickButton();
         Assert.assertEquals(checkResultText(), "Status: Invalid input");
-
     }
+
+
 
 }

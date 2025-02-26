@@ -1,5 +1,6 @@
 package api;
 import groovy.json.JsonException;
+import io.qameta.allure.*;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -32,8 +33,13 @@ public class LoginTest {
         return token;
     }
 
-    //Проверяем, что авторизация возвращает токен и он равен 203 символам
-    @Test
+    @Test(testName = "Авторизация возвращает токен и он равен 203 символам",
+            description = "Проверяем, что авторизация возвращает токен и он равен 203 символам")
+    @Severity(SeverityLevel.CRITICAL)
+    @Epic("PFLB 1.0")
+    @Feature("Login  API")
+    @Story("Login API")
+    @TmsLink("www.jira.com/C-1")
     public static  void   CorrectLogin() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4879";
 
@@ -52,8 +58,14 @@ public class LoginTest {
         String  token = response.jsonPath().getString("access_token");
         Assert.assertEquals(token.length(), 203);
     }
-    //Проверяем авторизацию с пустыми данными
-    @Test
+
+    @Test(testName = "Авторизация с пустыми данными",
+            description = "Проверяем авторизацию с пустыми данными")
+    @Severity(SeverityLevel.NORMAL)
+    @Epic("PFLB 1.0")
+    @Feature("Login  API")
+    @Story("Login API")
+    @TmsLink("www.jira.com/C-1")
     public  void  EmptyLogin () throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4879";
         String requestBody2 = "{"
@@ -71,8 +83,13 @@ public class LoginTest {
         Assert.assertEquals(response.getStatusCode(),403);
     }
 
-    //Проверяем авторизацию с не валидными данными
-    @Test
+    @Test(testName = "Авторизация с не валидными данными",
+            description = "Проверяем авторизацию с не валидными данными")
+    @Severity(SeverityLevel.NORMAL)
+    @Epic("PFLB 1.0")
+    @Feature("Login  API")
+    @Story("Login API")
+    @TmsLink("www.jira.com/C-1")
     public  void  InvalidLogin () throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4879";
         String requestBody2 = "{"

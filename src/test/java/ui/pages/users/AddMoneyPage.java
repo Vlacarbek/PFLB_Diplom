@@ -30,7 +30,7 @@ public class AddMoneyPage {
         driver.findElement(moneyField).sendKeys(String.valueOf(money));
 
     }
-    @Step("Клик на кнопку Push  ")
+    @Step("Клик на кнопку Push ")
     public static void clickButton() throws InterruptedException {
         sleep(1000);
         driver.findElement(pushButton).click();
@@ -39,13 +39,11 @@ public class AddMoneyPage {
     @Step("Проверка текста о результатах ")
     public static String checkResultText() throws InterruptedException {
         sleep(2000);
-        String text = driver.findElement(textResultButton).getText();
-        return text;
+        return driver.findElement(textResultButton).getText();
     }
     @Step("Проверка суммы в результатах ")
     public static String checkResultMoney() throws InterruptedException {
         sleep(2000);
-        String suma  = driver.findElement(moneyResult).getText();
-        return suma;
+        return driver.findElement(moneyResult).getText();
     }
 }

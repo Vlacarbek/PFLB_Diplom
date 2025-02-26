@@ -3,15 +3,7 @@ package ui.pages.users;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-
 import static java.lang.Thread.sleep;
-import static ui.tests.BaseTest.wait;
-
 
 public class CreateNewUsersPage {
     static WebDriver driver;
@@ -43,18 +35,17 @@ public class CreateNewUsersPage {
         driver.findElement(moneyField).sendKeys(String.valueOf(money));
         driver.findElement(sexRadioButton).click();
     }
+
     @Step("Клик на кнопку Push to api ")
     public static void clickButton() throws InterruptedException {
         sleep(1000);
         driver.findElement(pushButton).click();
-
     }
 
     @Step("Проверка текста о результатах ")
     public static String checkResultText() throws InterruptedException {
         sleep(2000);
-        String text = driver.findElement(textResultButton).getText();
-        return text;
+        return driver.findElement(textResultButton).getText();
     }
 }
 
