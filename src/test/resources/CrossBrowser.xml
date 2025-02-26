@@ -3,9 +3,9 @@
 <suite thread-count="3" name="SauceDemo SmokeTest" parallel="tests">
     <test name="Chrome">
         <classes>
-            <class name="ui.tests.cars.BuyOrSellCarTest"/>
-            <class name="ui.tests.cars.CreateNewTest"/>
-            <class name="ui.tests.cars.ReadAllTest"/>
+            <class name="tests.cars.BuyOrSellCarTest"/>
+            <class name="tests.cars.CreateNewTest"/>
+            <class name="tests.cars.ReadAllTest"/>
 
             <parameter name="browser" value="chrome"/>
         </classes>
