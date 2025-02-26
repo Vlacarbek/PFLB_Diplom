@@ -17,12 +17,12 @@ public class AddMoneyPage {
         this.driver = driver;
     }
 
-    @Step("Открытие странички создания юзера ")
+    @Step("Открытие странички добавление средств  ")
     public static void open() {
         driver.get("http://82.142.167.37:4881/#/update/users/plusMoney");
     }
 
-    @Step("Заполнение формы для создания юзера")
+    @Step("Заполнение формы для добавление средств ")
     public static void fillFields( String id, String money ) throws InterruptedException {
         sleep(2000);
         driver.findElement(idNameField).sendKeys(id);
@@ -30,7 +30,7 @@ public class AddMoneyPage {
         driver.findElement(moneyField).sendKeys(String.valueOf(money));
 
     }
-    @Step("Клик на кнопку Push to api ")
+    @Step("Клик на кнопку Push  ")
     public static void clickButton() throws InterruptedException {
         sleep(1000);
         driver.findElement(pushButton).click();
