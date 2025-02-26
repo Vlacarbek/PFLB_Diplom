@@ -6,9 +6,10 @@ import ui.pages.login.LoginPage;
 import ui.pages.users.CreateNewUsersPage;
 import ui.tests.BaseTest;
 
-import static java.lang.Thread.sleep;
 
-public class CreateNewTest extends BaseTest {
+public class
+
+CreateNewTest extends BaseTest {
 
     // Позитивная проверка на корректное создание юзера
     @Test
@@ -31,7 +32,7 @@ public class CreateNewTest extends BaseTest {
         CreateNewUsersPage.clickButton();
         Assert.assertEquals(CreateNewUsersPage.checkResultText(),"Status: AxiosError: Request failed with status code 400");
     }
-    //Негативная проверка на создание юзера с не валидными значениями
+    //Негативная проверка на создание юзера с невалидными значениями
     @Test
     public static void createUserEmptyData () throws InterruptedException {
         LoginPage.open();
