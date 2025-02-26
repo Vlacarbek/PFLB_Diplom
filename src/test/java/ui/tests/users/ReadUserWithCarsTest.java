@@ -1,17 +1,12 @@
 package ui.tests.users;
 
 import io.qameta.allure.*;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import ui.pages.login.LoginPage;
-import ui.pages.users.CreateNewUsersPage;
 import ui.pages.users.ReadUserWithCarsPage;
 import ui.tests.BaseTest;
-
+import static org.testng.AssertJUnit.assertEquals;
 import static ui.pages.users.ReadUserWithCarsPage.checkResultText;
-import static ui.tests.BaseTest.password;
-import static ui.tests.BaseTest.user;
-
 
 public class ReadUserWithCarsTest extends BaseTest
 {
@@ -27,8 +22,8 @@ public class ReadUserWithCarsTest extends BaseTest
         LoginPage.login(user, password);
         ReadUserWithCarsPage.open();
         ReadUserWithCarsPage.fillFields("1937");
-        Assert.assertEquals(ReadUserWithCarsPage.checkCountLineCars(),ReadUserWithCarsPage.checkCountCars());
-        Assert.assertEquals(checkResultText(), "Status: 200 ok");
+        assertEquals(ReadUserWithCarsPage.checkCountLineCars(),ReadUserWithCarsPage.checkCountCars());
+        assertEquals(checkResultText(), "Status: 200 ok");
     }
 
     @Test(testName = "Позитивная проверка с пользователем с 2 машинами",
@@ -45,9 +40,8 @@ public class ReadUserWithCarsTest extends BaseTest
         ReadUserWithCarsPage.open();
         ReadUserWithCarsPage.fillFields("1930");
         ReadUserWithCarsPage.clickButton();
-        Assert.assertEquals(ReadUserWithCarsPage.checkCountLineCars(),ReadUserWithCarsPage.checkCountCars());
-        Assert.assertEquals(checkResultText(), "Status: 200 ok");
-
+        assertEquals(ReadUserWithCarsPage.checkCountLineCars(),ReadUserWithCarsPage.checkCountCars());
+        assertEquals(checkResultText(), "Status: 200 ok");
     }
 
     @Test(testName = "Позитивная проверка с пользователем без машин",
@@ -63,8 +57,8 @@ public class ReadUserWithCarsTest extends BaseTest
         ReadUserWithCarsPage.open();
         ReadUserWithCarsPage.fillFields("1934");
         ReadUserWithCarsPage.clickButton();
-        Assert.assertEquals(ReadUserWithCarsPage.checkCountLineCars(),0);
-        Assert.assertEquals(checkResultText(), "Status: 200 ok");
+        assertEquals(ReadUserWithCarsPage.checkCountLineCars(),0);
+        assertEquals(checkResultText(), "Status: 200 ok");
     }
 
     @Test(testName = "Негативная проверка с несуществующим пользователем",
@@ -74,14 +68,13 @@ public class ReadUserWithCarsTest extends BaseTest
     @Feature("ReadUserWithCars")
     @Story("Read User With Cars")
     @TmsLink("www.jira.com/Car-1")
-    public static void
-    readUserNonExist () throws InterruptedException {
+    public static void readUserNonExist () throws InterruptedException {
         LoginPage.open();
         LoginPage.login(user, password);
         ReadUserWithCarsPage.open();
         ReadUserWithCarsPage.fillFields("77657657");
         ReadUserWithCarsPage.clickButton();
-        Assert.assertEquals(checkResultText(), "Status: 204 user not found");
+        assertEquals(checkResultText(), "Status: 204 user not found");
     }
 
     @Test(testName = "Негативная проверка с невалидными данными",
@@ -91,15 +84,37 @@ public class ReadUserWithCarsTest extends BaseTest
     @Feature("ReadUserWithCars")
     @Story("Read User With Cars")
     @TmsLink("www.jira.com/Car-1")
-    public static void readUserInvalidData () throws InterruptedException {
+    public static void
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    readUserInvalidData () throws InterruptedException {
         LoginPage.open();
         LoginPage.login(user, password);
         ReadUserWithCarsPage.open();
         ReadUserWithCarsPage.fillFields("-1");
         ReadUserWithCarsPage.clickButton();
-        Assert.assertEquals(checkResultText(), "Status: Invalid input");
+        assertEquals(checkResultText(), "Status: Invalid input");
     }
-
-
-
 }

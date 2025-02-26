@@ -1,8 +1,9 @@
 package ui.tests.login;
 import io.qameta.allure.*;
 import ui.tests.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class LoginTest extends BaseTest {
 
@@ -16,7 +17,7 @@ public class LoginTest extends BaseTest {
     public void positiveLogin() {
         loginPage.open();
         loginPage.login(user, password);
-        Assert.assertEquals(loginPage.checkAut(), "Status: not pushed");
+        assertEquals(loginPage.checkAut(), "Status: not pushed");
     }
 
     @Test(testName = "Негативная авторизация c пустой почтой",
@@ -29,7 +30,7 @@ public class LoginTest extends BaseTest {
     public void emptyEmail() {
         loginPage.open();
         loginPage.login("  ", "test123");
-        Assert.assertTrue(loginPage.checkErrorText("email cannot be empty"));
+        assertTrue(loginPage.checkErrorText("email cannot be empty"));
     }
 
     @Test(testName = "Негативная авторизация c некорректной почтой",
@@ -42,7 +43,7 @@ public class LoginTest extends BaseTest {
     public void invalidEmail() {
         loginPage.open();
         loginPage.login("1111", "test123");
-        Assert.assertTrue(loginPage.checkErrorText("incorrect Email"));
+        assertTrue(loginPage.checkErrorText("incorrect Email"));
     }
 
     @Test(testName = "Негативная авторизация c некорректным паролем",
@@ -55,6 +56,6 @@ public class LoginTest extends BaseTest {
     public void invalidPassword() {
         loginPage.open();
         loginPage.login("test1@test.com", "12");
-        Assert.assertTrue(loginPage.checkErrorText("password length must be more than 3 symbols and less than 8 symbols"));
+        assertTrue(loginPage.checkErrorText("password length must be more than 3 symbols and less than 8 symbols"));
     }
 }

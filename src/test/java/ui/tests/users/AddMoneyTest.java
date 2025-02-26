@@ -1,10 +1,11 @@
 package ui.tests.users;
 import io.qameta.allure.*;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import ui.pages.login.LoginPage;
 import ui.pages.users.AddMoneyPage;
 import ui.tests.BaseTest;
+
+import static org.testng.Assert.assertEquals;
 
 public class AddMoneyTest extends BaseTest {
 
@@ -24,8 +25,8 @@ public class AddMoneyTest extends BaseTest {
         String BeforeAddMoneyResult = AddMoneyPage.checkResultMoney();
         AddMoneyPage.clickButton();
         String AfterAddMoneyResult = AddMoneyPage.checkResultMoney();
-        Assert.assertEquals(Integer.parseInt(AfterAddMoneyResult) - Integer.parseInt(BeforeAddMoneyResult), 1);
-        Assert.assertEquals(AddMoneyPage.checkResultText(), "Status: Successfully pushed, code: 200");
+        assertEquals(Integer.parseInt(AfterAddMoneyResult) - Integer.parseInt(BeforeAddMoneyResult), 1);
+        assertEquals(AddMoneyPage.checkResultText(), "Status: Successfully pushed, code: 200");
     }
 
     @Test(testName = "Отправление средств несуществующему пользователю",
@@ -41,7 +42,7 @@ public class AddMoneyTest extends BaseTest {
         AddMoneyPage.open();
         AddMoneyPage.fillFields("54454355434", "1");
         AddMoneyPage.clickButton();
-        Assert.assertEquals(AddMoneyPage.checkResultText(), "Status: AxiosError: Request failed with status code 404");
+        assertEquals(AddMoneyPage.checkResultText(), "Status: AxiosError: Request failed with status code 404");
     }
 
     @Test(testName = "Отправление средств с некорректными данными",
@@ -57,7 +58,7 @@ public class AddMoneyTest extends BaseTest {
         AddMoneyPage.open();
         AddMoneyPage.fillFields("1", "-1");
         AddMoneyPage.clickButton();
-        Assert.assertEquals(AddMoneyPage.checkResultText(), "Status: Incorrect input data");
+        assertEquals(AddMoneyPage.checkResultText(), "Status: Incorrect input data");
     }
 
     @Test(testName = "Отправление средств с пустыми данными",
@@ -67,12 +68,13 @@ public class AddMoneyTest extends BaseTest {
     @Feature("Money")
     @Story("Add Money")
     @TmsLink("www.jira.com/M-1")
-    public static void addMoneyEmptyDate() throws InterruptedException {
+    public static void
+    addMoneyEmptyDate() throws InterruptedException {
         LoginPage.open();
         LoginPage.login(user, password);
         AddMoneyPage.open();
         AddMoneyPage.fillFields("", "");
         AddMoneyPage.clickButton();
-        Assert.assertEquals(AddMoneyPage.checkResultText(), "Status: Incorrect input data");
+        assertEquals(AddMoneyPage.checkResultText(), "Status: Incorrect input data");
     }
 }
