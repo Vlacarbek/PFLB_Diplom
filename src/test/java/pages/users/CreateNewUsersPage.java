@@ -20,6 +20,7 @@ public class CreateNewUsersPage {
     private static final  By SEX_RADIO_BUTTON = By.id("sex_send");
     private static final  By PUSH_BUTTON = By.cssSelector(".tableButton.btn.btn-primary");
     private static final  By TEXT_RESULT_BUTTON = By.cssSelector(".status.btn.btn-secondary");
+    private static final  By USER_ID = By.xpath("//*[@id=\"root\"]/div/section/div/div/button[3]");
 
 
     public CreateNewUsersPage(WebDriver driver) {
@@ -58,7 +59,7 @@ public class CreateNewUsersPage {
     @Step("Получение id созданного пользователя")
     public static String getTextFromResult() throws InterruptedException {
         sleep(2000);
-        return driver.findElement(userId).getText();
+        return driver.findElement(USER_ID).getText();
     }
 
     @Step("Получение идентификатора созданного пользователя из текста результата")
