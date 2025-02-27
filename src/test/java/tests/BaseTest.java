@@ -9,27 +9,26 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
+import org.testng.asserts.SoftAssert;
 import pages.cars.BuyOrSellCarPage;
 import pages.cars.CreateNewCarsPage;
 import pages.cars.ReadAllCarsPage;
 import pages.houses.CreateNewHousesPage;
-import pages.users.*;
 import pages.houses.ReadOneByIDPage;
 import pages.houses.SettleOrEvictUserPage;
 import pages.login.LoginPage;
+import pages.users.*;
 import utils.AllureUtils;
-import org.testng.asserts.SoftAssert;
 import utils.PropertyReader;
 
 import java.time.Duration;
 
 public class BaseTest {
 
-    WebDriver driver;
-
-  public SoftAssert softAssert;
-  public static WebDriverWait wait;
-
+    public static WebDriverWait wait;
+    public static String user = System.getProperty("user", PropertyReader.getProperty("user"));
+    public static String password = System.getProperty("password", PropertyReader.getProperty("password"));
+    public SoftAssert softAssert;
     public BuyOrSellCarPage buyOrSellCarPage;
     public CreateNewCarsPage createNewCarsPage;
     public ReadAllCarsPage readAllCarsPage;
@@ -44,16 +43,14 @@ public class BaseTest {
     public ReadAllUsersPage readAllUsersPage;
     public SettleToHousePage settleToHousePage;
     protected LoginPage loginPage;
-    public static String user = System.getProperty("user", PropertyReader.getProperty("user"));
-    public static String password = System.getProperty("password", PropertyReader.getProperty("password"));
-
+    WebDriver driver;
 
     @BeforeMethod
     public void setup(@Optional("chrome") String browser) {
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("start-maximized");
-            options.addArguments("--headless");
+            //options.addArguments("--headless");
             options.setCapability("unhandledPromptBehavior", "accept");
             driver = new ChromeDriver(options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
@@ -62,7 +59,6 @@ public class BaseTest {
             wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
         } else if (browser.equalsIgnoreCase("internetexplorer")) {
             driver = new InternetExplorerDriver();
-
         }
 
         buyOrSellCarPage = new BuyOrSellCarPage(driver);
@@ -88,6 +84,8 @@ public class BaseTest {
         if (ITestResult.FAILURE == result.getStatus()) {
             AllureUtils.takeScreenshot(driver);
         }
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
