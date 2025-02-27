@@ -20,7 +20,6 @@ import pages.login.LoginPage;
 import utils.AllureUtils;
 import org.testng.asserts.SoftAssert;
 import utils.PropertyReader;
-
 import java.time.Duration;
 
 public class BaseTest {
@@ -36,16 +35,16 @@ public class BaseTest {
     public CreateNewHousesPage createNewHousesPage;
     public ReadOneByIDPage readOneByIDPage;
     public SettleOrEvictUserPage settleOrEvictUserPage;
-    public AddMoneyPage addMoneyPage;
+    public pages.users.AddMoneyPage addMoneyPage;
     public BuyOrSellCarUsersPage buyOrSellCarUsersPage;
-    public CreateNewUsersPage createNewUsersPage;
+    public pages.users.CreateNewUsersPage createNewUsersPage;
     public IssueALoanPage issueALoanPage;
-    public ReadUserWithCarsPage readUserWithCarsPage;
+    public pages.users.ReadUserWithCarsPage readUserWithCarsPage;
     public ReadAllUsersPage readAllUsersPage;
     public SettleToHousePage settleToHousePage;
-    protected LoginPage loginPage;
-    public static String user = System.getProperty("user", PropertyReader.getProperty("user"));
-    public static String password = System.getProperty("password", PropertyReader.getProperty("password"));
+    public LoginPage loginPage;
+    protected static String user = System.getProperty("user", PropertyReader.getProperty("user"));
+    protected static String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
 
     @BeforeMethod
