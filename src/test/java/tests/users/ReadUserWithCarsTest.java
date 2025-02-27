@@ -25,7 +25,6 @@ public class ReadUserWithCarsTest extends BaseTest {
         ReadUserWithCarsPage.clickButton();
         assertEquals(ReadUserWithCarsPage.checkCountLineCars(),ReadUserWithCarsPage.checkCountCars());
         assertEquals(checkResultText(), "Status: 200 ok");
-
     }
 
     @Test(testName = "Позитивная проверка с пользователем с 2 машинами",
