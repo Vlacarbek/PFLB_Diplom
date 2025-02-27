@@ -1,14 +1,12 @@
 package tests.users;
 import io.qameta.allure.*;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.login.LoginPage;
 import pages.users.CreateNewUsersPage;
 import tests.BaseTest;
+import static org.testng.Assert.assertEquals;
 
-public class
-
-CreateNewTest extends BaseTest {
+public class CreateNewTest extends BaseTest {
 
     @Test(testName = "Корректное создание юзера",
             description = "Позитивная проверка на корректное создание юзера")
@@ -23,7 +21,7 @@ CreateNewTest extends BaseTest {
         CreateNewUsersPage.open();
         CreateNewUsersPage.fillFields("Alina", "Vershinina", "19", "19");
         CreateNewUsersPage.clickButton();
-        Assert.assertEquals(CreateNewUsersPage.checkResultText(), "Status: Successfully pushed, code: 201");
+        assertEquals(CreateNewUsersPage.checkResultText(), "Status: Successfully pushed, code: 201");
     }
 
     @Test(testName = "Cоздание юзера с невалидными значениями",
@@ -39,7 +37,7 @@ CreateNewTest extends BaseTest {
         CreateNewUsersPage.open();
         CreateNewUsersPage.fillFields("56", "56", "4444444", "354454353543543354454353543543354454353543543");
         CreateNewUsersPage.clickButton();
-        Assert.assertEquals(CreateNewUsersPage.checkResultText(), "Status: AxiosError: Request failed with status code 400");
+        assertEquals(CreateNewUsersPage.checkResultText(), "Status: AxiosError: Request failed with status code 400");
     }
 
     @Test(testName = "Cоздание юзера с пустыми значениями",
@@ -54,6 +52,6 @@ CreateNewTest extends BaseTest {
         LoginPage.login(user, password);
         CreateNewUsersPage.open();
         CreateNewUsersPage.clickButton();
-        Assert.assertEquals(CreateNewUsersPage.checkResultText(), "Status: Invalid request data");
+        assertEquals(CreateNewUsersPage.checkResultText(), "Status: Invalid request data");
     }
 }

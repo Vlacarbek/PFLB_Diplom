@@ -8,14 +8,12 @@ import java.util.List;
 import java.awt.*;
 
 public class LoginPage {
-    public static WebDriver driver;
-    static By emailField = By.xpath("//*[@type =\"email\"]");
-    static By passwordField = By.xpath("//*[@type =\"text\"]");
-    public static By loginButton = By.cssSelector(".Nav-btn.btn.btn-primary");
-    public By logoutButton = By.cssSelector(".Nav-btn.btn.btn-danger");
-    public By buttonSectionAlLPOSTForCheck = By.xpath("//*[@data-rr-ui-event-key=\"#/create/all\"]");
-    public By buttonStatusForCheck = By.cssSelector(".status.btn.btn-secondary");
-
+    private static WebDriver driver;
+    private static final  By EMAIL_FIELD = By.xpath("//*[@type =\"email\"]");
+    private static final  By PASSWORD_FIELDS = By.xpath("//*[@type =\"text\"]");
+    private static final  By LOGIN_BUTTON = By.cssSelector(".Nav-btn.btn.btn-primary");
+    private static final  By BUTTON_SECTION_ALL_POST_FOR_CHECK = By.xpath("//*[@data-rr-ui-event-key=\"#/create/all\"]");
+    private static final  By BUTTON_STATUS_FOR_CHECK = By.cssSelector(".status.btn.btn-secondary");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -28,9 +26,9 @@ public class LoginPage {
 
     @Step("Вход в систему с логином {user} и паролем {password} ")
     public static void login(String user, String password) {
-        driver.findElement(emailField).sendKeys(user);
-        driver.findElement(passwordField).sendKeys(password);
-        driver.findElement(loginButton).click();
+        driver.findElement(EMAIL_FIELD).sendKeys(user);
+        driver.findElement(PASSWORD_FIELDS).sendKeys(password);
+        driver.findElement(LOGIN_BUTTON).click();
         try {
             Robot robot = new Robot();
             Thread.sleep(2000); // Задержка для ожидания открытия окна
@@ -41,30 +39,24 @@ public class LoginPage {
             e.printStackTrace();
         }
     }
-
     @Step("Проверка авторизации ")
-    public String checkAut() {
-        driver.findElement(buttonSectionAlLPOSTForCheck).click();
+    public static String checkAut() {
+        driver.findElement(BUTTON_SECTION_ALL_POST_FOR_CHECK).click();
         List<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
-        String text = driver.findElement(buttonStatusForCheck).getText();
-        return text;
+        return driver.findElement(BUTTON_STATUS_FOR_CHECK).getText();
     }
 
-    @Step("Проверка текста ошибки")
-    public boolean  checkErrorText(String textError)  {
+    @Step("Проверка текста ошибки {textError}")
+    public static boolean  checkErrorText(String textError)  {
         String pageSource = null;
         try {
             Thread.sleep(2000);
             pageSource = driver.getPageSource();
             Thread.sleep(2000);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
         return pageSource.contains(textError);
-
-
-
     }
 }
