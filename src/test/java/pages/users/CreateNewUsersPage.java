@@ -3,6 +3,11 @@ package pages.users;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pages.cars.CreateNewCarsPage;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static java.lang.Thread.sleep;
 
 public class CreateNewUsersPage {
@@ -14,6 +19,7 @@ public class CreateNewUsersPage {
     static By sexRadioButton = By.id("sex_send");
     static By pushButton = By.cssSelector(".tableButton.btn.btn-primary");
     static By textResultButton = By.cssSelector(".status.btn.btn-secondary");
+    public static By userId = By.xpath("//*[@id=\"root\"]/div/section/div/div/button[3]");
 
     public CreateNewUsersPage(WebDriver driver) {
         this.driver = driver;
@@ -47,6 +53,27 @@ public class CreateNewUsersPage {
         sleep(2000);
         return driver.findElement(textResultButton).getText();
     }
+
+    @Step("Получение id созданного пользователя")
+    public static String getTextFromResult() throws InterruptedException {
+        sleep(2000);
+        return driver.findElement(userId).getText();
+    }
+
+    @Step("Получение идентификатора созданного пользователя из текста результата")
+    public static String getIdNewCar(String text) {
+        String regex = ":\\s*(.+)";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(text);
+        if (matcher.find()) {
+            return matcher.group(1).trim();
+        } else {
+            return null;
+        }
+    }
+
+    public static String getUserId() throws InterruptedException {
+        String result = CreateNewUsersPage.getIdNewCar(getTextFromResult());
+        return result;
+    }
 }
-
-
