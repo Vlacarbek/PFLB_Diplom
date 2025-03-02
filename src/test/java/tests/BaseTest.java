@@ -37,6 +37,7 @@ public class BaseTest {
     public pages.users.AddMoneyPage addMoneyPage;
     public BuyOrSellCarUsersPage buyOrSellCarUsersPage;
     public pages.users.CreateNewUsersPage createNewUsersPage;
+    public IssueALoanPage issueALoanPage;
     public pages.users.ReadUserWithCarsPage readUserWithCarsPage;
     public ReadAllUsersPage readAllUsersPage;
     public SettleToHousePage settleToHousePage;
@@ -69,6 +70,7 @@ public class BaseTest {
         addMoneyPage = new AddMoneyPage(driver);
         buyOrSellCarUsersPage = new BuyOrSellCarUsersPage(driver);
         createNewUsersPage = new CreateNewUsersPage(driver);
+        issueALoanPage = new IssueALoanPage(driver);
         readAllUsersPage = new ReadAllUsersPage(driver);
         readUserWithCarsPage = new ReadUserWithCarsPage(driver);
         settleToHousePage = new SettleToHousePage(driver);
