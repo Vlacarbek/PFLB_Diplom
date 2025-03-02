@@ -26,9 +26,8 @@ public class BaseTest {
 
     WebDriver driver;
 
-  public SoftAssert softAssert;
-  public static WebDriverWait wait;
-
+    public SoftAssert softAssert;
+    public static WebDriverWait wait;
     public BuyOrSellCarPage buyOrSellCarPage;
     public CreateNewCarsPage createNewCarsPage;
     public ReadAllCarsPage readAllCarsPage;
@@ -42,9 +41,8 @@ public class BaseTest {
     public ReadAllUsersPage readAllUsersPage;
     public SettleToHousePage settleToHousePage;
     public LoginPage loginPage;
-    protected static String user = System.getProperty("user", PropertyReader.getProperty("user"));
-    protected static String password = System.getProperty("password", PropertyReader.getProperty("password"));
-
+    public static String user = System.getProperty("user", PropertyReader.getProperty("user"));
+    public static String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
     @BeforeMethod
     public void setup(@Optional("chrome") String browser) {
@@ -60,7 +58,6 @@ public class BaseTest {
             wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
         } else if (browser.equalsIgnoreCase("internetexplorer")) {
             driver = new InternetExplorerDriver();
-
         }
 
         buyOrSellCarPage = new BuyOrSellCarPage(driver);
