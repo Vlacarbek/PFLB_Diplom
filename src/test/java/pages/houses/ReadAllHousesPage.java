@@ -15,10 +15,10 @@ public class ReadAllHousesPage extends BaseTest {
 
     static WebDriver driver;
 
-    public static By housePage = By.xpath("//a[text()='Houses']");
-    public static By readAll = By.xpath("//a[@href='#/read/houses']");
-    public static By reloadButton = By.xpath("//button[text()='Reload']");
-    public static By lodgersIDReadAll = By.xpath("//*[@id='root']/div/section/div/table/tbody/tr[1]/td[5]/table/tbody/tr/td");
+    private static final By HOUSE_PAGE = By.xpath("//a[text()='Houses']");
+    private static final By READ_ALL = By.xpath("//a[@href='#/read/houses']");
+    private static final By RELOAD_BUTTON = By.xpath("//button[text()='Reload']");
+    private static final By LODGERS_ID_READ_ALL = By.xpath("//*[@id='root']/div/section/div/table/tbody/tr[1]/td[5]/table/tbody/tr/td");
 
     public ReadAllHousesPage(WebDriver driver) {
         ReadAllHousesPage.driver = driver;
@@ -26,8 +26,8 @@ public class ReadAllHousesPage extends BaseTest {
 
     @Step("Открытие страницы ReadAllHousesPage")
     public static void openReadAllHousesPage() {
-        driver.findElement(housePage).click();
-        driver.findElement(readAll).click();
+        driver.findElement(HOUSE_PAGE).click();
+        driver.findElement(READ_ALL).click();
     }
 
     @Step("Поиск пустых полей на странице ReadAllHousesPage")
@@ -47,7 +47,7 @@ public class ReadAllHousesPage extends BaseTest {
         for (WebElement field : allFieldFirstEqual) {
             stringFieldFirst.add(field.getText());
         }
-        driver.findElement(reloadButton).click();
+        driver.findElement(RELOAD_BUTTON).click();
         ArrayList<WebElement> allFieldSecondEqual = new ArrayList<>(driver.findElements(By.xpath("//td")));
         List<String> stringFieldSecond = new ArrayList<>();
         for (WebElement field : allFieldSecondEqual) {
@@ -59,7 +59,7 @@ public class ReadAllHousesPage extends BaseTest {
 
     @Step("Получение информации по жильцам на странице ReadAllHousesPage")
     public static List<String> lodgersReadAllHousePage() {
-        List<String> lodgerslistReadAllPage = new ArrayList<>(driver.findElements(lodgersIDReadAll))
+        List<String> lodgerslistReadAllPage = new ArrayList<>(driver.findElements(LODGERS_ID_READ_ALL))
                 .stream()
                 .map(WebElement::getText)
                 .sorted(Comparator.naturalOrder())

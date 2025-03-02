@@ -1,7 +1,6 @@
 package tests.houses;
 
 import io.qameta.allure.*;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.houses.ReadAllHousesPage;
 import pages.houses.ReadOneByIDPage;
@@ -9,6 +8,8 @@ import pages.login.LoginPage;
 import tests.BaseTest;
 
 import java.util.List;
+
+import static org.testng.Assert.assertEquals;
 
 public class ReadOneByIDTest extends BaseTest {
 
@@ -27,7 +28,7 @@ public class ReadOneByIDTest extends BaseTest {
         ReadOneByIDPage.clickReadButton("1");
         List<String> lodgersReadOneByIDPageSaved = ReadOneByIDPage.lodgersReadOneByIDPage();
         ReadAllHousesPage.openReadAllHousesPage();
-        Assert.assertEquals(lodgersReadOneByIDPageSaved,
+        assertEquals(lodgersReadOneByIDPageSaved,
                 ReadAllHousesPage.lodgersReadAllHousePage(),
                 "данные не совпадают");
     }
