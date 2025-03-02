@@ -14,8 +14,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <allure.version>2.24.0</allure.version>
         <aspectj.version>1.9.20.1</aspectj.version>
-        <rest-assured>5.5.0</rest-assured>
-        <postgresql.version>42.7.3</postgresql.version>
         <selenium-java.version>4.25.0</selenium-java.version>
         <testng.version>7.10.2</testng.version>
         <json.version>20210307</json.version>
@@ -24,7 +22,6 @@
         <log4j.version>2.24.3</log4j.version>
         <jackson-dataformat-yaml.version>2.18.2</jackson-dataformat-yaml.version>
         <allure-maven.version>2.12.0</allure-maven.version>
-
     </properties>
 
     <dependencyManagement>
@@ -40,13 +37,6 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>${postgresql.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
