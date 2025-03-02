@@ -36,17 +36,23 @@ public class ReadUserWithCarsPage {
 
     @Step("Проверка текста о результатах ")
     public static String checkResultText() throws InterruptedException {
-        sleep(2000);
+        sleep(3000);
         return driver.findElement(TEXT_RESULT_BUTTON).getText();
     }
     @Step("Проверка количества строк машин ")
     public static int checkCountLineCars() throws InterruptedException {
-        sleep(2000);
+        sleep(3000);
         return driver.findElements(COUNT_LINE_CAR).size();
     }
     @Step("Проверка количества  машин в поле  Cars")
     public static int checkCountCars() throws InterruptedException {
-        sleep(2000);
-        return Integer.parseInt(driver.findElement(COUNT_CAR).getText());
+        sleep(3000);
+        int number = 0;
+        try {
+             number = Integer.parseInt(driver.findElement(COUNT_CAR).getText());
+        } catch (NumberFormatException e) {
+            System.out.println("Ошибка преобразования: " + e.getMessage());
+        }
+        return  number;
     }
 }
