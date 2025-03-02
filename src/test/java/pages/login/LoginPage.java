@@ -1,5 +1,6 @@
 package pages.login;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import java.awt.event.KeyEvent;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.*;
 
+@Log4j2
 public class LoginPage {
     private static WebDriver driver;
     private static final  By EMAIL_FIELD = By.xpath("//*[@type =\"email\"]");
@@ -21,11 +23,13 @@ public class LoginPage {
 
     @Step("Открытие странички авторизации ")
     public static void open() {
+        log.info("Открытие странички авторизации");
         driver.get("http://82.142.167.37:4881/");
     }
 
-    @Step("Вход в систему с логином {user} и паролем {password} ")
+    @Step("Вход в систему с логином '{user}' и паролем '{password}' ")
     public static void login(String user, String password) {
+        log.info("Вход в систему с логином {} и паролем {} ", user, password);
         driver.findElement(EMAIL_FIELD).sendKeys(user);
         driver.findElement(PASSWORD_FIELDS).sendKeys(password);
         driver.findElement(LOGIN_BUTTON).click();
@@ -41,14 +45,16 @@ public class LoginPage {
     }
     @Step("Проверка авторизации ")
     public static String checkAut() {
+        log.info("Проверка авторизации ");
         driver.findElement(BUTTON_SECTION_ALL_POST_FOR_CHECK).click();
         List<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
         return driver.findElement(BUTTON_STATUS_FOR_CHECK).getText();
     }
 
-    @Step("Проверка текста ошибки {textError}")
+    @Step("Проверка текста ошибки '{textError}'")
     public static boolean  checkErrorText(String textError)  {
+        log.info("Проверка текста ошибки {}", textError);
         String pageSource = null;
         try {
             Thread.sleep(2000);

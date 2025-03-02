@@ -3,11 +3,8 @@ package pages.users;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import pages.cars.CreateNewCarsPage;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import static java.lang.Thread.sleep;
 
 public class CreateNewUsersPage {

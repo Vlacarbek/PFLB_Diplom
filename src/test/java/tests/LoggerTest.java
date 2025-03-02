@@ -9,7 +9,6 @@ public class LoggerTest {
 
     @Test
     public void test() {
-
         log.fatal("fatal");
         log.error("error");
         log.warn("warn");
