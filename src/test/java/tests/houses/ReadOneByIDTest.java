@@ -21,7 +21,13 @@ public class ReadOneByIDTest extends BaseTest {
     @Feature("House")
     @Story("ReadOneByID")
     @TmsLink("www.jira.com/TK-001")
-    public void checkingTheDataWithTheReadAllPage() {
+    public void
+
+
+
+
+
+    checkingTheDataWithTheReadAllPage() {
         LoginPage.open();
         LoginPage.login("user", "password");
         ReadOneByIDPage.openReadOneByIDPage();

@@ -8,7 +8,8 @@ import tests.BaseTest;
 
 import static org.testng.Assert.assertFalse;
 
-public class ReadAllTest extends BaseTest {
+public class
+ReadAllTest extends BaseTest {
 
     @Test(testName = "Проверка наличия пустых полей на странице ReadAllHousesPage")
     @Description("Проверка наличия пустых полей на странице ReadAllHousesPage")
@@ -23,6 +24,8 @@ public class ReadAllTest extends BaseTest {
         ReadAllHousesPage.openReadAllHousesPage();
         assertFalse(ReadAllHousesPage.fieldsNotNull(), "Имеются пустые поля на странице");
     }
+
+
 
     @Test(testName = "Проверка кнопки Reload на странице ReadAllHousesPage")
     @Description("Проверка кнопки Reload на странице ReadAllHousesPage")

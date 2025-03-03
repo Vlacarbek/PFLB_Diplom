@@ -1,14 +1,20 @@
 package utils;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.NoSuchSessionException;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import java.util.concurrent.TimeUnit;
 
+@Log4j2
 public class TestListener implements ITestListener {
+
+    private static final Logger log = LoggerFactory.getLogger(TestListener.class);
 
     public void onTestStart(ITestResult iTestResult) {
         System.out.println((String.format("======================================== STARTING TEST %s ========================================", iTestResult.getName())));

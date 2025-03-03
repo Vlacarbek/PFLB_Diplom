@@ -1,9 +1,12 @@
 package pages.houses;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import tests.BaseTest;
 
 import java.util.ArrayList;
@@ -11,8 +14,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
+@Log4j2
 public class ReadAllHousesPage extends BaseTest {
 
+    private static final Logger log = LoggerFactory.getLogger(ReadAllHousesPage.class);
     static WebDriver driver;
 
     private static final By HOUSE_PAGE = By.xpath("//a[text()='Houses']");
@@ -26,12 +31,14 @@ public class ReadAllHousesPage extends BaseTest {
 
     @Step("Открытие страницы ReadAllHousesPage")
     public static void openReadAllHousesPage() {
+        log.info("Opening the ReadAllHousesPage");
         driver.findElement(HOUSE_PAGE).click();
         driver.findElement(READ_ALL).click();
     }
 
     @Step("Поиск пустых полей на странице ReadAllHousesPage")
     public static Boolean fieldsNotNull() {
+        log.info("Finding empty fields on a page");
         ArrayList<WebElement> allField = new ArrayList<>(driver.findElements(By.xpath("//td")));
         List<String> stringField = new ArrayList<>();
         for (WebElement field : allField) {
@@ -42,6 +49,7 @@ public class ReadAllHousesPage extends BaseTest {
 
     @Step("Проверка кнопки Reload на странице ReadAllHousesPage: меняется ли сортировка")
     public static Boolean buttonIsWorked() {
+        log.info("Checking the Reload button on the ReadAllHousesPage");
         ArrayList<WebElement> allFieldFirstEqual = new ArrayList<>(driver.findElements(By.xpath("//td")));
         List<String> stringFieldFirst = new ArrayList<>();
         for (WebElement field : allFieldFirstEqual) {
@@ -59,6 +67,7 @@ public class ReadAllHousesPage extends BaseTest {
 
     @Step("Получение информации по жильцам на странице ReadAllHousesPage")
     public static List<String> lodgersReadAllHousePage() {
+        log.info("Obtaining information about residents on the ReadAllHousesPage");
         List<String> lodgerslistReadAllPage = new ArrayList<>(driver.findElements(LODGERS_ID_READ_ALL))
                 .stream()
                 .map(WebElement::getText)

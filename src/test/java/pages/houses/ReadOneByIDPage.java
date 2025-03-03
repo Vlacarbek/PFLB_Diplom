@@ -4,6 +4,8 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import tests.BaseTest;
 
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.List;
 
 public class ReadOneByIDPage extends BaseTest {
 
+    private static final Logger log = LoggerFactory.getLogger(ReadOneByIDPage.class);
     static WebDriver driver;
 
     private static final By HOUSE_PAGE = By.xpath("//a[text()='Houses']");
@@ -26,12 +29,14 @@ public class ReadOneByIDPage extends BaseTest {
 
     @Step("Открытие страницы ReadOneByIDPage")
     public static void openReadOneByIDPage() {
+        log.info("Opening the ReadOneByIDPage");
         driver.findElement(HOUSE_PAGE).click();
         driver.findElement(READ_ONE_BY_ID_PAGE).click();
     }
 
-    @Step("Ввод числа в поле house_input числа: {IDNumber} и нажатие кнопки Read")
+    @Step("Ввод в поле house_input числа: {IDNumber} и нажатие кнопки Read")
     public static void clickReadButton(String IDNumber) {
+        log.info("Entering the number in the house_input field: {} and clicking the Read button", IDNumber);
         driver.findElement(SEND_KEYS_FIELD).click();
         driver.findElement(SEND_KEYS_FIELD).sendKeys(IDNumber);
         driver.findElement(READ_BUTTON).click();
@@ -39,6 +44,7 @@ public class ReadOneByIDPage extends BaseTest {
 
     @Step("Получение информации по жильцам на странице ReadOneByIDPage")
     public static List<String> lodgersReadOneByIDPage() {
+        log.info("Obtaining information on residents on the ReadOneByIDPage page");
         List<String> lodgerslist = new ArrayList<>(driver.findElements(LODGERS_ID))
                 .stream()
                 .map(WebElement::getText)
