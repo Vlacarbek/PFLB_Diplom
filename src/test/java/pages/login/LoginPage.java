@@ -22,7 +22,7 @@ public class LoginPage {
     private static final  By BUTTON_STATUS_FOR_CHECK = By.cssSelector(".status.btn.btn-secondary");
 
     public LoginPage(WebDriver driver) {
-        this.driver = driver;
+        LoginPage.driver = driver;
     }
 
     @Step("Открытие странички авторизации ")
