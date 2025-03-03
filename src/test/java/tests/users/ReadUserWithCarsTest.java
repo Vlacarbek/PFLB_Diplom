@@ -5,9 +5,7 @@ import org.testng.annotations.Test;
 import pages.login.LoginPage;
 import pages.users.ReadUserWithCarsPage;
 import tests.BaseTest;
-
 import java.sql.SQLException;
-
 import static org.testng.AssertJUnit.assertEquals;
 import static pages.users.ReadUserWithCarsPage.checkResultText;
 import static tests.db.UsersTest.checkUserCount;
@@ -94,8 +92,7 @@ public class ReadUserWithCarsTest extends BaseTest {
     @Feature("ReadUserWithCars")
     @Story("Read User With Cars")
     @TmsLink("www.jira.com/Car-1")
-    public static void
-    readUserInvalidData () throws InterruptedException {
+    public static void readUserInvalidData () throws InterruptedException {
         LoginPage.open();
         LoginPage.login(user, password);
         ReadUserWithCarsPage.open();

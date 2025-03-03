@@ -21,7 +21,7 @@ public class BuyOrSellCarTest extends BaseTest {
         LoginPage.open();
         LoginPage.login(user, password);
         BuyOrSellCarUsersPage.open();
-        BuyOrSellCarUsersPage.fillFields("2164","6");
+        BuyOrSellCarUsersPage.fillFields("2744","6");
         BuyOrSellCarUsersPage.clickBuy();
         BuyOrSellCarUsersPage.clickButton();
         assertEquals(BuyOrSellCarUsersPage.checkResultText(),"Status: Successfully pushed, code: 200");
@@ -37,12 +37,11 @@ public class BuyOrSellCarTest extends BaseTest {
         LoginPage.open();
         LoginPage.login(user, password);
         BuyOrSellCarUsersPage.open();
-        BuyOrSellCarUsersPage.fillFields("2164","6");
+        BuyOrSellCarUsersPage.fillFields("2744","6");
         BuyOrSellCarUsersPage.clickSell();
         BuyOrSellCarUsersPage.clickButton();
         assertEquals(BuyOrSellCarUsersPage.checkResultText(),"Status: Successfully pushed, code: 200");
     }
-
     @Test(priority = 3, testName = "Продажа машины , у юзера не хватает средств ",
             description = "Продажа машины , у юзера не хватает средств ")
     @Severity(SeverityLevel.NORMAL)

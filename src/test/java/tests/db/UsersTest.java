@@ -1,16 +1,16 @@
 package tests.db;
 
+import utils.PropertyReader;
 import java.sql.*;
 
 public class UsersTest {
     private static Connection con;
     private static Statement stmt;
     private static ResultSet rs;
-    private static final String url = "jdbc:postgresql://82.142.167.37:4832/pflb_trainingcenter";
-    private static final String user = "pflb-at-read";
-    private static final String password = "PflbQaTraining2354";
     private static int count ;
-
+    public static String user = System.getProperty("DB_LOGIN", PropertyReader.getProperty("DB_LOGIN"));
+    public static String password = System.getProperty("DB_PASSWORD", PropertyReader.getProperty("DB_PASSWORD"));
+    public static String url = System.getProperty("DB_URL", PropertyReader.getProperty("DB_URL"));
 
     public static int checkUserCount(String query) throws SQLException {
         count = 0;

@@ -25,6 +25,7 @@
         <log4j.version>2.24.3</log4j.version>
         <jackson-dataformat-yaml.version>2.18.2</jackson-dataformat-yaml.version>
         <allure-maven.version>2.12.0</allure-maven.version>
+        <suiteXmlFileName>src/test/resources/SmokeTest.xml</suiteXmlFileName>
 
     </properties>
 
@@ -106,6 +107,9 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire.version}</version>
                 <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${suiteXmlFileName}</suiteXmlFile>
+                    </suiteXmlFiles>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>

@@ -3,6 +3,7 @@ package tests.api;
 import groovy.json.JsonException;
 import io.qameta.allure.*;
 import io.restassured.RestAssured;
+import io.restassured.parsing.Parser;
 import io.restassured.response.Response;
 import org.json.JSONArray;
 import org.testng.Assert;
@@ -115,13 +116,14 @@ public class UsersTest {
     @Story("Create users API")
     @TmsLink("www.jira.com/C-1")
     public void PostUser() throws JsonException {
+        RestAssured.defaultParser = Parser.JSON;
         RestAssured.baseURI = "http://82.142.167.37:4880";
         JSONObject requestBody = new JSONObject();
-        requestBody.put("firstName", "Alina7");
+        requestBody.put("firstName", "Alina78");
         requestBody.put("sex", "MALE");
         requestBody.put("age", 25);
         requestBody.put("money", 350);
-        requestBody.put("id", 65475757);
+        requestBody.put("id", 5656566);
         requestBody.put("secondName", "Vershinina");
         Response response = RestAssured.given()
                 .header("Content-Type", "application/json")
@@ -133,7 +135,7 @@ public class UsersTest {
                 .then()
                 .extract().response();
         response.then()
-                .body("firstName", equalTo("Alina7"))
+                .body("firstName", equalTo("Alina78"))
                 .body("secondName", equalTo("Vershinina"))
                 .body("age", equalTo(25))
                 .body("sex", equalTo("MALE"));

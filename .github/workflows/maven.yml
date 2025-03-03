@@ -21,6 +21,10 @@ on:
 env:
   USERNAME: ${{secrets.USER}}
   PASSWORD: ${{secrets.PASSWORD}}
+  DB_URL: ${{ secrets.DB_URL }}
+  DB_LOGIN: ${{ secrets.DB_LOGIN }}
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+
 
 jobs:
   build:
@@ -42,5 +46,4 @@ jobs:
         version: latest
     - name: Run Test
 
-
-      run: mvn clean test -Duser=$USERNAME -Dpassword=$PASSWORD
+      run: mvn clean test -Duser=$USERNAME -Dpassword=$PASSWORD  -DDB_URL=$DB_URL -DDB_LOGIN=$DB_LOGIN -DDB_PASSWORD=$DB_PASSWORD
