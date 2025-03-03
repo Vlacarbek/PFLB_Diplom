@@ -35,14 +35,13 @@ public class BaseTest {
     public CreateNewHousesPage createNewHousesPage;
     public ReadOneByIDPage readOneByIDPage;
     public SettleOrEvictUserPage settleOrEvictUserPage;
-    public AddMoneyPage addMoneyPage;
+    public pages.users.AddMoneyPage addMoneyPage;
     public BuyOrSellCarUsersPage buyOrSellCarUsersPage;
-    public CreateNewUsersPage createNewUsersPage;
-    public IssueALoanPage issueALoanPage;
-    public ReadUserWithCarsPage readUserWithCarsPage;
+    public pages.users.CreateNewUsersPage createNewUsersPage;
+    public pages.users.ReadUserWithCarsPage readUserWithCarsPage;
     public ReadAllUsersPage readAllUsersPage;
     public SettleToHousePage settleToHousePage;
-    protected LoginPage loginPage;
+    public LoginPage loginPage;
     WebDriver driver;
 
     @BeforeMethod
@@ -50,7 +49,7 @@ public class BaseTest {
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("start-maximized");
-            //options.addArguments("--headless");
+            options.addArguments("--headless");
             options.setCapability("unhandledPromptBehavior", "accept");
             driver = new ChromeDriver(options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
@@ -70,13 +69,11 @@ public class BaseTest {
         addMoneyPage = new AddMoneyPage(driver);
         buyOrSellCarUsersPage = new BuyOrSellCarUsersPage(driver);
         createNewUsersPage = new CreateNewUsersPage(driver);
-        issueALoanPage = new IssueALoanPage(driver);
         readAllUsersPage = new ReadAllUsersPage(driver);
         readUserWithCarsPage = new ReadUserWithCarsPage(driver);
         settleToHousePage = new SettleToHousePage(driver);
         loginPage = new LoginPage(driver);
         softAssert = new SoftAssert();
-
     }
 
     @AfterMethod(alwaysRun = true)

@@ -54,7 +54,6 @@ public class CreateNewTest extends BaseTest {
             description = "Необходимо проверить невозможность создания нового дома с невалидными данными на странице Create New",
             dataProvider = "NegativeHouseData")
     @Severity(SeverityLevel.NORMAL)
-
     @Epic("PFLB 1.0")
     @Feature("House")
     @Story("Create New House")
