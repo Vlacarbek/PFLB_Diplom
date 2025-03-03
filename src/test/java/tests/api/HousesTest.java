@@ -7,7 +7,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class HousesTest {
-
     @Test(testName = "Заселение в дом с валидными данными {UserID} и {HouseID}",
             description = "Позитивная проверка POST запроса")
     @Severity(SeverityLevel.CRITICAL)

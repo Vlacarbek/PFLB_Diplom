@@ -63,8 +63,5 @@ public class LoginPage {
             e.printStackTrace();
         }
         return pageSource.contains(textError);
-
-
-
     }
 }

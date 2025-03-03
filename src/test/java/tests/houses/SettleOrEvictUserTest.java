@@ -9,7 +9,6 @@ import tests.BaseTest;
 
 
 public class SettleOrEvictUserTest extends BaseTest {
-
     @DataProvider(name = "PositiveIdData")
     public Object[][] PositiveIdData() {
         return new Object[][]{

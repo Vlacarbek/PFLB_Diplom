@@ -8,7 +8,6 @@ import pages.login.LoginPage;
 import tests.BaseTest;
 
 public class CreateNewTest extends BaseTest {
-
     @DataProvider(name = "CreateHouseData")
     public Object[][] createHouseData() {
         return new Object[][]{
