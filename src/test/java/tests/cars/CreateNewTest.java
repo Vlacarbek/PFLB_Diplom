@@ -59,7 +59,6 @@ public class CreateNewTest extends BaseTest {
                 status,
                 "Статус не равен 201");
     }
-
     @Test(testName = "Невозможность создания автомобиля с невалидными данными",
             description = "Невозможность создания автомобиля  при вводе невалидных значений",
             dataProvider = "NegativeCreateData")
@@ -79,7 +78,7 @@ public class CreateNewTest extends BaseTest {
                 "В поле Status вернулось некорректное значение");
     }
 
-    @Test(testName = "Отоброажение элементов на странице Create New Car",
+    @Test(testName = "Отображение элементов на странице Create New Car",
             description = "Корректное отображение всех элементов на странице")
     @Severity(SeverityLevel.NORMAL)
     @Epic("PFLB 1.0")
@@ -93,3 +92,5 @@ public class CreateNewTest extends BaseTest {
         assertTrue(CreateNewCarsPage.checkElementsOnPage());
     }
 }
+
+

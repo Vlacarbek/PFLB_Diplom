@@ -44,15 +44,14 @@ public class ReadUserWithCarsTest extends BaseTest {
         LoginPage.open();
         LoginPage.login(user, password);
         ReadUserWithCarsPage.open();
-        ReadUserWithCarsPage.fillFields("2744");
+        ReadUserWithCarsPage.fillFields("144");
         ReadUserWithCarsPage.clickButton();
         assertEquals(ReadUserWithCarsPage.checkCountLineCars(),ReadUserWithCarsPage.checkCountCars());
         assertEquals(ReadUserWithCarsPage.checkCountCars(), checkUserCount("select * from  ( select * from person  join\n" +
                 "car  ON person.id = car.person_id ) AS FinalTable\n" +
-                "where person_id = 2744;"));
+                "where person_id = 144;"));
         assertEquals(checkResultText(), "Status: 200 ok");
     }
-
     @Test(testName = "Позитивная проверка с пользователем без машин",
             description = "Позитивная проверка с пользователем без машин")
     @Severity(SeverityLevel.CRITICAL)
