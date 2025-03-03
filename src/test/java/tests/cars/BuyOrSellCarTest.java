@@ -7,7 +7,6 @@ import pages.cars.CreateNewCarsPage;
 import pages.login.LoginPage;
 import pages.users.CreateNewUsersPage;
 import tests.BaseTest;
-
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -20,7 +19,7 @@ public class BuyOrSellCarTest extends BaseTest {
     @Feature("Cars")
     @Story("Buy or Sell car")
     @TmsLink("www.jira.com/TK-004")
-    public void checkElementsOnPageCreateNewCar() {
+    public void checkElementsOnPageCreateNewCar() throws InterruptedException {
         LoginPage.open();
         LoginPage.login(user, password);
         BuyOrSellCarPage.openBuyOrSellPage();
