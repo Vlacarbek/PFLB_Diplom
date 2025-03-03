@@ -39,7 +39,6 @@ public class BaseTest {
     public pages.users.CreateNewUsersPage createNewUsersPage;
     public pages.users.ReadUserWithCarsPage readUserWithCarsPage;
     public ReadAllUsersPage readAllUsersPage;
-    public SettleToHousePage settleToHousePage;
     public LoginPage loginPage;
     public static String user = System.getProperty("user", PropertyReader.getProperty("user"));
     public static String password = System.getProperty("password", PropertyReader.getProperty("password"));
@@ -72,7 +71,6 @@ public class BaseTest {
         createNewUsersPage = new CreateNewUsersPage(driver);
         readAllUsersPage = new ReadAllUsersPage(driver);
         readUserWithCarsPage = new ReadUserWithCarsPage(driver);
-        settleToHousePage = new SettleToHousePage(driver);
         loginPage = new LoginPage(driver);
         softAssert = new SoftAssert();
     }
