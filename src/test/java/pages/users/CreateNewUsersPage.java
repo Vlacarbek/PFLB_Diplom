@@ -3,17 +3,22 @@ package pages.users;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import static java.lang.Thread.sleep;
 
 public class CreateNewUsersPage {
-    static WebDriver driver;
-    static By firstNameField = By.cssSelector("#first_name_send");
-    static By lastNameField = By.cssSelector("#last_name_send");
-    static By ageField = By.cssSelector("#age_send");
-    static By moneyField = By.cssSelector("#money_send");
-    static By sexRadioButton = By.id("sex_send");
-    static By pushButton = By.cssSelector(".tableButton.btn.btn-primary");
-    static By textResultButton = By.cssSelector(".status.btn.btn-secondary");
+
+    private static WebDriver driver;
+    private static final  By FIRST_NAME_FIELD = By.cssSelector("#first_name_send");
+    private static final  By LAST_NAME_FIELD = By.cssSelector("#last_name_send");
+    private static final  By AGE_FIELD = By.cssSelector("#age_send");
+    private static final  By MONEY_FIELD = By.cssSelector("#money_send");
+    private static final  By SEX_RADIO_BUTTON = By.id("sex_send");
+    private static final  By PUSH_BUTTON = By.cssSelector(".tableButton.btn.btn-primary");
+    private static final  By TEXT_RESULT_BUTTON = By.cssSelector(".status.btn.btn-secondary");
+    private static final  By USER_ID = By.xpath("//*[@id=\"root\"]/div/section/div/div/button[3]");
+
 
     public CreateNewUsersPage(WebDriver driver) {
         this.driver = driver;
@@ -24,29 +29,50 @@ public class CreateNewUsersPage {
         driver.get("http://82.142.167.37:4881/#/create/user");
     }
 
-    @Step("Заполнение формы для создания юзера")
+    @Step("Заполнение формы для создания юзера c данными {firstName},{lastName},{age},{money} ")
     public static void fillFields(String firstName, String lastName, String age, String money ) throws InterruptedException {
         sleep(1000);
-        driver.findElement(firstNameField).sendKeys(firstName);
-        driver.findElement(lastNameField).sendKeys(lastName);
-        driver.findElement(ageField).clear();
-        driver.findElement(ageField).sendKeys(String.valueOf(age));
-        driver.findElement(moneyField).clear();
-        driver.findElement(moneyField).sendKeys(String.valueOf(money));
-        driver.findElement(sexRadioButton).click();
+        driver.findElement(FIRST_NAME_FIELD).sendKeys(firstName);
+        driver.findElement(LAST_NAME_FIELD).sendKeys(lastName);
+        driver.findElement(AGE_FIELD).clear();
+        driver.findElement(AGE_FIELD).sendKeys(String.valueOf(age));
+        driver.findElement(MONEY_FIELD).clear();
+        driver.findElement(MONEY_FIELD).sendKeys(String.valueOf(money));
+        driver.findElement(SEX_RADIO_BUTTON).click();
     }
 
-    @Step("Клик на кнопку Push to tests.api ")
+    @Step("Клик на кнопку Push to api ")
     public static void clickButton() throws InterruptedException {
         sleep(1000);
-        driver.findElement(pushButton).click();
+        driver.findElement(PUSH_BUTTON).click();
     }
 
     @Step("Проверка текста о результатах ")
     public static String checkResultText() throws InterruptedException {
         sleep(2000);
-        return driver.findElement(textResultButton).getText();
+        return driver.findElement(TEXT_RESULT_BUTTON).getText();
+    }
+
+    @Step("Получение id созданного пользователя")
+    public static String getTextFromResult() throws InterruptedException {
+        sleep(2000);
+        return driver.findElement(USER_ID).getText();
+    }
+
+    @Step("Получение идентификатора созданного пользователя из текста результата")
+    public static String getIdNewCar(String text) {
+        String regex = ":\\s*(.+)";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(text);
+        if (matcher.find()) {
+            return matcher.group(1).trim();
+        } else {
+            return null;
+        }
+    }
+
+    public static String getUserId() throws InterruptedException {
+        String result = CreateNewUsersPage.getIdNewCar(getTextFromResult());
+        return result;
     }
 }
-
-
