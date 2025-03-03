@@ -40,7 +40,6 @@ public class BaseTest {
     public pages.users.CreateNewUsersPage createNewUsersPage;
     public pages.users.ReadUserWithCarsPage readUserWithCarsPage;
     public ReadAllUsersPage readAllUsersPage;
-    public SettleToHousePage settleToHousePage;
     public ReadAllHousesPage readAllHousesPage;
     public LoginPage loginPage;
 
@@ -78,7 +77,7 @@ public class BaseTest {
         loginPage = new LoginPage(driver);
         softAssert = new SoftAssert();
         readAllHousesPage = new ReadAllHousesPage(driver);
-
+    }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult result) {
@@ -88,5 +87,6 @@ public class BaseTest {
         if (driver != null) {
             driver.quit();
         }
+        }
     }
-}
+
