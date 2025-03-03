@@ -15,14 +15,14 @@ public class CreateNewTest extends BaseTest {
     @DataProvider(name = "CreateCarData")
     public Object[][] createCarData() {
         return new Object[][]{
-                //{"Diesel", "KIA", "СИД", "000", "Status: Successfully pushed, code: 201"},
-                //{"Diesel", "КИА", "Seed", "9000", "Status: Successfully pushed, code: 201"},
-                //{"Gasoline", "Ауди", "A3", "9000", "Status: Successfully pushed, code: 201"},
-                //{"Electric", "KIA", "RIO", "1000000", "Status: Successfully pushed, code: 201"},
-                //{"Hydrogenic", "BMV", "Модель45", "100000", "Status: Successfully pushed, code: 201"},
-                //{"Hydrogenic", "БМВ", "model3", "3456.999", "Status: Successfully pushed, code: 201"},
-                //{"PHEV", "KIA", "RIO", "0", "Status: Successfully pushed, code: 201"},
-                // {"PHEV", "Шевроле", "Круз", "9000", "Status: Successfully pushed, code: 201"},
+                {"Diesel", "KIA", "СИД", "000", "Status: Successfully pushed, code: 201"},
+                {"Diesel", "КИА", "Seed", "9000", "Status: Successfully pushed, code: 201"},
+                {"Gasoline", "Ауди", "A3", "9000", "Status: Successfully pushed, code: 201"},
+                {"Electric", "KIA", "RIO", "1000000", "Status: Successfully pushed, code: 201"},
+                {"Hydrogenic", "BMV", "Модель45", "100000", "Status: Successfully pushed, code: 201"},
+                {"Hydrogenic", "БМВ", "model3", "3456.999", "Status: Successfully pushed, code: 201"},
+                {"PHEV", "KIA", "RIO", "0", "Status: Successfully pushed, code: 201"},
+                {"PHEV", "Шевроле", "Круз", "9000", "Status: Successfully pushed, code: 201"},
                 {"CNG", "KIA", "RIO", "20000000", "Status: Successfully pushed, code: 201"},
         };
     }
@@ -30,13 +30,13 @@ public class CreateNewTest extends BaseTest {
     @DataProvider(name = "NegativeCreateData")
     public Object[][] negativeCreateData() {
         return new Object[][]{
-                //{"NOT_VALID", "KIA", "СИД", "000", "Status: AxiosError: Request failed with status code 400"},
-                //{"Diesel", "123456", "Seed", "9000", "Status: AxiosError: Request failed with status code 400"},
-                //{"Gasoline", "Ауди", "A3", "-1000", "Status: Invalid request data"},
-                //{"", "KIA", "RIO", "1000000", "Status: Invalid request data"},
-                //{"Hydrogenic", "", "Модель45", "100000", "Status: Invalid request data"},
-                //{"Hydrogenic", "БМВ", "", "3456.999", "Status: Invalid request data"},
-                //{"PHEV", "KIA", "RIO", "", "Status: Invalid request data"},
+                {"NOT_VALID", "KIA", "СИД", "000", "Status: AxiosError: Request failed with status code 400"},
+                {"Diesel", "123456", "Seed", "9000", "Status: AxiosError: Request failed with status code 400"},
+                {"Gasoline", "Ауди", "A3", "-1000", "Status: Invalid request data"},
+                {"", "KIA", "RIO", "1000000", "Status: Invalid request data"},
+                {"Hydrogenic", "", "Модель45", "100000", "Status: Invalid request data"},
+                {"Hydrogenic", "БМВ", "", "3456.999", "Status: Invalid request data"},
+                {"PHEV", "KIA", "RIO", "", "Status: Invalid request data"},
                 {"PHEV", "KIA", "RIO", "123456789012345678", "Status: AxiosError: Request failed with status code 500"}
         };
     }
@@ -92,5 +92,3 @@ public class CreateNewTest extends BaseTest {
         assertTrue(CreateNewCarsPage.checkElementsOnPage());
     }
 }
-
-

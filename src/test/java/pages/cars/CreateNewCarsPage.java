@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import tests.BaseTest;
 
 import java.time.Duration;
@@ -17,6 +19,7 @@ import static java.lang.Thread.sleep;
 
 public class CreateNewCarsPage extends BaseTest {
 
+    private static final Logger log = LoggerFactory.getLogger(CreateNewCarsPage.class);
     private static final By ENGINE_TYPE_HEADER = By.xpath("//*[@id=\"root\"]/div/section/div/table/thead/tr/th[2]");
     private static final By MARK_HEADER = By.xpath("//*[@id=\"root\"]/div/section/div/table/thead/tr/th[3]");
     private static final By CAR_ID_HEADER = By.xpath("//*[@id=\"root\"]/div/section/div/table/thead/tr/th[1]");
@@ -41,6 +44,7 @@ public class CreateNewCarsPage extends BaseTest {
 
     @Step("Переход на страницу создания автомобиля")
     public static void openCreateCarsPage() {
+        log.info("Открытие страницы с созданием автомобилей");
         driver.get("http://82.142.167.37:4881/#/create/cars");
     }
 
@@ -82,7 +86,9 @@ public class CreateNewCarsPage extends BaseTest {
     }
 
     @Step("Заполнение полей Engine Type {engineType}, Mark {mark},Model {model}, Price {price} на форме создания автомобиля")
-    public static boolean createCar(String engineType, String mark, String model, String price) {
+    public static boolean createCar(String engineType, String mark, String model, String price) throws InterruptedException {
+        log.info("Заполнение формы создания автомобилей");
+        sleep(2000);
         boolean engineTypeSuccess = enterTextAndVerify(ENGINE_TYPE_FIELD, engineType);
         boolean markSuccess = enterTextAndVerify(MARK_FIELD, mark);
         boolean modelSuccess = enterTextAndVerify(MODEL_FIELD, model);
@@ -133,6 +139,8 @@ public class CreateNewCarsPage extends BaseTest {
 
     @Step("Получение id созданного автомобиля")
     public static String getCarId() throws InterruptedException {
+        log.info("Получение идентфикатора созданного автомобиля");
+        sleep(2000);
         String result = CreateNewCarsPage.getIdNewCar(getTextFromResult());
         return result;
     }

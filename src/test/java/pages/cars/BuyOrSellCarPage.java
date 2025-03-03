@@ -3,12 +3,15 @@ package pages.cars;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import tests.BaseTest;
 
 import static java.lang.Thread.sleep;
 
 public class BuyOrSellCarPage extends BaseTest {
 
+    private static final Logger log = LoggerFactory.getLogger(BuyOrSellCarPage.class);
     private static final By USER_ID_HEADER = By.xpath("//*[@id=\"root\"]/div/section/div/table/thead/tr/th[1]");
     private static final By USER_ID_FIELD = By.xpath("//*[@id=\"id_send\"]");
     private static final By CAR_ID_HEADER = By.xpath("//*[@id=\"root\"]/div/section/div/table/thead/tr/th[2]");
@@ -19,13 +22,13 @@ public class BuyOrSellCarPage extends BaseTest {
     private static final By SELL_CHECK_BOX = By.xpath("/html/body/div/div/section/div/table/tbody/tr/td[3]/div[2]/input");
     public static WebDriver driver;
 
-
     public BuyOrSellCarPage(WebDriver driver) {
         BuyOrSellCarPage.driver = driver;
     }
 
     @Step("Переход на страницу Buy or Sell car")
     public static void openBuyOrSellPage() {
+        log.info("Открытие страницы продажи/покупки автомобиля");
         driver.get("http://82.142.167.37:4881/#/update/users/buyCar");
     }
 
@@ -43,7 +46,9 @@ public class BuyOrSellCarPage extends BaseTest {
     }
 
     @Step("Ввод значений в поля CarId и UserId")
-    public static void buyCar(String carId, String userId) {
+    public static void buyCar(String carId, String userId) throws InterruptedException {
+        log.info("Заполнение полей на форме продажи/покупки автомобиля");
+        sleep(2000);
         driver.findElement(CAR_ID_FIELD).sendKeys(carId);
         driver.findElement(USER_ID_FIELD).sendKeys(userId);
         driver.findElement(BUY_CHECK_BOX).click();
