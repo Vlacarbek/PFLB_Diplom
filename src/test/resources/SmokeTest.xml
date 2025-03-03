@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="3" name="SauceDemo SmokeTest" parallel="tests">
+<suite thread-count="3" name="Diplom_SmokeTest" parallel="tests">
     <listeners>
-        <listener class-name="tests.TestListener"/>
-        <listener class-name="tests.AnnotationTransformer"/>
+        <listener class-name="utils.TestListener"/>
+        <listener class-name="utils.AnnotationTransformer"/>
     </listeners>
     <test name="Thread#1">
         <classes>
-            <class name="tests.LoginTest"/>
+            <class name="tests.login.LoginTest"/>
         </classes>
-    </test> <!-- Test -->
+    </test>
     <test name="Thread#2">
         <classes>
-            <class name="tests.CartTest"/>
-            <class name="tests.ProductsTest"/>
+            <class name="tests.users.AddMoneyTest"/>
+            <class name="tests.users.BuyOrSellCarTest"/>
         </classes>
-    </test> <!-- Test -->
+    </test>
 </suite>
+

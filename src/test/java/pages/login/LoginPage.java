@@ -22,20 +22,21 @@ public class LoginPage {
     }
 
     @Step("Открытие странички авторизации ")
-    public static void open() {
+    public static void open()  {
         log.info("Открытие странички авторизации");
         driver.get("http://82.142.167.37:4881/");
     }
 
     @Step("Вход в систему с логином '{user}' и паролем '{password}' ")
-    public static void login(String user, String password) {
+    public static void login(String user, String password)  {
         log.info("Вход в систему с логином {} и паролем {} ", user, password);
-        driver.findElement(EMAIL_FIELD).sendKeys(user);
-        driver.findElement(PASSWORD_FIELDS).sendKeys(password);
-        driver.findElement(LOGIN_BUTTON).click();
         try {
+            Thread.sleep(2000);
+            driver.findElement(EMAIL_FIELD).sendKeys(user);
+            driver.findElement(PASSWORD_FIELDS).sendKeys(password);
+            driver.findElement(LOGIN_BUTTON).click();
             Robot robot = new Robot();
-            Thread.sleep(2000); // Задержка для ожидания открытия окна
+            Thread.sleep(2000);
             robot.keyPress(KeyEvent.VK_ENTER);
             robot.keyRelease(KeyEvent.VK_ENTER);
 
@@ -44,8 +45,9 @@ public class LoginPage {
         }
     }
     @Step("Проверка авторизации ")
-    public static String checkAut() {
+    public static String checkAut() throws InterruptedException {
         log.info("Проверка авторизации ");
+        Thread.sleep(2000);
         driver.findElement(BUTTON_SECTION_ALL_POST_FOR_CHECK).click();
         List<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
@@ -53,8 +55,9 @@ public class LoginPage {
     }
 
     @Step("Проверка текста ошибки '{textError}'")
-    public static boolean  checkErrorText(String textError)  {
+    public static boolean  checkErrorText(String textError) throws InterruptedException {
         log.info("Проверка текста ошибки {}", textError);
+        Thread.sleep(2000);
         String pageSource = null;
         try {
             Thread.sleep(2000);
