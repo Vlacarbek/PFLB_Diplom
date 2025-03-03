@@ -14,6 +14,7 @@ import pages.cars.BuyOrSellCarPage;
 import pages.cars.CreateNewCarsPage;
 import pages.cars.ReadAllCarsPage;
 import pages.houses.CreateNewHousesPage;
+import pages.houses.ReadAllHousesPage;
 import pages.houses.ReadOneByIDPage;
 import pages.houses.SettleOrEvictUserPage;
 import pages.login.LoginPage;
@@ -39,7 +40,9 @@ public class BaseTest {
     public pages.users.CreateNewUsersPage createNewUsersPage;
     public pages.users.ReadUserWithCarsPage readUserWithCarsPage;
     public ReadAllUsersPage readAllUsersPage;
+    public ReadAllHousesPage readAllHousesPage;
     public LoginPage loginPage;
+
     public static String user = System.getProperty("user", PropertyReader.getProperty("user"));
     public static String password = System.getProperty("password", PropertyReader.getProperty("password"));
     public static WebDriverWait wait;
@@ -73,6 +76,7 @@ public class BaseTest {
         readUserWithCarsPage = new ReadUserWithCarsPage(driver);
         loginPage = new LoginPage(driver);
         softAssert = new SoftAssert();
+        readAllHousesPage = new ReadAllHousesPage(driver);
     }
 
     @AfterMethod(alwaysRun = true)
@@ -83,5 +87,5 @@ public class BaseTest {
         if (driver != null) {
             driver.quit();
         }
+        }
     }
-}

@@ -4,6 +4,8 @@ import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import tests.BaseTest;
 
 @Log4j2
@@ -24,6 +26,7 @@ public class CreateNewHousesPage extends BaseTest {
     private static final By STATUS_BUTTON = By.xpath("//*[@id='root']/div/section/div/div/button[2]");
     private static final By ID_FIELD = By.xpath("//*[@id='root']/div/section/div/table[1]/tbody/tr/td[1]");
     private static final By NEW_ID = By.xpath("//*[@id='root']/div/section/div/div/button[3]");
+    private static final Logger log = LoggerFactory.getLogger(CreateNewHousesPage.class);
     static WebDriver driver;
 
     public CreateNewHousesPage(WebDriver driver) {

@@ -6,6 +6,10 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.when;
+import static org.hamcrest.Matchers.equalTo;
+
 public class HousesTest {
 
     @Test(testName = "Заселение в дом с валидными данными {UserID} и {HouseID}",
@@ -19,7 +23,7 @@ public class HousesTest {
         RestAssured.baseURI = "http://82.142.167.37:4880";
         Response response = null;
         try {
-            response = RestAssured.given()
+            response = given()
                     .header("Content-Type", "application/json")
                     .header("host", "82.142.167.37")
                     .header("Authorization", "Bearer " + LoginTest.GetToken())
@@ -44,7 +48,7 @@ public class HousesTest {
         RestAssured.baseURI = "http://82.142.167.37:4880";
         Response response = null;
         try {
-            response = RestAssured.given()
+            response = given()
                     .header("Content-Type", "application/json")
                     .header("host", "82.142.167.37")
                     .header("Authorization", "Bearer " + LoginTest.GetToken())

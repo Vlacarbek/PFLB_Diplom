@@ -13,22 +13,22 @@ public class ReadAllUsersPage {
 
     WebDriver driver;
 
-    By reloadButton = By.xpath("//button[text()='Reload']");
-    By sortByIdButton = By.xpath("//button[contains((text()), 'ID')]");
-    By sortByFirstNameButton = By.xpath("//button[contains((text()), 'First')]");
-    By sortByLastNameButton = By.xpath("//button[contains((text()), 'Last')]");
-    By sortByAgeButton = By.xpath("//button[contains((text()), 'Age')]");
-    By sortBySexButton = By.xpath("//button[contains((text()), 'Sex')]");
-    By sortByMoneyButton = By.xpath("//button[contains((text()), 'Money')]");
-    By idColumnHeader = By.xpath("//tr/th[text()=' ID:']");
-    By firstNameColumnHeader = By.xpath("//tr/th[text()=' First\u00A0name:']");
-    By lastNameColumnHeader = By.xpath("//tr/th[text()=' Last\u00A0name:']");
-    By ageColumnHeader = By.xpath("//tr/th[text()=' Age:']");
-    By sexColumnHeader = By.xpath("//tr/th[text()=' Sex:']");
-    By moneyColumnHeader = By.xpath("//tr/th[text()=' Money:']");
-    By table = By.xpath("//tbody");
-    String buttonPattern = "//button[contains((text()), '%s')]";
-    String listOfEntitiesPattern = "//tbody/tr/td[%s]";
+    private static final By RELOAD_BUTTON = By.xpath("//button[text()='Reload']");
+    private static final By SORT_BY_ID_BUTTON = By.xpath("//button[contains((text()), 'ID')]");
+    private static final By SORT_BY_FIRST_NAME_BUTTON = By.xpath("//button[contains((text()), 'First')]");
+    private static final By SORT_BY_LAST_NAME_BUTTON = By.xpath("//button[contains((text()), 'Last')]");
+    private static final By SORT_BY_AGE_BUTTON = By.xpath("//button[contains((text()), 'Age')]");
+    private static final By SORT_BY_SEX_BUTTON = By.xpath("//button[contains((text()), 'Sex')]");
+    private static final By SORT_BY_MONEY_BUTTON = By.xpath("//button[contains((text()), 'Money')]");
+    private static final By ID_COLUMN_HEADER = By.xpath("//tr/th[text()=' ID:']");
+    private static final By FIRST_NAME_COLUMN_HEADER = By.xpath("//tr/th[text()=' First\u00A0name:']");
+    private static final By LAST_NAME_COLUMN_HEADER = By.xpath("//tr/th[text()=' Last\u00A0name:']");
+    private static final By AGE_COLUMN_HEADER = By.xpath("//tr/th[text()=' Age:']");
+    private static final By SEX_COLUMN_HEADER = By.xpath("//tr/th[text()=' Sex:']");
+    private static final By MONEY_COLUMN_HEADER = By.xpath("//tr/th[text()=' Money:']");
+    private static final By TABLE = By.xpath("//tbody");
+    private static final String BUTTON_PATTERN = "//button[contains((text()), '%s')]";
+    private static final String LIST_OF_ENTITIES_PATTERN = "//tbody/tr/td[%s]";
 
 
     public ReadAllUsersPage(WebDriver driver) {
@@ -42,7 +42,7 @@ public class ReadAllUsersPage {
 
     @Step("Нажатие кнопки {buttonName}")
     public void clickButton(String buttonName) {
-        driver.findElement(By.xpath(String.format(buttonPattern, buttonName))).click();
+        driver.findElement(By.xpath(String.format(BUTTON_PATTERN, buttonName))).click();
     }
 
     @Step("Получить ожидаемо отсортированный список значений поля {ButtonName}")
@@ -50,15 +50,14 @@ public class ReadAllUsersPage {
         List<String> values = getActualSortList(sortFieldName);
         if (sortFieldName == "ID" || sortFieldName == "Age" || sortFieldName == "Money") {
             values.sort(Comparator.comparingDouble(Double::parseDouble));
-        }
-        else Collections.sort(values);
+        } else Collections.sort(values);
         return values;
     }
 
     @Step("Получить фактически отсортированный список значений поля {ButtonName}")
     public List getActualSortList(String sortFieldName) {
         String numberOfElement = format(sortFieldName);
-        List<WebElement> elements = driver.findElements(By.xpath(String.format(listOfEntitiesPattern, numberOfElement)));
+        List<WebElement> elements = driver.findElements(By.xpath(String.format(LIST_OF_ENTITIES_PATTERN, numberOfElement)));
         List<String> values = elements.stream().map(WebElement::getText).collect(Collectors.toList());
         return values;
     }
@@ -78,9 +77,9 @@ public class ReadAllUsersPage {
 
     @Step("Проверка атрибутного состава")
     public boolean checkAttribute() {
-        By[] elementsToCheck = {reloadButton, sortByIdButton, sortByFirstNameButton, sortByLastNameButton,
-                sortByAgeButton, sortBySexButton, sortByMoneyButton, idColumnHeader, firstNameColumnHeader,
-                lastNameColumnHeader, ageColumnHeader, sexColumnHeader, moneyColumnHeader, table};
+        By[] elementsToCheck = {RELOAD_BUTTON, SORT_BY_ID_BUTTON, SORT_BY_FIRST_NAME_BUTTON, SORT_BY_LAST_NAME_BUTTON,
+                SORT_BY_AGE_BUTTON, SORT_BY_SEX_BUTTON, SORT_BY_MONEY_BUTTON, ID_COLUMN_HEADER, FIRST_NAME_COLUMN_HEADER,
+                LAST_NAME_COLUMN_HEADER, AGE_COLUMN_HEADER, SEX_COLUMN_HEADER, MONEY_COLUMN_HEADER, TABLE};
         for (By element : elementsToCheck) {
             if (driver.findElements(element).isEmpty()) {
                 System.out.println(element);

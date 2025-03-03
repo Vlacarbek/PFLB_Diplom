@@ -4,10 +4,14 @@ import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import static java.lang.Thread.sleep;
 
 @Log4j2
 public class BuyOrSellCarUsersPage {
+    private static final Logger log = LoggerFactory.getLogger(BuyOrSellCarUsersPage.class);
     private static WebDriver driver;
     private static final By ID_USER_FIELD = By.cssSelector("#id_send");
     private static final By ID_CAR_FIELD = By.cssSelector("#car_send");
