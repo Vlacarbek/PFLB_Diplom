@@ -43,6 +43,7 @@ public class BaseTest {
     public LoginPage loginPage;
     public static String user = System.getProperty("user", PropertyReader.getProperty("user"));
     public static String password = System.getProperty("password", PropertyReader.getProperty("password"));
+    public static WebDriverWait wait;
 
     @BeforeMethod
     public void setup(@Optional("chrome") String browser) {
