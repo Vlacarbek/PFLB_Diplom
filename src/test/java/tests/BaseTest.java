@@ -9,16 +9,16 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
+import org.testng.asserts.SoftAssert;
 import pages.cars.BuyOrSellCarPage;
 import pages.cars.CreateNewCarsPage;
 import pages.cars.ReadAllCarsPage;
 import pages.houses.CreateNewHousesPage;
-import pages.users.*;
 import pages.houses.ReadOneByIDPage;
 import pages.houses.SettleOrEvictUserPage;
 import pages.login.LoginPage;
+import pages.users.*;
 import utils.AllureUtils;
-import org.testng.asserts.SoftAssert;
 import utils.PropertyReader;
 import java.time.Duration;
 
@@ -81,6 +81,8 @@ public class BaseTest {
         if (ITestResult.FAILURE == result.getStatus()) {
             AllureUtils.takeScreenshot(driver);
         }
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
