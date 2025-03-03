@@ -25,12 +25,12 @@ public class ReadUserWithCarsTest extends BaseTest {
         LoginPage.open();
         LoginPage.login(user, password);
         ReadUserWithCarsPage.open();
-        ReadUserWithCarsPage.fillFields("2164");
+        ReadUserWithCarsPage.fillFields("108");
         ReadUserWithCarsPage.clickButton();
         assertEquals(ReadUserWithCarsPage.checkCountLineCars(),ReadUserWithCarsPage.checkCountCars());
         assertEquals(ReadUserWithCarsPage.checkCountCars(), checkUserCount("select * from  ( select * from person  join\n" +
                 "car  ON person.id = car.person_id ) AS FinalTable\n" +
-                "where person_id = 2164;"));
+                "where person_id = 108;"));
         assertEquals(checkResultText(), "Status: 200 ok");
     }
     @Test(testName = "Позитивная проверка с пользователем с 2 машинами",
@@ -95,7 +95,8 @@ public class ReadUserWithCarsTest extends BaseTest {
     @Feature("ReadUserWithCars")
     @Story("Read User With Cars")
     @TmsLink("www.jira.com/Car-1")
-    public static void readUserInvalidData () throws InterruptedException {
+    public static void
+    readUserInvalidData () throws InterruptedException {
         LoginPage.open();
         LoginPage.login(user, password);
         ReadUserWithCarsPage.open();
