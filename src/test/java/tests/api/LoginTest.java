@@ -3,34 +3,34 @@ import groovy.json.JsonException;
 import io.qameta.allure.*;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.PropertyReader;
+import static org.testng.Assert.assertEquals;
 
 public class LoginTest {
-    static String requestBody;
-    static Response response;
-    static String token;
-    public static String user = System.getProperty("user", PropertyReader.getProperty("user"));
-    public static String password = System.getProperty("password", PropertyReader.getProperty("password"));
+    private static  String REQUEST_BODY;
+    private static  Response RESPONSE;
+    private static  String TOKEN;
+    private static  String  USER = System.getProperty("user", PropertyReader.getProperty("user"));
+    private static  String PASSWORD = System.getProperty("password", PropertyReader.getProperty("password"));
 
     //Корректная авторизация, возвращает Bearer tokens
     public static String GetToken() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
-        requestBody = "{"
-                + "\"username\" : \"" + user + "\","
-                + "\"password\": \"" + password + "\""
+        REQUEST_BODY = "{"
+                + "\"username\" : \"" + USER + "\","
+                + "\"password\": \"" + PASSWORD + "\""
                 + "}";
-        response = RestAssured.given()
+        RESPONSE = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .header("host", "82.142.167.37")
-                .body(requestBody)
+                .body(REQUEST_BODY)
                 .when()
                 .post("/login")
                 .then()
                 .extract().response();
-        token = response.jsonPath().getString("access_token");
-        return token;
+        TOKEN = RESPONSE.jsonPath().getString("access_token");
+        return TOKEN;
     }
 
     @Test(testName = "Авторизация возвращает токен и он равен 203 символам",
@@ -42,10 +42,9 @@ public class LoginTest {
     @TmsLink("www.jira.com/C-1")
     public static  void   CorrectLogin() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4879";
-
         String requestBody = "{"
-                + "\"username\" : \"" + user + "\","
-                + "\"password\": \"" + password + "\""
+                + "\"username\" : \"" + USER + "\","
+                + "\"password\": \"" + PASSWORD + "\""
                 + "}";
         Response  response = RestAssured.given()
                 .header("Content-Type", "application/json")
@@ -56,7 +55,7 @@ public class LoginTest {
                 .then()
                 .extract().response();
         String  token = response.jsonPath().getString("access_token");
-        Assert.assertEquals(token.length(), 203);
+        assertEquals(token.length(), 203);
     }
 
     @Test(testName = "Авторизация с пустыми данными",
@@ -68,19 +67,19 @@ public class LoginTest {
     @TmsLink("www.jira.com/C-1")
     public  void  EmptyLogin () throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4879";
-        String requestBody2 = "{"
+        String requestBody = "{"
                 + "\"username\": ,"
                 + "\"password\": "
                 + "}";
-        response = RestAssured.given()
+        RESPONSE = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .header("host", "82.142.167.37")
-                .body(requestBody2)
+                .body(requestBody)
                 .when()
                 .post("/login")
                 .then()
                 .extract().response();
-        Assert.assertEquals(response.getStatusCode(),403);
+        assertEquals(RESPONSE.getStatusCode(),403);
     }
 
     @Test(testName = "Авторизация с не валидными данными",
@@ -92,20 +91,18 @@ public class LoginTest {
     @TmsLink("www.jira.com/C-1")
     public  void  InvalidLogin () throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4879";
-        String requestBody2 = "{"
+        String requestBody = "{"
                 + "\"username\": 323213,"
                 + "\"password\": 323213"
                 + "}";
-        response = RestAssured.given()
+        RESPONSE = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .header("host", "82.142.167.37")
-                .body(requestBody2)
+                .body(requestBody)
                 .when()
                 .post("/login")
                 .then()
                 .extract().response();
-        Assert.assertEquals(response.getStatusCode(),403);
-
+        assertEquals(RESPONSE.getStatusCode(),403);
     }
 }
-

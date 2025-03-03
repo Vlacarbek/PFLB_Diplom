@@ -18,14 +18,12 @@
         <postgresql.version>42.7.3</postgresql.version>
         <selenium-java.version>4.25.0</selenium-java.version>
         <testng.version>7.10.2</testng.version>
-        <json.version>20231013</json.version>
+        <json.version>20210307</json.version>
         <rest-assured.version>5.5.0</rest-assured.version>
         <lombok.version>1.18.36</lombok.version>
         <log4j.version>2.24.3</log4j.version>
         <jackson-dataformat-yaml.version>2.18.2</jackson-dataformat-yaml.version>
         <allure-maven.version>2.12.0</allure-maven.version>
-        <maven-surefire.version>3.1.2</maven-surefire.version>
-        <suiteXmlFileName>src/test/resources/SmokeTest.xml</suiteXmlFileName>
     </properties>
 
     <dependencyManagement>
@@ -41,6 +39,13 @@
     </dependencyManagement>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -89,6 +94,7 @@
             <artifactId>jackson-dataformat-yaml</artifactId>
             <version>${jackson-dataformat-yaml.version}</version>
         </dependency>
+
     </dependencies>
 
     <build>
