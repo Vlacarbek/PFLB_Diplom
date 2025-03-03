@@ -20,6 +20,7 @@ import pages.login.LoginPage;
 import pages.users.*;
 import utils.AllureUtils;
 import utils.PropertyReader;
+
 import java.time.Duration;
 
 public class BaseTest {
@@ -27,7 +28,6 @@ public class BaseTest {
     WebDriver driver;
 
     public SoftAssert softAssert;
-    public static WebDriverWait wait;
     public BuyOrSellCarPage buyOrSellCarPage;
     public CreateNewCarsPage createNewCarsPage;
     public ReadAllCarsPage readAllCarsPage;
