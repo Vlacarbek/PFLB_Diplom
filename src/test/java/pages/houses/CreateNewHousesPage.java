@@ -1,11 +1,14 @@
 package pages.houses;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import tests.BaseTest;
 
+@Log4j2
 public class CreateNewHousesPage extends BaseTest {
+
     private static final By HOUSE_PAGE = By.xpath("//a[@href='#' and text()='Houses']");
     private static final By CREATE_NEW_HOUSE_PAGE = By.xpath("//*[@id='basic-navbar-nav']/div/div[3]/div/a[3]");
     private static final By READ_ONE_BY_ID_PAGE = By.xpath("//*[@id='basic-navbar-nav']/div/div[3]/div/a[2]");
@@ -29,13 +32,16 @@ public class CreateNewHousesPage extends BaseTest {
 
     @Step("Переход на страницу создания дома")
     public static void openCreateHousesPage() {
+        log.info("Переход на страницу создания дома");
         driver.findElement(HOUSE_PAGE).click();
         driver.findElement(CREATE_NEW_HOUSE_PAGE).click();
     }
 
-    @Step("Создание нового дома")
+    @Step("Создание нового дома с данными '{floors}', '{price}', '{parkWarmCovered}', '{parkWarm}', '{parkCovered}', '{parkCold}'")
     public static void createNewHouse(String floors, String price, String parkWarmCovered, String parkWarm,
                                       String parkCovered, String parkCold) {
+        log.info("Создание нового дома с данными '{}', '{}', '{}', '{}','{}', '{}'",
+                floors,price,parkWarmCovered,parkWarm,parkCovered,parkCold);
         driver.findElement(FLOORS_FIELD).sendKeys(floors);
         driver.findElement(PRICE_FIELD).sendKeys(price);
         driver.findElement(PARKING_WARM_COVERED_FIELD).sendKeys(parkWarmCovered);
@@ -47,16 +53,19 @@ public class CreateNewHousesPage extends BaseTest {
 
     @Step("Получение статуса операции по созданию дома")
     public static String getStatus() {
+        log.info("Получение статуса операции по созданию дома");
         return driver.findElement(STATUS_BUTTON).getText();
     }
 
     @Step("Получение статуса операции по поиску дома")
     public static String getIdRead() {
+        log.info("Получение статуса операции по поиску дома");
         return driver.findElement(ID_FIELD).getText();
     }
 
     @Step("Нахождение созданого дома по id в общем списке домов")
     public static String findHouseById() {
+        log.info("Нахождение созданого дома по id в общем списке домов");
         String id = driver.findElement(NEW_ID).getText();
         driver.findElement(HOUSE_PAGE).click();
         driver.findElement(READ_ONE_BY_ID_PAGE).click();

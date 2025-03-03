@@ -24,6 +24,8 @@ public class SettleOrEvictUserTest extends BaseTest {
         return new Object[][]{
                 {"0", "0"},
                 {"", ""},
+                {"1", "test"},
+                {"{test", "1"},
                 {"-1", "-9"},
                 {"тест", "test"},
                 {"@", "!"},

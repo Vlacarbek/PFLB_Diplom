@@ -24,7 +24,6 @@ import utils.PropertyReader;
 import java.time.Duration;
 
 public class BaseTest {
-
     public static WebDriverWait wait;
     public static String user = System.getProperty("user", PropertyReader.getProperty("user"));
     public static String password = System.getProperty("password", PropertyReader.getProperty("password"));
