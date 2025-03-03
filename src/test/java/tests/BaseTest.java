@@ -60,7 +60,7 @@ public class BaseTest {
             driver = new ChromeDriver(options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
             int timeoutInSeconds = 10;
-            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(4));
+            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(25));
             wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
         } else if (browser.equalsIgnoreCase("internetexplorer")) {
             driver = new InternetExplorerDriver();
