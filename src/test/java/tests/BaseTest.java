@@ -28,27 +28,25 @@ public class BaseTest {
 
     WebDriver driver;
 
-  public SoftAssert softAssert;
-  public static WebDriverWait wait;
-
+    public SoftAssert softAssert;
     public BuyOrSellCarPage buyOrSellCarPage;
     public CreateNewCarsPage createNewCarsPage;
     public ReadAllCarsPage readAllCarsPage;
     public CreateNewHousesPage createNewHousesPage;
     public ReadOneByIDPage readOneByIDPage;
     public SettleOrEvictUserPage settleOrEvictUserPage;
-    public AddMoneyPage addMoneyPage;
+    public pages.users.AddMoneyPage addMoneyPage;
     public BuyOrSellCarUsersPage buyOrSellCarUsersPage;
-    public CreateNewUsersPage createNewUsersPage;
-    public IssueALoanPage issueALoanPage;
-    public ReadUserWithCarsPage readUserWithCarsPage;
+    public pages.users.CreateNewUsersPage createNewUsersPage;
+    public pages.users.ReadUserWithCarsPage readUserWithCarsPage;
     public ReadAllUsersPage readAllUsersPage;
     public SettleToHousePage settleToHousePage;
     public ReadAllHousesPage readAllHousesPage;
-    protected LoginPage loginPage;
+    public LoginPage loginPage;
+
     public static String user = System.getProperty("user", PropertyReader.getProperty("user"));
     public static String password = System.getProperty("password", PropertyReader.getProperty("password"));
-
+    public static WebDriverWait wait;
 
     @BeforeMethod
     public void setup(@Optional("chrome") String browser) {
@@ -75,20 +73,20 @@ public class BaseTest {
         addMoneyPage = new AddMoneyPage(driver);
         buyOrSellCarUsersPage = new BuyOrSellCarUsersPage(driver);
         createNewUsersPage = new CreateNewUsersPage(driver);
-        issueALoanPage = new IssueALoanPage(driver);
         readAllUsersPage = new ReadAllUsersPage(driver);
         readUserWithCarsPage = new ReadUserWithCarsPage(driver);
-        settleToHousePage = new SettleToHousePage(driver);
         loginPage = new LoginPage(driver);
         softAssert = new SoftAssert();
         readAllHousesPage = new ReadAllHousesPage(driver);
-    }
+
 
     @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult result) {
         if (ITestResult.FAILURE == result.getStatus()) {
             AllureUtils.takeScreenshot(driver);
         }
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
