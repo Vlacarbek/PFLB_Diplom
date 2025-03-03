@@ -1,5 +1,6 @@
 package tests.users;
 
+import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -23,6 +24,7 @@ public class ReadAllUsersTest extends BaseTest {
     }
 
     @Test(testName = "Проверка сортировки", dataProvider = "FirstWordOfColumnName")
+    @Issue("Jira-10101")
     public void sortTest(String FirstWordOfColumnName) {
         readAllUsersPage.open();
         List expectedSortList = readAllUsersPage.getExpectedSortList(FirstWordOfColumnName);
