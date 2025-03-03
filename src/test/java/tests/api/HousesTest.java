@@ -61,5 +61,4 @@ public class HousesTest {
         }
         Assert.assertEquals(response.getStatusCode(), 200);
     }
-
 }
