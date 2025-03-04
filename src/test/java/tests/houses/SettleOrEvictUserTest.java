@@ -111,7 +111,7 @@ public class SettleOrEvictUserTest extends BaseTest {
     @Feature("House")
     @Story("Settle or evict")
     @TmsLink("www.jira.com/TK-005")
-    public void check() throws InterruptedException {
+    public void checkSettleInIdHouse() throws InterruptedException {
         String userId = "79";
         String houseId = "1";
         LoginPage.open();
