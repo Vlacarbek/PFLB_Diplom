@@ -12,7 +12,7 @@ import static java.lang.Thread.sleep;
 
 public class BuyOrSellCarPage extends BaseTest {
 
-    private static final Logger log = LoggerFactory.getLogger(BuyOrSellCarPage.class);
+    private static final Logger LOG = LoggerFactory.getLogger(BuyOrSellCarPage.class);
     private static final By USER_ID_HEADER = By.xpath("//*[@id=\"root\"]/div/section/div/table/thead/tr/th[1]");
     private static final By USER_ID_FIELD = By.xpath("//*[@id=\"id_send\"]");
     private static final By CAR_ID_HEADER = By.xpath("//*[@id=\"root\"]/div/section/div/table/thead/tr/th[2]");
@@ -29,7 +29,7 @@ public class BuyOrSellCarPage extends BaseTest {
 
     @Step("Переход на страницу Buy or Sell car")
     public static void openBuyOrSellPage() {
-        log.info("Открытие страницы продажи/покупки автомобиля");
+        LOG.info("Открытие страницы продажи/покупки автомобиля");
         driver.get("http://82.142.167.37:4881/#/update/users/buyCar");
     }
 
@@ -48,7 +48,7 @@ public class BuyOrSellCarPage extends BaseTest {
 
     @Step("Ввод значений в поля CarId: {carId} и UserId: {userId}")
     public static void buyCar(String carId, String userId) {
-        log.info("Заполнение полей на форме продажи/покупки автомобиля");
+        LOG.info("Заполнение полей на форме продажи/покупки автомобиля");
         wait.until(ExpectedConditions.visibilityOfElementLocated(CAR_ID_FIELD)).sendKeys(carId);
         wait.until(ExpectedConditions.visibilityOfElementLocated(USER_ID_FIELD)).sendKeys(userId);
         wait.until(ExpectedConditions.visibilityOfElementLocated(BUY_CHECK_BOX)).click();
