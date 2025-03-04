@@ -78,7 +78,7 @@ public class CreateNewTest extends BaseTest {
     @TmsLink("www.jira.com/TK-003")
     public void checkCreateNewHouse() throws InterruptedException {
         LoginPage.open();
-        LoginPage.login1();
+        LoginPage.login(user, password);
         CreateNewHousesPage.openCreateHousesPage();
         CreateNewHousesPage.createNewHouse("1", "2", "3", "4", "5", "6");
         Thread.sleep(2000);
