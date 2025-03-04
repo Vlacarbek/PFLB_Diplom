@@ -26,7 +26,6 @@
         <jackson-dataformat-yaml.version>2.18.2</jackson-dataformat-yaml.version>
         <allure-maven.version>2.12.0</allure-maven.version>
         <suiteXmlFileName>src/test/resources/SmokeTest.xml</suiteXmlFileName>
-
     </properties>
 
     <dependencyManagement>
