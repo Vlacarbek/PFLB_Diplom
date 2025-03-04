@@ -78,14 +78,15 @@ public class CreateNewTest extends BaseTest {
     @TmsLink("www.jira.com/TK-003")
     public void checkCreateNewHouse() throws InterruptedException {
         LoginPage.open();
-        LoginPage.login(user, password);
+        LoginPage.login1();
         CreateNewHousesPage.openCreateHousesPage();
         CreateNewHousesPage.createNewHouse("1", "2", "3", "4", "5", "6");
+        Thread.sleep(2000);
         softAssert.assertEquals(CreateNewHousesPage.getStatus(),
                 "Status: Successfully pushed, code: 201",
                 "В поле Status вернулось некорректное значение");
-        Thread.sleep(2000);
         String modifiedId = CreateNewHousesPage.findHouseById();
+        Thread.sleep(4000);
         softAssert.assertEquals(CreateNewHousesPage.getIdRead(),
                 modifiedId,
                 "Найден дом с некорректным значением ID");
