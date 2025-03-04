@@ -55,8 +55,7 @@ public class BaseTest {
             options.addArguments("--headless");
             options.setCapability("unhandledPromptBehavior", "accept");
             driver = new ChromeDriver(options);
-            //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(6));
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS).scriptTimeout(Duration.ofSeconds(10));
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(6)).scriptTimeout(Duration.ofSeconds(10));
             int timeoutInSeconds = 10;
             driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
             wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
