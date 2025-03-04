@@ -85,7 +85,7 @@ public class CreateNewCarsPage extends BaseTest {
         }
     }
 
-    @Step("Заполнение полей Engine Type {engineType}, Mark {mark},Model {model}, Price {price} на форме создания автомобиля")
+    @Step("Заполнение полей Engine Type: {engineType}, Mark: {mark},Model: {model}, Price: {price} на форме создания автомобиля")
     public static boolean createCar(String engineType, String mark, String model, String price) throws InterruptedException {
         log.info("Заполнение формы создания автомобилей");
         sleep(2000);

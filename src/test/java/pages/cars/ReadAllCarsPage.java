@@ -19,8 +19,6 @@ public class ReadAllCarsPage {
     private static final By TABLE = By.xpath("//tbody");
     private static final String BUTTON_PATTERN = "//button[contains((text()), '%s')]";
 
-
-
     public ReadAllCarsPage(WebDriver driver) {
         ReadAllCarsPage.driver = driver;
     }
@@ -29,7 +27,6 @@ public class ReadAllCarsPage {
     public static void open() {
         driver.get("http://82.142.167.37:4881/#/read/cars");
     }
-
 
     @Step("Нажатие кнопки {buttonName}")
     public void clickButton(String buttonName) {
@@ -75,7 +72,6 @@ public class ReadAllCarsPage {
                 PRICE_BUTTON,
                 TABLE
         };
-
         for (By element : elementsToCheck) {
             List<WebElement> elements = driver.findElements(element);
             if (elements.isEmpty()) {
@@ -84,7 +80,5 @@ public class ReadAllCarsPage {
             }
         }
         return true;
-
     }
-
 }
