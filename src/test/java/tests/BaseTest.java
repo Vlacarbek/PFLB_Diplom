@@ -21,8 +21,8 @@ import pages.login.LoginPage;
 import pages.users.*;
 import utils.AllureUtils;
 import utils.PropertyReader;
-
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
@@ -55,9 +55,10 @@ public class BaseTest {
             options.addArguments("--headless");
             options.setCapability("unhandledPromptBehavior", "accept");
             driver = new ChromeDriver(options);
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
+            //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(6));
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS).scriptTimeout(Duration.ofSeconds(10));
             int timeoutInSeconds = 10;
-            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(4));
+            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
             wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
         } else if (browser.equalsIgnoreCase("internetexplorer")) {
             driver = new InternetExplorerDriver();
