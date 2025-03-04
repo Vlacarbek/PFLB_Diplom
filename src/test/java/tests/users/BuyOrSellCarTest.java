@@ -66,7 +66,7 @@ public class BuyOrSellCarTest extends BaseTest {
     @Feature("BuySellCar")
     @Story("BuySell Car")
     @TmsLink("www.jira.com/M-1")
-    public static void  sellWithInvalidDate () throws InterruptedException {
+    public static void sellWithInvalidDate () throws InterruptedException {
         LoginPage.open();
         LoginPage.login(user, password);
         BuyOrSellCarUsersPage.open();
