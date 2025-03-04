@@ -1,6 +1,5 @@
 package utils;
 
-import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.NoSuchSessionException;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
@@ -11,7 +10,7 @@ import org.testng.ITestResult;
 
 import java.util.concurrent.TimeUnit;
 
-@Log4j2
+
 public class TestListener implements ITestListener {
 
     private static final Logger log = LoggerFactory.getLogger(TestListener.class);

@@ -14,7 +14,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-@Log4j2
+
 public class ReadAllHousesPage extends BaseTest {
 
     private static final Logger log = LoggerFactory.getLogger(ReadAllHousesPage.class);

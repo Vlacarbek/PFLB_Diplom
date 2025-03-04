@@ -25,8 +25,6 @@ ReadAllTest extends BaseTest {
         assertFalse(ReadAllHousesPage.fieldsNotNull(), "Имеются пустые поля на странице");
     }
 
-
-
     @Test(testName = "Проверка кнопки Reload на странице ReadAllHousesPage")
     @Description("Проверка кнопки Reload на странице ReadAllHousesPage")
     @Severity(SeverityLevel.NORMAL)
