@@ -69,5 +69,4 @@ public class ReadAllCarTest extends BaseTest {
         List<String> reloadedList = readAllCarsPage.getActualSortList("ID");
         Assert.assertEquals(reloadedList, startList);
     }
-
 }

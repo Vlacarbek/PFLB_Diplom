@@ -26,8 +26,9 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    WebDriver driver;
-
+    public static String user = System.getProperty("user", PropertyReader.getProperty("user"));
+    public static String password = System.getProperty("password", PropertyReader.getProperty("password"));
+    public static WebDriverWait wait;
     public SoftAssert softAssert;
     public BuyOrSellCarPage buyOrSellCarPage;
     public CreateNewCarsPage createNewCarsPage;
@@ -42,10 +43,7 @@ public class BaseTest {
     public ReadAllUsersPage readAllUsersPage;
     public ReadAllHousesPage readAllHousesPage;
     public LoginPage loginPage;
-
-    public static String user = System.getProperty("user", PropertyReader.getProperty("user"));
-    public static String password = System.getProperty("password", PropertyReader.getProperty("password"));
-    public static WebDriverWait wait;
+    WebDriver driver;
 
     @BeforeMethod
     public void setup(@Optional("chrome") String browser) {
@@ -87,5 +85,5 @@ public class BaseTest {
         if (driver != null) {
             driver.quit();
         }
-        }
     }
+}

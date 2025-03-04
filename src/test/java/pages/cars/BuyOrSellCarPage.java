@@ -3,6 +3,7 @@ package pages.cars;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tests.BaseTest;
@@ -45,17 +46,16 @@ public class BuyOrSellCarPage extends BaseTest {
         return true;
     }
 
-    @Step("Ввод значений в поля CarId и UserId")
-    public static void buyCar(String carId, String userId) throws InterruptedException {
+    @Step("Ввод значений в поля CarId: {carId} и UserId: {userId}")
+    public static void buyCar(String carId, String userId) {
         log.info("Заполнение полей на форме продажи/покупки автомобиля");
-        sleep(2000);
-        driver.findElement(CAR_ID_FIELD).sendKeys(carId);
-        driver.findElement(USER_ID_FIELD).sendKeys(userId);
-        driver.findElement(BUY_CHECK_BOX).click();
-        driver.findElement(PUSH_BUTTON).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CAR_ID_FIELD)).sendKeys(carId);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(USER_ID_FIELD)).sendKeys(userId);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(BUY_CHECK_BOX)).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(PUSH_BUTTON)).click();
     }
 
-    @Step("Получение статуса")
+    @Step("Получение статуса операции и сравнение с ожидаемым кодом")
     public static String getStatus() throws InterruptedException {
         sleep(2000);
         return driver.findElement(STATUS_FIELD).getText();
