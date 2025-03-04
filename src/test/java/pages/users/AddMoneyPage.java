@@ -4,10 +4,12 @@ import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import static java.lang.Thread.sleep;
+import static tests.BaseTest.wait;
 
 @Log4j2
 public class AddMoneyPage {
@@ -33,7 +35,9 @@ public class AddMoneyPage {
     public static void fillFields(String id, String money) throws InterruptedException {
         log.info("Заполнение формы для добавление средств c {} на сумму {}", id,money);
         sleep(2000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(ID_NAME_FIELD));
         driver.findElement(ID_NAME_FIELD).sendKeys(id);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(MONEY_FIELD));
         driver.findElement(MONEY_FIELD).clear();
         driver.findElement(MONEY_FIELD).sendKeys(String.valueOf(money));
     }
@@ -42,6 +46,7 @@ public class AddMoneyPage {
     public static void clickButton() throws InterruptedException {
         log.info("Клик на кнопку Push ");
         sleep(1000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(PUSH_BUTTON));
         driver.findElement(PUSH_BUTTON).click();
     }
 
@@ -49,6 +54,7 @@ public class AddMoneyPage {
     public static String checkResultText() throws InterruptedException {
         log.info("Проверка текста о результатах ");
         sleep(2000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(TEXT_RESULT_BUTTON));
         return driver.findElement(TEXT_RESULT_BUTTON).getText();
     }
 
@@ -56,6 +62,8 @@ public class AddMoneyPage {
     public static String checkResultMoney() throws InterruptedException {
         log.info("Проверка суммы в результатах");
         sleep(2000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(MONEY_RESULT));
         return driver.findElement(MONEY_RESULT).getText();
     }
 }
+
