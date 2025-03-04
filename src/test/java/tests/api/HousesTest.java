@@ -28,7 +28,7 @@ public class HousesTest {
                     .header("host", "82.142.167.37")
                     .header("Authorization", "Bearer " + LoginTest.GetToken())
                     .when()
-                    .post("/house/2/settle/2")
+                    .post("/house/8/settle/8")
                     .then()
                     .extract().response();
         } catch (Exception e) {
@@ -53,7 +53,7 @@ public class HousesTest {
                     .header("host", "82.142.167.37")
                     .header("Authorization", "Bearer " + LoginTest.GetToken())
                     .when()
-                    .post("/house/2/evict/2")
+                    .post("/house/8/evict/8")
                     .then()
                     .extract().response();
         } catch (Exception e) {
