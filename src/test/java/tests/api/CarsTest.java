@@ -126,7 +126,7 @@ public class CarsTest {
                 .log().all()
                 .header("Content-Type", "application/json")
                 .header("host", "82.142.167.37")
-                .header("Authorization", "Bearer " + LoginTest.GetToken())
+                .header("Authorization", "Bearer " + LoginTest.getToken())
                 .body(requestBody.toString())
                 .when()
                 .post("/car")
@@ -159,13 +159,13 @@ public class CarsTest {
         Response response = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .header("host", "82.142.167.37")
-                .header("Authorization", "Bearer " + LoginTest.GetToken())
+                .header("Authorization", "Bearer " + LoginTest.getToken())
                 .body(requestBody.toString())
                 .when()
                 .post("/car")
                 .then()
                 .extract().response();
-        Assert.assertEquals(response.getStatusCode(), 400);
+        assertEquals(response.getStatusCode(), 400);
     }
 
     //Проверка PUT запроса с корректными данными
@@ -191,7 +191,7 @@ public class CarsTest {
                 .log().all()
                 .header("Content-Type", "application/json")
                 .header("host", "82.142.167.37")
-                .header("Authorization", "Bearer " + LoginTest.GetToken())
+                .header("Authorization", "Bearer " + LoginTest.getToken())
                 .body(requestBody.toString())
                 .when()
                 .put("/car/1") // Указываем ID автомобиля для обновления
@@ -225,7 +225,7 @@ public class CarsTest {
                 .log().all()
                 .header("Content-Type", "application/json")
                 .header("host", "82.142.167.37")
-                .header("Authorization", "Bearer " + LoginTest.GetToken())
+                .header("Authorization", "Bearer " + LoginTest.getToken())
                 .body(invalidBody.toString())
                 .when()
                 .put("/car/1")  // Предполагаем, что автомобиль с ID=1 существует
@@ -249,7 +249,7 @@ public class CarsTest {
 
         RestAssured.given()
                 .log().all()
-                .header("Authorization", "Bearer " + LoginTest.GetToken())
+                .header("Authorization", "Bearer " + LoginTest.getToken())
                 .header("host", "82.142.167.37")
                 .when()
                 .delete("/car/62")
@@ -264,7 +264,7 @@ public class CarsTest {
 
         Response response = RestAssured.given()
                 .log().all()
-                .header("Authorization", "Bearer " + LoginTest.GetToken())
+                .header("Authorization", "Bearer " + LoginTest.getToken())
                 .header("host", "82.142.167.37")
                 .when()
                 .delete("/user/" + 1871)
