@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Log4j2
-public class SettleOrEvictUserPage extends BaseTest {
+public class SettleOrEvictUserPage {
     private static final By HOUSE_PAGE = By.xpath("//a[@href='#' and text()='Houses']");
     private static final By LIST_ID = By.xpath("//table[@class='tableLodgers table table-striped table-bordered table-hover']/tbody/tr");
     private static final By SETTLE_OR_EVICT_PAGE = By.xpath("//*[@id='basic-navbar-nav']/div/div[3]/div/a[4]");

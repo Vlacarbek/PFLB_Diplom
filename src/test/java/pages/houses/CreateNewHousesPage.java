@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import tests.BaseTest;
 
 @Log4j2
-public class CreateNewHousesPage extends BaseTest {
+public class CreateNewHousesPage {
 
     private static final By HOUSE_PAGE = By.xpath("//a[@href='#' and text()='Houses']");
     private static final By CREATE_NEW_HOUSE_PAGE = By.xpath("//*[@id='basic-navbar-nav']/div/div[3]/div/a[3]");

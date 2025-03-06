@@ -1,7 +1,6 @@
 package pages.houses;
 
 import io.qameta.allure.Step;
-import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,7 +14,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class ReadAllHousesPage extends BaseTest {
+public class ReadAllHousesPage {
 
     private static final Logger log = LoggerFactory.getLogger(ReadAllHousesPage.class);
     static WebDriver driver;
@@ -23,7 +22,8 @@ public class ReadAllHousesPage extends BaseTest {
     private static final By HOUSE_PAGE = By.xpath("//a[text()='Houses']");
     private static final By READ_ALL = By.xpath("//a[@href='#/read/houses']");
     private static final By RELOAD_BUTTON = By.xpath("//button[text()='Reload']");
-    private static final By LODGERS_ID_READ_ALL = By.xpath("//*[@id='root']/div/section/div/table/tbody/tr[1]/td[5]/table/tbody/tr/td");
+    private static final By LODGERS_ID_READ_ALL = By.xpath("//*[@id='root']/div/section/div/table/" +
+            "tbody/tr[1]/td[5]/table/tbody/tr/td");
 
     public ReadAllHousesPage(WebDriver driver) {
         ReadAllHousesPage.driver = driver;

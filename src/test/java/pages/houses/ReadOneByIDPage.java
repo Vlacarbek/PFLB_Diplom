@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class ReadOneByIDPage extends BaseTest {
+public class ReadOneByIDPage {
 
     private static final Logger log = LoggerFactory.getLogger(ReadOneByIDPage.class);
     static WebDriver driver;
