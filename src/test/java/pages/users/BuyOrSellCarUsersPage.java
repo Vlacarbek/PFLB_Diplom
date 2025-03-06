@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import static java.lang.Thread.sleep;
 
-@Log4j2
 public class BuyOrSellCarUsersPage {
     private static final Logger log = LoggerFactory.getLogger(BuyOrSellCarUsersPage.class);
     private static WebDriver driver;

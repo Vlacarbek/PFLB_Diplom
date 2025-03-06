@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tests.BaseTest;
 
-@Log4j2
+
 public class CreateNewHousesPage {
 
     private static final By HOUSE_PAGE = By.xpath("//a[@href='#' and text()='Houses']");

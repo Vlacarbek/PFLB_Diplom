@@ -12,7 +12,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-@Log4j2
+
 public class LoginPage {
     private static final Logger log = LoggerFactory.getLogger(LoginPage.class);
     private static WebDriver driver;

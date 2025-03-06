@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
 
-@Log4j2
+
 public class LoggerTest {
 
     private static final Logger log = LoggerFactory.getLogger(LoggerTest.class);

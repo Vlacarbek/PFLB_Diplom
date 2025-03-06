@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import static java.lang.Thread.sleep;
 
-@Log4j2
+
 public class AddMoneyPage {
     private static final Logger log = LoggerFactory.getLogger(AddMoneyPage.class);
     private static WebDriver driver;

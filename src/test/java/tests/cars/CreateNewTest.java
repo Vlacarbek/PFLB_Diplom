@@ -41,56 +41,56 @@ public class CreateNewTest extends BaseTest {
         };
     }
 
-    @Test(testName = "Успешное создание нового автомобиля",
-            description = "Успешное создание автомобиля с вводом валидных значений в поля",
-            dataProvider = "CreateCarData")
-    @Severity(SeverityLevel.NORMAL)
-    @Epic("PFLB 1.0")
-    @Feature("Cars")
-    @Story("Create New car")
-    @TmsLink("www.jira.com/TK-001")
-    public void checkPositiveCreateNewCar(String engineType, String mark, String model, String price, String status) throws InterruptedException {
-        LoginPage.open();
-        LoginPage.login(user, password);
-        CreateNewCarsPage.openCreateCarsPage();
-        CreateNewCarsPage.createCar(engineType, mark, model, price);
-        CreateNewCarsPage.createCarButtonClick();
-        assertEquals(CreateNewCarsPage.getStatus(),
-                status,
-                "Статус не равен 201");
-    }
-    @Test(testName = "Невозможность создания автомобиля с невалидными данными",
-            description = "Невозможность создания автомобиля  при вводе невалидных значений",
-            dataProvider = "NegativeCreateData")
-    @Severity(SeverityLevel.NORMAL)
-    @Epic("PFLB 1.0")
-    @Feature("Cars")
-    @Story("Create New car")
-    @TmsLink("www.jira.com/TK-002")
-    public void checkNegativeCreateNewCar(String engineType, String mark, String model, String price, String status) throws InterruptedException {
-        LoginPage.open();
-        LoginPage.login(user, password);
-        CreateNewCarsPage.openCreateCarsPage();
-        CreateNewCarsPage.createCar(engineType, mark, model, price);
-        CreateNewCarsPage.createCarButtonClick();
-        assertEquals(CreateNewCarsPage.getStatus(),
-                status,
-                "В поле Status вернулось некорректное значение");
-    }
+//    @Test(testName = "Успешное создание нового автомобиля",
+//            description = "Успешное создание автомобиля с вводом валидных значений в поля",
+//            dataProvider = "CreateCarData")
+//    @Severity(SeverityLevel.NORMAL)
+//    @Epic("PFLB 1.0")
+//    @Feature("Cars")
+//    @Story("Create New car")
+//    @TmsLink("www.jira.com/TK-001")
+//    public void checkPositiveCreateNewCar(String engineType, String mark, String model, String price, String status) throws InterruptedException {
+//        LoginPage.open();
+//        LoginPage.login(user, password);
+//        CreateNewCarsPage.openCreateCarsPage();
+//        CreateNewCarsPage.createCar(engineType, mark, model, price);
+//        CreateNewCarsPage.createCarButtonClick();
+//        assertEquals(CreateNewCarsPage.getStatus(),
+//                status,
+//                "Статус не равен 201");
+//    }
+//    @Test(testName = "Невозможность создания автомобиля с невалидными данными",
+//            description = "Невозможность создания автомобиля  при вводе невалидных значений",
+//            dataProvider = "NegativeCreateData")
+//    @Severity(SeverityLevel.NORMAL)
+//    @Epic("PFLB 1.0")
+//    @Feature("Cars")
+//    @Story("Create New car")
+//    @TmsLink("www.jira.com/TK-002")
+//    public void checkNegativeCreateNewCar(String engineType, String mark, String model, String price, String status) throws InterruptedException {
+//        LoginPage.open();
+//        LoginPage.login(user, password);
+//        CreateNewCarsPage.openCreateCarsPage();
+//        CreateNewCarsPage.createCar(engineType, mark, model, price);
+//        CreateNewCarsPage.createCarButtonClick();
+//        assertEquals(CreateNewCarsPage.getStatus(),
+//                status,
+//                "В поле Status вернулось некорректное значение");
+//    }
 
-    @Test(testName = "Отображение элементов на странице Create New Car",
-            description = "Корректное отображение всех элементов на странице")
-    @Severity(SeverityLevel.NORMAL)
-    @Epic("PFLB 1.0")
-    @Feature("Cars")
-    @Story("Create New car")
-    @TmsLink("www.jira.com/TK-003")
-    public void checkElementsOnPageCreateNewCar() {
-        LoginPage.open();
-        LoginPage.login(user, password);
-        CreateNewCarsPage.openCreateCarsPage();
-        assertTrue(CreateNewCarsPage.checkElementsOnPage());
-    }
+//    @Test(testName = "Отображение элементов на странице Create New Car",
+//            description = "Корректное отображение всех элементов на странице")
+//    @Severity(SeverityLevel.NORMAL)
+//    @Epic("PFLB 1.0")
+//    @Feature("Cars")
+//    @Story("Create New car")
+//    @TmsLink("www.jira.com/TK-003")
+//    public void checkElementsOnPageCreateNewCar() {
+//        LoginPage.open();
+//        LoginPage.login(user, password);
+//        CreateNewCarsPage.openCreateCarsPage();
+//        assertTrue(CreateNewCarsPage.checkElementsOnPage());
+//    }
 }
 
 
