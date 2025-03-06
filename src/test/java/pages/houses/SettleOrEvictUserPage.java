@@ -1,7 +1,7 @@
 package pages.houses;
 
+import groovy.util.logging.Log4j2;
 import io.qameta.allure.Step;
-import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +12,7 @@ import tests.BaseTest;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Log4j2
 public class SettleOrEvictUserPage {
     private static final By HOUSE_PAGE = By.xpath("//a[@href='#' and text()='Houses']");
     private static final By LIST_ID = By.xpath("//table[@class='tableLodgers table table-striped table-bordered table-hover']/tbody/tr");

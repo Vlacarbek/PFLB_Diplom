@@ -1,5 +1,6 @@
 package pages.cars;
 
+import groovy.util.logging.Log4j2;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,7 @@ import java.util.regex.Pattern;
 
 import static java.lang.Thread.sleep;
 
+@Log4j2
 public class CreateNewCarsPage extends BaseTest {
 
     private static final By ENGINE_TYPE_HEADER = By.xpath("//*[@id=\"root\"]/div/section/div/table/thead/tr/th[2]");

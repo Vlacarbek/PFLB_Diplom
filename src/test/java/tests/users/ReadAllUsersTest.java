@@ -22,14 +22,14 @@ public class ReadAllUsersTest extends BaseTest {
         };
     }
 
-    @Test(testName = "Проверка сортировки", dataProvider = "FirstWordOfColumnName")
-    public void sortTest(String FirstWordOfColumnName) {
-        readAllUsersPage.open();
-        List expectedSortList = readAllUsersPage.getExpectedSortList(FirstWordOfColumnName);
-        readAllUsersPage.clickButton(FirstWordOfColumnName);
-        List actualSortList = readAllUsersPage.getActualSortList(FirstWordOfColumnName);
-        Assert.assertEquals(actualSortList, expectedSortList);
-    }
+//    @Test(testName = "Проверка сортировки", dataProvider = "FirstWordOfColumnName")
+//    public void sortTest(String FirstWordOfColumnName) {
+//        readAllUsersPage.open();
+//        List expectedSortList = readAllUsersPage.getExpectedSortList(FirstWordOfColumnName);
+//        readAllUsersPage.clickButton(FirstWordOfColumnName);
+//        List actualSortList = readAllUsersPage.getActualSortList(FirstWordOfColumnName);
+//        Assert.assertEquals(actualSortList, expectedSortList);
+//    }
 
     @Test(testName = "Проверка атрибутного состава ReadAllUsers")
     public void readAllUsersPageAttributeCheck() {

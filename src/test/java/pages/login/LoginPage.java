@@ -1,7 +1,7 @@
 package pages.login;
 
+import groovy.util.logging.Log4j2;
 import io.qameta.allure.Step;
-import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
@@ -12,7 +12,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Log4j2
 public class LoginPage {
     private static final Logger log = LoggerFactory.getLogger(LoginPage.class);
     private static WebDriver driver;

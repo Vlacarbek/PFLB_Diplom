@@ -1,5 +1,6 @@
 package pages.houses;
 
+import groovy.util.logging.Log4j2;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+@Log4j2
 public class ReadOneByIDPage {
 
     private static final Logger log = LoggerFactory.getLogger(ReadOneByIDPage.class);

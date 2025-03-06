@@ -1,5 +1,6 @@
 package pages.users;
 
+import groovy.util.logging.Log4j2;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +10,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Log4j2
 public class ReadAllUsersPage {
 
     WebDriver driver;

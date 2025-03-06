@@ -1,5 +1,6 @@
 package pages.cars;
 
+import groovy.util.logging.Log4j2;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,6 +10,7 @@ import java.time.Duration;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Log4j2
 public class ReadAllCarsPage {
     private static WebDriver driver;
     private static final By RELOAD_BUTTON = By.xpath("//button[text()='Reload']");

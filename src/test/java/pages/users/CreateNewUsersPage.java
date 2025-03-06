@@ -1,5 +1,6 @@
 package pages.users;
 
+import groovy.util.logging.Log4j2;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import static java.lang.Thread.sleep;
 
+@Log4j2
 public class CreateNewUsersPage {
 
     private static WebDriver driver;
