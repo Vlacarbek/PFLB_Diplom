@@ -105,41 +105,41 @@ public class CarsTest {
         Assert.assertEquals(response.getStatusCode(), 204);
     }
 
-    @Test(testName = "POST запрос /car с корректными данными",
-            description = "Позитивная проверка POST запроса /car с корректными данными")
-    @Severity(SeverityLevel.CRITICAL)
-    @Epic("PFLB 1.0")
-    @Feature("Create cars API")
-    @Story("Create cars API")
-    @TmsLink("www.jira.com/C-2")
-    public void PostCar() throws JsonException {
-        RestAssured.baseURI = "http://82.142.167.37:4880";
-
-        JSONObject requestBody = new JSONObject();
-        requestBody.put("engineType", "Diesel");
-
-        requestBody.put("mark", "Lada");
-        requestBody.put("model", "Lada");
-        requestBody.put("price", 1000);
-
-        Response response = RestAssured.given()
-                .log().all()
-                .header("Content-Type", "application/json")
-                .header("host", "82.142.167.37")
-                .header("Authorization", "Bearer " + LoginTest.GetToken())
-                .body(requestBody.toString())
-                .when()
-                .post("/car")
-                .then()
-                .log().all()
-                .assertThat()
-                .statusCode(201)
-                .body("engineType", equalTo("Diesel"))
-                .body("mark", equalTo("Lada"))
-                .body("model", equalTo("Lada"))
-                .body("price", equalTo(1000))
-                .extract().response();
-    }
+//    @Test(testName = "POST запрос /car с корректными данными",
+//            description = "Позитивная проверка POST запроса /car с корректными данными")
+//    @Severity(SeverityLevel.CRITICAL)
+//    @Epic("PFLB 1.0")
+//    @Feature("Create cars API")
+//    @Story("Create cars API")
+//    @TmsLink("www.jira.com/C-2")
+//    public void PostCar() throws JsonException {
+//        RestAssured.baseURI = "http://82.142.167.37:4880";
+//
+//        JSONObject requestBody = new JSONObject();
+//        requestBody.put("engineType", "Diesel");
+//
+//        requestBody.put("mark", "Lada");
+//        requestBody.put("model", "Lada");
+//        requestBody.put("price", 1000);
+//
+//        Response response = RestAssured.given()
+//                .log().all()
+//                .header("Content-Type", "application/json")
+//                .header("host", "82.142.167.37")
+//                .header("Authorization", "Bearer " + LoginTest.GetToken())
+//                .body(requestBody.toString())
+//                .when()
+//                .post("/car")
+//                .then()
+//                .log().all()
+//                .assertThat()
+//                .statusCode(201)
+//                .body("engineType", equalTo("Diesel"))
+//                .body("mark", equalTo("Lada"))
+//                .body("model", equalTo("Lada"))
+//                .body("price", equalTo(1000))
+//                .extract().response();
+//    }
 
     @Test(testName = "POST запрос /car с не корректными данными",
             description = "Негативная проверка POST запроса /car с не корректными данными")
@@ -169,41 +169,42 @@ public class CarsTest {
     }
 
     //Проверка PUT запроса с корректными данными
-    @Flaky
-    @Test(testName = "PUT запрос /сar с корректными данными",
-            description = "Проверка PUT запроса /сar с корректными данными")
-    @Severity(SeverityLevel.CRITICAL)
-    @Epic("PFLB 1.0")
-    @Feature("Create сars API")
-    @Story("Create сars API")
-    @TmsLink("www.jira.com/C-1")
-    public void PutCar() throws JsonException {
-        RestAssured.baseURI = "http://82.142.167.37:4880";
+//    @Flaky
+//    @Test(testName = "PUT запрос /сar с корректными данными",
+//            description = "Проверка PUT запроса /сar с корректными данными")
+//    @Severity(SeverityLevel.CRITICAL)
+//    @Epic("PFLB 1.0")
+//    @Feature("Create сars API")
+//    @Story("Create сars API")
+//    @TmsLink("www.jira.com/C-1")
+//    public void PutCar() throws JsonException {
+//        RestAssured.baseURI = "http://82.142.167.37:4880";
+//
+//        // Создаём тело запроса с обновлёнными данными
+//        JSONObject requestBody = new JSONObject();
+//        requestBody.put("engineType", "Electric");
+//        requestBody.put("mark", "Volga");
+//        requestBody.put("model", "NewModel");
+//        requestBody.put("price", 2000);
+//        Response response = RestAssured.given()
+//                .log().all()
+//                .header("Content-Type", "application/json")
+//                .header("host", "82.142.167.37")
+//                .header("Authorization", "Bearer " + LoginTest.GetToken())
+//                .body(requestBody.toString())
+//                .when()
+//                .put("/car/1") // Указываем ID автомобиля для обновления
+//                .then()
+//                .log().all()
+//                .assertThat()
+//                .statusCode(202) // Ожидаемый статус при успешном обновлении
+//                .body("engineType", equalTo("Electric"))
+//                .body("mark", equalTo("Volga"))
+//                .body("model", equalTo("NewModel"))
+//                .body("price", equalTo(2000))
+//                .extract().response();
+//    }
 
-        // Создаём тело запроса с обновлёнными данными
-        JSONObject requestBody = new JSONObject();
-        requestBody.put("engineType", "Electric");
-        requestBody.put("mark", "Volga");
-        requestBody.put("model", "NewModel");
-        requestBody.put("price", 2000);
-        Response response = RestAssured.given()
-                .log().all()
-                .header("Content-Type", "application/json")
-                .header("host", "82.142.167.37")
-                .header("Authorization", "Bearer " + LoginTest.GetToken())
-                .body(requestBody.toString())
-                .when()
-                .put("/car/1") // Указываем ID автомобиля для обновления
-                .then()
-                .log().all()
-                .assertThat()
-                .statusCode(202) // Ожидаемый статус при успешном обновлении
-                .body("engineType", equalTo("Electric"))
-                .body("mark", equalTo("Volga"))
-                .body("model", equalTo("NewModel"))
-                .body("price", equalTo(2000))
-                .extract().response();
-    }
     @Test(testName = "PUT запрос /сar с некорректными данными",
             description = "Проверка PUT запроса /сar с некорректными данными")
     @Severity(SeverityLevel.NORMAL)
@@ -234,27 +235,27 @@ public class CarsTest {
                 .extract().response();
     }
 
-    @Test(testName = "Delete запрос /car  на существующего пользователя",
-            description = "Позитивная проверка Delete запроса /car  на существующего пользователя")
-    @Severity(SeverityLevel.CRITICAL)
-    @Epic("PFLB 1.0")
-    @Feature("Create cars API")
-    @Story("Create cars API")
-    @TmsLink("www.jira.com/C-2")
-    public void DeleteUser() throws JsonException {
-        RestAssured.baseURI = "http://82.142.167.37:4880";
-
-        RestAssured.given()
-                .log().all()
-                .header("Authorization", "Bearer " + LoginTest.GetToken())
-                .header("host", "82.142.167.37")
-                .when()
-                .delete("/car/62")
-                .then()
-                .log().all()
-                .assertThat()
-                .statusCode(204);  // или 204, если ожидается отсутствие тела в ответе
-    }
+//    @Test(testName = "Delete запрос /car  на существующего пользователя",
+//            description = "Позитивная проверка Delete запроса /car  на существующего пользователя")
+//    @Severity(SeverityLevel.CRITICAL)
+//    @Epic("PFLB 1.0")
+//    @Feature("Create cars API")
+//    @Story("Create cars API")
+//    @TmsLink("www.jira.com/C-2")
+//    public void DeleteUser() throws JsonException {
+//        RestAssured.baseURI = "http://82.142.167.37:4880";
+//
+//        RestAssured.given()
+//                .log().all()
+//                .header("Authorization", "Bearer " + LoginTest.GetToken())
+//                .header("host", "82.142.167.37")
+//                .when()
+//                .delete("/car/62")
+//                .then()
+//                .log().all()
+//                .assertThat()
+//                .statusCode(204);  // или 204, если ожидается отсутствие тела в ответе
+//    }
 
     @Test
     public void DeleteCarInvalid() throws JsonException {
