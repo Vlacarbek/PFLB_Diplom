@@ -107,66 +107,66 @@ public class UsersTest {
         assertEquals(response.getStatusCode(), 200);
     }
 
-    @Test(testName = "POST запрос /user с корректными данными",
-            description = "Позитивная проверка POST запроса /user с корректными данными")
-    @Severity(SeverityLevel.CRITICAL)
-    @Epic("PFLB 1.0")
-    @Feature("Create users API")
-    @Story("Create users API")
-    @TmsLink("www.jira.com/C-1")
-    public void PostUser() throws JsonException {
-        RestAssured.baseURI = "http://82.142.167.37:4880";
-        JSONObject requestBody = new JSONObject();
-        requestBody.put("firstName", "Alina7");
-        requestBody.put("sex", "MALE");
-        requestBody.put("age", 25);
-        requestBody.put("money", 350);
-        requestBody.put("id", 65475757);
-        requestBody.put("secondName", "Vershinina");
-        Response response = RestAssured.given()
-                .header("Content-Type", "application/json")
-                .header("host", "82.142.167.37")
-                .header("Authorization", "Bearer " + LoginTest.GetToken())
-                .body(requestBody.toString())
-                .when()
-                .post("/user")
-                .then()
-                .extract().response();
-        response.then()
-                .body("firstName", equalTo("Alina7"))
-                .body("secondName", equalTo("Vershinina"))
-                .body("age", equalTo(25))
-                .body("sex", equalTo("MALE"));
-        assertEquals(response.getStatusCode(), 201);
-    }
-////
-////    @Test(testName = "POST запрос /user с не корректными данными",
-////            description = "Негативная проверка POST запроса /user с не корректными данными")
-////    @Severity(SeverityLevel.NORMAL)
-////    @Epic("PFLB 1.0")
-////    @Feature("Create users API")
-////    @Story("Create users API")
-////    @TmsLink("www.jira.com/C-1")
-////    public void PostUserInvalidDate() throws JsonException {
-////        RestAssured.baseURI = "http://82.142.167.37:4880";
-////        JSONObject requestBody = new JSONObject();
-////        requestBody.put("firstName", "");
-////        requestBody.put("sex", "");
-////        requestBody.put("age", 0);
-////        requestBody.put("money", 0);
-////        requestBody.put("id", 0);
-////        requestBody.put("secondName", "");
-////        Response response = RestAssured.given()
-////                .header("Content-Type", "application/json")
-////                .header("host", "82.142.167.37")
-////                .header("Authorization", "Bearer " + LoginTest.GetToken())
-////                .body(requestBody.toString())
-////                .when()
-////                .post("/user")
-////                .then()
-////                .extract().response();
-////        assertEquals(response.getStatusCode(), 400);
-////    }
+//    @Test(testName = "POST запрос /user с корректными данными",
+//            description = "Позитивная проверка POST запроса /user с корректными данными")
+//    @Severity(SeverityLevel.CRITICAL)
+//    @Epic("PFLB 1.0")
+//    @Feature("Create users API")
+//    @Story("Create users API")
+//    @TmsLink("www.jira.com/C-1")
+//    public void PostUser() throws JsonException {
+//        RestAssured.baseURI = "http://82.142.167.37:4880";
+//        JSONObject requestBody = new JSONObject();
+//        requestBody.put("firstName", "Alina7");
+//        requestBody.put("sex", "MALE");
+//        requestBody.put("age", 25);
+//        requestBody.put("money", 350);
+//        requestBody.put("id", 65475757);
+//        requestBody.put("secondName", "Vershinina");
+//        Response response = RestAssured.given()
+//                .header("Content-Type", "application/json")
+//                .header("host", "82.142.167.37")
+//                .header("Authorization", "Bearer " + LoginTest.GetToken())
+//                .body(requestBody.toString())
+//                .when()
+//                .post("/user")
+//                .then()
+//                .extract().response();
+//        response.then()
+//                .body("firstName", equalTo("Alina7"))
+//                .body("secondName", equalTo("Vershinina"))
+//                .body("age", equalTo(25))
+//                .body("sex", equalTo("MALE"));
+//        assertEquals(response.getStatusCode(), 201);
+//    }
+//
+//    @Test(testName = "POST запрос /user с не корректными данными",
+//            description = "Негативная проверка POST запроса /user с не корректными данными")
+//    @Severity(SeverityLevel.NORMAL)
+//    @Epic("PFLB 1.0")
+//    @Feature("Create users API")
+//    @Story("Create users API")
+//    @TmsLink("www.jira.com/C-1")
+//    public void PostUserInvalidDate() throws JsonException {
+//        RestAssured.baseURI = "http://82.142.167.37:4880";
+//        JSONObject requestBody = new JSONObject();
+//        requestBody.put("firstName", "");
+//        requestBody.put("sex", "");
+//        requestBody.put("age", 0);
+//        requestBody.put("money", 0);
+//        requestBody.put("id", 0);
+//        requestBody.put("secondName", "");
+//        Response response = RestAssured.given()
+//                .header("Content-Type", "application/json")
+//                .header("host", "82.142.167.37")
+//                .header("Authorization", "Bearer " + LoginTest.GetToken())
+//                .body(requestBody.toString())
+//                .when()
+//                .post("/user")
+//                .then()
+//                .extract().response();
+//        assertEquals(response.getStatusCode(), 400);
+//    }
 //
 //    //Проверка PUT запроса с корректными данными
 //    @Flaky
