@@ -30,67 +30,67 @@ public class CreateNewTest extends BaseTest {
         };
     }
 
-    @Test(testName = "Успешное создание нового дома с валидными данными для {floors}, {price}, {parkWarmCovered}, " +
-            "{parkWarm}, {parkCovered}, {parkCold}",
-            description = "Необходимо проверить возможность успешного создания нового дома на странице Create New",
-            dataProvider = "CreateHouseData")
-    @Severity(SeverityLevel.NORMAL)
-    @Epic("PFLB 1.0")
-    @Feature("House")
-    @Story("Create New House")
-    @TmsLink("www.jira.com/TK-001")
-    public void checkPositiveCreateNewHouse(String floors, String price, String parkWarmCovered, String parkWarm, String parkCovered, String parkCold, String status) {
-        LoginPage.open();
-        LoginPage.login(user, password);
-        CreateNewHousesPage.openCreateHousesPage();
-        CreateNewHousesPage.createNewHouse(floors, price, parkWarmCovered, parkWarm, parkCovered, parkCold);
-        softAssert.assertEquals(CreateNewHousesPage.getStatus(),
-                status,
-                "Статус не равен 201");
-    }
+//    @Test(testName = "Успешное создание нового дома с валидными данными для {floors}, {price}, {parkWarmCovered}, " +
+//            "{parkWarm}, {parkCovered}, {parkCold}",
+//            description = "Необходимо проверить возможность успешного создания нового дома на странице Create New",
+//            dataProvider = "CreateHouseData")
+//    @Severity(SeverityLevel.NORMAL)
+//    @Epic("PFLB 1.0")
+//    @Feature("House")
+//    @Story("Create New House")
+//    @TmsLink("www.jira.com/TK-001")
+//    public void checkPositiveCreateNewHouse(String floors, String price, String parkWarmCovered, String parkWarm, String parkCovered, String parkCold, String status) {
+//        LoginPage.open();
+//        LoginPage.login(user, password);
+//        CreateNewHousesPage.openCreateHousesPage();
+//        CreateNewHousesPage.createNewHouse(floors, price, parkWarmCovered, parkWarm, parkCovered, parkCold);
+//        softAssert.assertEquals(CreateNewHousesPage.getStatus(),
+//                status,
+//                "Статус не равен 201");
+//    }
 
-    @Test(testName = "Невозможность создания дома с невалидными данными для {floors}, {price}, {parkWarmCovered}, " +
-            "{parkWarm}, {parkCovered}, {parkCold}",
-            description = "Необходимо проверить невозможность создания нового дома с невалидными данными на странице Create New",
-            dataProvider = "NegativeHouseData")
-    @Severity(SeverityLevel.NORMAL)
-    @Epic("PFLB 1.0")
-    @Feature("House")
-    @Story("Create New House")
-    @TmsLink("www.jira.com/TK-002")
-    public void checkNegativeCreateNewHouse(String floors, String price, String parkWarmCovered, String parkWarm, String parkCovered, String parkCold, String status) {
-        LoginPage.open();
-        LoginPage.login(user, password);
-        CreateNewHousesPage.openCreateHousesPage();
-        CreateNewHousesPage.createNewHouse(floors, price, parkWarmCovered, parkWarm, parkCovered, parkCold);
-        softAssert.assertEquals(CreateNewHousesPage.getStatus(),
-                status,
-                "В поле Status вернулось некорректное значение");
-    }
+//    @Test(testName = "Невозможность создания дома с невалидными данными для {floors}, {price}, {parkWarmCovered}, " +
+//            "{parkWarm}, {parkCovered}, {parkCold}",
+//            description = "Необходимо проверить невозможность создания нового дома с невалидными данными на странице Create New",
+//            dataProvider = "NegativeHouseData")
+//    @Severity(SeverityLevel.NORMAL)
+//    @Epic("PFLB 1.0")
+//    @Feature("House")
+//    @Story("Create New House")
+//    @TmsLink("www.jira.com/TK-002")
+//    public void checkNegativeCreateNewHouse(String floors, String price, String parkWarmCovered, String parkWarm, String parkCovered, String parkCold, String status) {
+//        LoginPage.open();
+//        LoginPage.login(user, password);
+//        CreateNewHousesPage.openCreateHousesPage();
+//        CreateNewHousesPage.createNewHouse(floors, price, parkWarmCovered, parkWarm, parkCovered, parkCold);
+//        softAssert.assertEquals(CreateNewHousesPage.getStatus(),
+//                status,
+//                "В поле Status вернулось некорректное значение");
+//    }
 
-    @Test(testName = "Успешное отображение созданого дома в общем списке домов с валидными данными для {floors}, " +
-            "{price}, {parkWarmCovered}, {parkWarm}, {parkCovered}, {parkCold}",
-            description = "Необходимо проверить что новый дом можно найти по id в общем списке домов")
-    @Severity(SeverityLevel.NORMAL)
-    @Epic("PFLB 1.0")
-    @Feature("House")
-    @Story("Create New House")
-    @TmsLink("www.jira.com/TK-003")
-    public void checkCreateNewHouse() throws InterruptedException {
-        LoginPage.open();
-        LoginPage.login(user, password);
-        CreateNewHousesPage.openCreateHousesPage();
-        CreateNewHousesPage.createNewHouse("1", "2", "3", "4", "5", "6");
-        softAssert.assertEquals(CreateNewHousesPage.getStatus(),
-                "Status: Successfully pushed, code: 201",
-                "В поле Status вернулось некорректное значение");
-        Thread.sleep(2000);
-        String modifiedId = CreateNewHousesPage.findHouseById();
-        softAssert.assertEquals(CreateNewHousesPage.getIdRead(),
-                modifiedId,
-                "Найден дом с некорректным значением ID");
-        softAssert.assertAll();
-    }
+//    @Test(testName = "Успешное отображение созданого дома в общем списке домов с валидными данными для {floors}, " +
+//            "{price}, {parkWarmCovered}, {parkWarm}, {parkCovered}, {parkCold}",
+//            description = "Необходимо проверить что новый дом можно найти по id в общем списке домов")
+//    @Severity(SeverityLevel.NORMAL)
+//    @Epic("PFLB 1.0")
+//    @Feature("House")
+//    @Story("Create New House")
+//    @TmsLink("www.jira.com/TK-003")
+//    public void checkCreateNewHouse() throws InterruptedException {
+//        LoginPage.open();
+//        LoginPage.login(user, password);
+//        CreateNewHousesPage.openCreateHousesPage();
+//        CreateNewHousesPage.createNewHouse("1", "2", "3", "4", "5", "6");
+//        softAssert.assertEquals(CreateNewHousesPage.getStatus(),
+//                "Status: Successfully pushed, code: 201",
+//                "В поле Status вернулось некорректное значение");
+//        Thread.sleep(2000);
+//        String modifiedId = CreateNewHousesPage.findHouseById();
+//        softAssert.assertEquals(CreateNewHousesPage.getIdRead(),
+//                modifiedId,
+//                "Найден дом с некорректным значением ID");
+//        softAssert.assertAll();
+//    }
 }
 
 

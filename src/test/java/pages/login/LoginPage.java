@@ -1,4 +1,5 @@
 package pages.login;
+
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
@@ -6,10 +7,10 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.*;
 
 @Log4j2
 public class LoginPage {
@@ -48,6 +49,7 @@ public class LoginPage {
             e.printStackTrace();
         }
     }
+
     @Step("Проверка авторизации ")
     public static String checkAut() throws InterruptedException {
         log.info("Проверка авторизации ");

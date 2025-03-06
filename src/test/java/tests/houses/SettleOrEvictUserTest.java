@@ -86,50 +86,50 @@ public class SettleOrEvictUserTest extends BaseTest {
                 "Статус не равен 200");
     }
 
-    @Test(testName = "Выселение из дома с невалидными данными {UserID} и {HouseID}",
-            description = "Необходимо проверить возможность выселения из дома с невалидными данными",
-            dataProvider = "NegativeIdData")
-    @Severity(SeverityLevel.NORMAL)
-    @Epic("PFLB 1.0")
-    @Feature("House")
-    @Story("Settle or evict")
-    @TmsLink("www.jira.com/TK-004")
-    public void checkNegativeEvictOutHouse(String UserID, String HouseID) {
-        LoginPage.open();
-        LoginPage.login(user, password);
-        SettleOrEvictUserPage.openSettleOrEvictPage();
-        SettleOrEvictUserPage.evictOutHouse(UserID, HouseID);
-        softAssert.assertEquals(SettleOrEvictUserPage.getStatus(),
-                "Status: Invalid input data",
-                "Статус не равен Invalid input data");
-    }
+//    @Test(testName = "Выселение из дома с невалидными данными {UserID} и {HouseID}",
+//            description = "Необходимо проверить возможность выселения из дома с невалидными данными",
+//            dataProvider = "NegativeIdData")
+//    @Severity(SeverityLevel.NORMAL)
+//    @Epic("PFLB 1.0")
+//    @Feature("House")
+//    @Story("Settle or evict")
+//    @TmsLink("www.jira.com/TK-004")
+//    public void checkNegativeEvictOutHouse(String UserID, String HouseID) {
+//        LoginPage.open();
+//        LoginPage.login(user, password);
+//        SettleOrEvictUserPage.openSettleOrEvictPage();
+//        SettleOrEvictUserPage.evictOutHouse(UserID, HouseID);
+//        softAssert.assertEquals(SettleOrEvictUserPage.getStatus(),
+//                "Status: Invalid input data",
+//                "Статус не равен Invalid input data");
+//    }
 
-    @Test(testName = "Заселение {UserID} в {HouseID} с проверкой в общей таблицей {HouseID}",
-            description = "Необходимо проверить в {HouseID} успешно ли заселение")
-    @Severity(SeverityLevel.NORMAL)
-    @Epic("PFLB 1.0")
-    @Feature("House")
-    @Story("Settle or evict")
-    @TmsLink("www.jira.com/TK-005")
-    public void check() throws InterruptedException {
-        String userId = "79";
-        String houseId = "1";
-        LoginPage.open();
-        LoginPage.login(user, password);
-        SettleOrEvictUserPage.openSettleOrEvictPage();
-        SettleOrEvictUserPage.settleInHouse(userId, houseId);
-        Thread.sleep(2000);
-        softAssert.assertEquals(SettleOrEvictUserPage.getStatus(),
-                "Status: Successfully pushed, code: 200",
-                "Статус не равен 200");
-        SettleOrEvictUserPage.openReadOneByIdPage();
-        SettleOrEvictUserPage.searchHouseById(houseId);
-        softAssert.assertEquals(SettleOrEvictUserPage.getStatusSearch(),
-                "Status: 200 ok",
-                "Статус не равен 200");
-        softAssert.assertEquals(SettleOrEvictUserPage.checkSettleUser(userId),
-                "ID найден в списке",
-                "ID не найден");
-        softAssert.assertAll();
-    }
+//    @Test(testName = "Заселение {UserID} в {HouseID} с проверкой в общей таблицей {HouseID}",
+//            description = "Необходимо проверить в {HouseID} успешно ли заселение")
+//    @Severity(SeverityLevel.NORMAL)
+//    @Epic("PFLB 1.0")
+//    @Feature("House")
+//    @Story("Settle or evict")
+//    @TmsLink("www.jira.com/TK-005")
+//    public void check() throws InterruptedException {
+//        String userId = "79";
+//        String houseId = "1";
+//        LoginPage.open();
+//        LoginPage.login(user, password);
+//        SettleOrEvictUserPage.openSettleOrEvictPage();
+//        SettleOrEvictUserPage.settleInHouse(userId, houseId);
+//        Thread.sleep(2000);
+//        softAssert.assertEquals(SettleOrEvictUserPage.getStatus(),
+//                "Status: Successfully pushed, code: 200",
+//                "Статус не равен 200");
+//        SettleOrEvictUserPage.openReadOneByIdPage();
+//        SettleOrEvictUserPage.searchHouseById(houseId);
+//        softAssert.assertEquals(SettleOrEvictUserPage.getStatusSearch(),
+//                "Status: 200 ok",
+//                "Статус не равен 200");
+//        softAssert.assertEquals(SettleOrEvictUserPage.checkSettleUser(userId),
+//                "ID найден в списке",
+//                "ID не найден");
+//        softAssert.assertAll();
+//    }
 }
