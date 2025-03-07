@@ -7,8 +7,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.when;
-import static org.hamcrest.Matchers.equalTo;
 
 public class HousesTest {
 
@@ -26,7 +24,7 @@ public class HousesTest {
             response = given()
                     .header("Content-Type", "application/json")
                     .header("host", "82.142.167.37")
-                    .header("Authorization", "Bearer " + LoginTest.GetToken())
+                    .header("Authorization", "Bearer " + LoginTest.getToken())
                     .when()
                     .post("/house/8/settle/8")
                     .then()
@@ -51,7 +49,7 @@ public class HousesTest {
             response = given()
                     .header("Content-Type", "application/json")
                     .header("host", "82.142.167.37")
-                    .header("Authorization", "Bearer " + LoginTest.GetToken())
+                    .header("Authorization", "Bearer " + LoginTest.getToken())
                     .when()
                     .post("/house/8/evict/8")
                     .then()

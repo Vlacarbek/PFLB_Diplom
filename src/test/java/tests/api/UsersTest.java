@@ -16,7 +16,7 @@ import static org.testng.Assert.assertNotEquals;
 public class UsersTest {
 
     //Метод используемый в тестах, где нужны данные пользователей, которые в системе
-    public JSONObject UserList() throws JsonException {
+    public JSONObject userList() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
         Response response = null;
         try {
@@ -38,10 +38,10 @@ public class UsersTest {
     @Feature("Create users API")
     @Story("Create users API")
     @TmsLink("www.jira.com/C-1")
-    public void GetUser() throws JsonException {
+    public void getUser() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
         Response response = null;
-        JSONObject User = UserList();
+        JSONObject User = userList();
         Object idUser = User.get("id");
         Object firstNameUser = User.get("firstName");
         Object secondNameUser = User.get("secondName");
@@ -70,7 +70,7 @@ public class UsersTest {
     @Feature("Create users API")
     @Story("Create users API")
     @TmsLink("www.jira.com/C-1")
-    public void GetUserNonExistent() throws JsonException {
+    public void getUserNonExistent() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
         Response response = null;
         try {
@@ -92,7 +92,7 @@ public class UsersTest {
     @Feature("Create users API")
     @Story("Create users API")
     @TmsLink("www.jira.com/C-1")
-    public void GetUsers() throws JsonException {
+    public void getUsers() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
         Response response = null;
         try {
@@ -115,7 +115,7 @@ public class UsersTest {
     @Feature("Create users API")
     @Story("Create users API")
     @TmsLink("www.jira.com/C-1")
-    public void PostUser() throws JsonException {
+    public void postUser() throws JsonException {
         RestAssured.defaultParser = Parser.JSON;
         RestAssured.baseURI = "http://82.142.167.37:4880";
         JSONObject requestBody = new JSONObject();
@@ -128,7 +128,7 @@ public class UsersTest {
         Response response = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .header("host", "82.142.167.37")
-                .header("Authorization", "Bearer " + LoginTest.GetToken())
+                .header("Authorization", "Bearer " + LoginTest.getToken())
                 .body(requestBody.toString())
                 .when()
                 .post("/user")
@@ -149,7 +149,7 @@ public class UsersTest {
     @Feature("Create users API")
     @Story("Create users API")
     @TmsLink("www.jira.com/C-1")
-    public void PostUserInvalidDate() throws JsonException {
+    public void postUserInvalidDate() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
         JSONObject requestBody = new JSONObject();
         requestBody.put("firstName", "");
@@ -161,7 +161,7 @@ public class UsersTest {
         Response response = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .header("host", "82.142.167.37")
-                .header("Authorization", "Bearer " + LoginTest.GetToken())
+                .header("Authorization", "Bearer " + LoginTest.getToken())
                 .body(requestBody.toString())
                 .when()
                 .post("/user")
@@ -179,9 +179,9 @@ public class UsersTest {
     @Feature("Create users API")
     @Story("Create users API")
     @TmsLink("www.jira.com/C-1")
-    public void PutUser() throws JsonException {
+    public void putUser() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
-        JSONObject User = UserList();
+        JSONObject User = userList();
         Object idUser = User.get("id");
         Object firstNameUser = User.get("firstName");
         Object secondNameUser = User.get("secondName");
@@ -195,7 +195,7 @@ public class UsersTest {
         Response response = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .header("host", "82.142.167.37")
-                .header("Authorization", "Bearer " + LoginTest.GetToken())
+                .header("Authorization", "Bearer " + LoginTest.getToken())
                 .body(requestBody.toString())
                 .when()
                 .put("/user/" + idUser)
@@ -203,7 +203,7 @@ public class UsersTest {
                 .extract().response();
 
         assertEquals(response.getStatusCode(), 201,"Если тест упал с 409 вероятно снова проблема с сервером ");
-        JSONObject UserAfterUpdate = UserList();
+        JSONObject UserAfterUpdate = userList();
         assertNotEquals(firstNameUser, UserAfterUpdate.get("firstName"));
         assertNotEquals(secondNameUser, UserAfterUpdate.get("secondName"));
 
@@ -216,9 +216,9 @@ public class UsersTest {
     @Feature("Create users API")
     @Story("Create users API")
     @TmsLink("www.jira.com/C-1")
-    public void PutUseInvalidDate() throws JsonException {
+    public void putUseInvalidDate() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
-        JSONObject User = UserList();
+        JSONObject User = userList();
         Object idUser = User.get("id");
         JSONObject requestBody = new JSONObject();
         requestBody.put("firstName", "");
@@ -231,7 +231,7 @@ public class UsersTest {
         Response response = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .header("host", "82.142.167.37")
-                .header("Authorization", "Bearer " + LoginTest.GetToken())
+                .header("Authorization", "Bearer " + LoginTest.getToken())
                 .body(requestBody.toString())
                 .when()
                 .put("/user/" + idUser)
@@ -247,8 +247,8 @@ public class UsersTest {
     @Feature("Create users API")
     @Story("Create users API")
     @TmsLink("www.jira.com/C-1")
-    public void DeleteUser() throws JsonException {
-        JSONObject User = UserList();
+    public void deleteUser() throws JsonException {
+        JSONObject User = userList();
         Object idUser = User.get("id");
         RestAssured.baseURI = "http://82.142.167.37:4880";
         Response response = null;
@@ -256,7 +256,7 @@ public class UsersTest {
             response = RestAssured.given()
                     .header("Content-Type", "application/json")
                     .header("host", "82.142.167.37")
-                    .header("Authorization", "Bearer " + LoginTest.GetToken())
+                    .header("Authorization", "Bearer " + LoginTest.getToken())
                     .when()
                     .delete("/user/" + idUser.toString())
                     .then()
@@ -265,7 +265,7 @@ public class UsersTest {
             e.printStackTrace();
         }
         assertEquals(response.getStatusCode(), 204, "Если тест упал с 409 вероятно снова проблема с сервером ");
-        JSONObject UserAfterDelete = UserList();
+        JSONObject UserAfterDelete = userList();
         Object idAfterDelete = UserAfterDelete.get("id");
         assertNotEquals(idAfterDelete, idUser);
     }
@@ -277,14 +277,14 @@ public class UsersTest {
     @Feature("Create users API")
     @Story("Create users API")
     @TmsLink("www.jira.com/C-1")
-    public void DeleteUserNonExistent() throws JsonException {
+    public void deleteUserNonExistent() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
         Response response = null;
         try {
             response = RestAssured.given()
                     .header("Content-Type", "application/json")
                     .header("host", "82.142.167.37")
-                    .header("Authorization", "Bearer " + LoginTest.GetToken())
+                    .header("Authorization", "Bearer " + LoginTest.getToken())
                     .when()
                     .delete("/user/76584588")
                     .then()

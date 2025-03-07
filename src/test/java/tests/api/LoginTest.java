@@ -15,7 +15,7 @@ public class LoginTest {
     private static  String PASSWORD = System.getProperty("password", PropertyReader.getProperty("password"));
 
     //Корректная авторизация, возвращает Bearer tokens
-    public static String GetToken() throws JsonException {
+    public static String getToken() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
         REQUEST_BODY = "{"
                 + "\"username\" : \"" + USER + "\","
@@ -40,7 +40,7 @@ public class LoginTest {
     @Feature("Login  API")
     @Story("Login API")
     @TmsLink("www.jira.com/C-1")
-    public static  void   CorrectLogin() throws JsonException {
+    public static  void correctLogin() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4879";
         String requestBody = "{"
                 + "\"username\" : \"" + USER + "\","
@@ -65,7 +65,7 @@ public class LoginTest {
     @Feature("Login  API")
     @Story("Login API")
     @TmsLink("www.jira.com/C-1")
-    public  void  EmptyLogin () throws JsonException {
+    public  void emptyLogin() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4879";
         String requestBody = "{"
                 + "\"username\": ,"
@@ -89,7 +89,7 @@ public class LoginTest {
     @Feature("Login  API")
     @Story("Login API")
     @TmsLink("www.jira.com/C-1")
-    public  void  InvalidLogin () throws JsonException {
+    public  void  invalidLogin () throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4879";
         String requestBody = "{"
                 + "\"username\": 323213,"

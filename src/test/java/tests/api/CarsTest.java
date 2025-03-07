@@ -10,8 +10,6 @@ import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static java.util.function.Predicate.not;
-import static org.hamcrest.Matchers.emptyOrNullString;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
@@ -19,7 +17,7 @@ import static org.testng.Assert.assertNotEquals;
 public class CarsTest {
 
     //Метод используемый в тестах, где нужны данные пользователей, которые в системе
-    public JSONObject CarList() throws JsonException {
+    public JSONObject carList() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
         Response response = null;
         try {
@@ -60,7 +58,7 @@ public class CarsTest {
     @Feature("Create cars API")
     @Story("Create cars API")
     @TmsLink("www.jira.com/C-2")
-    public void GetCar() throws JsonException {
+    public void getCar() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
         RestAssured.defaultParser = Parser.JSON;
         Response response = null;
@@ -89,7 +87,7 @@ public class CarsTest {
     @Feature("Create cars API")
     @Story("Create cars API")
     @TmsLink("www.jira.com/C-2")
-    public void GetCarNonExistent() throws JsonException {
+    public void getCarNonExistent() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
         Response response = null;
         try {
@@ -112,7 +110,7 @@ public class CarsTest {
     @Feature("Create cars API")
     @Story("Create cars API")
     @TmsLink("www.jira.com/C-2")
-    public void PostCar() throws JsonException {
+    public void postCar() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
 
         JSONObject requestBody = new JSONObject();
@@ -126,7 +124,7 @@ public class CarsTest {
                 .log().all()
                 .header("Content-Type", "application/json")
                 .header("host", "82.142.167.37")
-                .header("Authorization", "Bearer " + LoginTest.GetToken())
+                .header("Authorization", "Bearer " + LoginTest.getToken())
                 .body(requestBody.toString())
                 .when()
                 .post("/car")
@@ -148,7 +146,7 @@ public class CarsTest {
     @Feature("Create cars API")
     @Story("Create cars API")
     @TmsLink("www.jira.com/C-2")
-    public void PostCarInvalidDate() throws JsonException {
+    public void postCarInvalidDate() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
         JSONObject requestBody = new JSONObject();
         requestBody.put("engineType", "");
@@ -159,7 +157,7 @@ public class CarsTest {
         Response response = RestAssured.given()
                 .header("Content-Type", "application/json")
                 .header("host", "82.142.167.37")
-                .header("Authorization", "Bearer " + LoginTest.GetToken())
+                .header("Authorization", "Bearer " + LoginTest.getToken())
                 .body(requestBody.toString())
                 .when()
                 .post("/car")
@@ -177,7 +175,7 @@ public class CarsTest {
     @Feature("Create сars API")
     @Story("Create сars API")
     @TmsLink("www.jira.com/C-1")
-    public void PutCar() throws JsonException {
+    public void putCar() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
 
         // Создаём тело запроса с обновлёнными данными
@@ -191,7 +189,7 @@ public class CarsTest {
                 .log().all()
                 .header("Content-Type", "application/json")
                 .header("host", "82.142.167.37")
-                .header("Authorization", "Bearer " + LoginTest.GetToken())
+                .header("Authorization", "Bearer " + LoginTest.getToken())
                 .body(requestBody.toString())
                 .when()
                 .put("/car/1") // Указываем ID автомобиля для обновления
@@ -212,7 +210,7 @@ public class CarsTest {
     @Feature("Create сars API")
     @Story("Create сars API")
     @TmsLink("www.jira.com/C-2")
-    public void PutCarInvalidDate() throws JsonException {
+    public void putCarInvalidDate() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
 
         // Создаём тело с ошибками:
@@ -225,7 +223,7 @@ public class CarsTest {
                 .log().all()
                 .header("Content-Type", "application/json")
                 .header("host", "82.142.167.37")
-                .header("Authorization", "Bearer " + LoginTest.GetToken())
+                .header("Authorization", "Bearer " + LoginTest.getToken())
                 .body(invalidBody.toString())
                 .when()
                 .put("/car/1")  // Предполагаем, что автомобиль с ID=1 существует
@@ -244,12 +242,12 @@ public class CarsTest {
     @Feature("Create cars API")
     @Story("Create cars API")
     @TmsLink("www.jira.com/C-2")
-    public void DeleteUser() throws JsonException {
+    public void deleteUser() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
 
         RestAssured.given()
                 .log().all()
-                .header("Authorization", "Bearer " + LoginTest.GetToken())
+                .header("Authorization", "Bearer " + LoginTest.getToken())
                 .header("host", "82.142.167.37")
                 .when()
                 .delete("/car/62")
@@ -259,12 +257,12 @@ public class CarsTest {
                 .statusCode(204);  // или 204, если ожидается отсутствие тела в ответе
     }
     @Test
-    public void DeleteCarInvalid() throws JsonException {
+    public void deleteCarInvalid() throws JsonException {
         RestAssured.baseURI = "http://82.142.167.37:4880";
 
         Response response = RestAssured.given()
                 .log().all()
-                .header("Authorization", "Bearer " + LoginTest.GetToken())
+                .header("Authorization", "Bearer " + LoginTest.getToken())
                 .header("host", "82.142.167.37")
                 .when()
                 .delete("/user/" + 1871)
