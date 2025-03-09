@@ -4,22 +4,28 @@ import groovy.util.logging.Log4j2;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import tests.BaseTest;
+
+import java.time.Duration;
 
 import static java.lang.Thread.sleep;
 
 @Log4j2
-public class BuyOrSellCarPage extends BaseTest {
+public class BuyOrSellCarPage {
 
     private static final By USER_ID_HEADER = By.xpath("//*[@id=\"root\"]/div/section/div/table/thead/tr/th[1]");
     private static final By USER_ID_FIELD = By.xpath("//*[@id=\"id_send\"]");
     private static final By CAR_ID_HEADER = By.xpath("//*[@id=\"root\"]/div/section/div/table/thead/tr/th[2]");
-    private static final By CAR_ID_FIELD = By.xpath("//*[@id=\"car_send\"]");
+    private static final By CAR_ID_FIELD = By.xpath("//*[@id='car_send']");
     private static final By PUSH_BUTTON = By.xpath("//*[@id=\"root\"]/div/section/div/div/button[1]");
     private static final By STATUS_FIELD = By.xpath("//*[@id=\"root\"]/div/section/div/div/button[2]");
     private static final By BUY_CHECK_BOX = By.xpath("/html/body/div/div/section/div/table/tbody/tr/td[3]/div[1]/input");
     private static final By SELL_CHECK_BOX = By.xpath("/html/body/div/div/section/div/table/tbody/tr/td[3]/div[2]/input");
     public static WebDriver driver;
+    static WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
 
 
     public BuyOrSellCarPage(WebDriver driver) {
@@ -46,7 +52,8 @@ public class BuyOrSellCarPage extends BaseTest {
 
     @Step("Ввод значений в поля CarId и UserId")
     public static void buyCar(String carId, String userId) {
-        driver.findElement(CAR_ID_FIELD).sendKeys(carId);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='car_send']"))).sendKeys(carId);
+//        driver.findElement(CAR_ID_FIELD).sendKeys(carId);
         driver.findElement(USER_ID_FIELD).sendKeys(userId);
         driver.findElement(BUY_CHECK_BOX).click();
         driver.findElement(PUSH_BUTTON).click();

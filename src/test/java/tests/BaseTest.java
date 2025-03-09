@@ -54,12 +54,12 @@ public class BaseTest {
     public void setup(@Optional("chrome") String browser) {
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("start-maximized");
+//            options.addArguments("start-maximized");
             options.addArguments("--headless");
             options.setCapability("unhandledPromptBehavior", "accept");
             driver = new ChromeDriver(options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
-            int timeoutInSeconds = 10;
+            int timeoutInSeconds = 100;
             driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(25));
             wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
         } else if (browser.equalsIgnoreCase("internetexplorer")) {
