@@ -69,7 +69,7 @@ public class BaseTest {
         } else if ("firefox".equalsIgnoreCase(browser)) {
             FirefoxOptions optionsF = new FirefoxOptions();
             driver = new FirefoxDriver(optionsF);
-            optionsF.addArguments("headless");
+            optionsF.addArguments("--headless");
             optionsF.setCapability("unhandledPromptBehavior", "accept");
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(250));
             wait = new WebDriverWait(driver, Duration.ofSeconds(250));
