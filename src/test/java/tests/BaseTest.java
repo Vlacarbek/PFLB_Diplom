@@ -53,7 +53,7 @@ public class BaseTest {
     public static WebDriverWait wait;
 
     @BeforeMethod
-    public void setup(@Optional("firefox") String browser) {
+    public void setup(@Optional("chrome") String browser) {
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("start-maximized");
