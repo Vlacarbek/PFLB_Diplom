@@ -33,7 +33,7 @@ jobs:
       uses: actions/setup-java@v4
       with:
         java-version: '17'
-        distribution: 'oracle'
+        distribution: 'temurin'
         cache: maven
     - name: Setup browser
       uses: abhi1693/setup-browser@v0.3.4
