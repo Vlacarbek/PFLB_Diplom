@@ -1,13 +1,14 @@
 package pages.cars;
 
-import groovy.util.logging.Log4j2;
 import io.qameta.allure.Step;
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
-import java.time.Duration;
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Log4j2

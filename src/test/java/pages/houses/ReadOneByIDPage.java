@@ -1,22 +1,20 @@
 package pages.houses;
 
-import groovy.util.logging.Log4j2;
+
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import tests.BaseTest;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+
 @Log4j2
 public class ReadOneByIDPage {
 
-    private static final Logger log = LoggerFactory.getLogger(ReadOneByIDPage.class);
     static WebDriver driver;
 
     private static final By HOUSE_PAGE = By.xpath("//a[text()='Houses']");

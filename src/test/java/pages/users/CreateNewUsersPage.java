@@ -1,11 +1,13 @@
 package pages.users;
 
-import groovy.util.logging.Log4j2;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import static java.lang.Thread.sleep;
 
 @Log4j2
@@ -20,7 +22,6 @@ public class CreateNewUsersPage {
     private static final  By PUSH_BUTTON = By.cssSelector(".tableButton.btn.btn-primary");
     private static final  By TEXT_RESULT_BUTTON = By.cssSelector(".status.btn.btn-secondary");
     private static final  By USER_ID = By.xpath("//*[@id=\"root\"]/div/section/div/div/button[3]");
-
 
     public CreateNewUsersPage(WebDriver driver) {
         this.driver = driver;

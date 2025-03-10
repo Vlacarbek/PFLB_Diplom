@@ -1,13 +1,10 @@
 package pages.houses;
 
-import groovy.util.logging.Log4j2;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import tests.BaseTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +24,6 @@ public class SettleOrEvictUserPage {
     private static final By EVICT_BUTTON = By.xpath("//input[@name='settleOrEvict' and @value='evict']");
     private static final By PUSH_BUTTON = By.xpath("//*[@id='root']/div/section/div/div/button[1]");
     private static final By READ_BUTTON = By.xpath("//*[@id='root']/div/section/div/div/div/button[2]");
-    private static final Logger log = LoggerFactory.getLogger(SettleOrEvictUserPage.class);
     static WebDriver driver;
 
     public SettleOrEvictUserPage(WebDriver driver) {

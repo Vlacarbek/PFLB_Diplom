@@ -1,5 +1,6 @@
 package tests;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -28,7 +29,7 @@ import utils.PropertyReader;
 import java.time.Duration;
 
 @Listeners(utils.TestListener.class)
-
+@Log4j2
 public class BaseTest {
 
     WebDriver driver;
