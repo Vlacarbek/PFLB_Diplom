@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="3" name="Diplom_SmokeTest" parallel="tests">
+<suite thread-count="2" name="Diplom_SmokeTest" parallel="tests">
     <listeners>
         <listener class-name="utils.TestListener"/>
         <listener class-name="utils.AnnotationTransformer"/>
@@ -15,6 +15,11 @@
             <class name="tests.users.ReadAllUsersTest"/>
             <class name="tests.users.CreateNewTest"/>
             <class name="tests.users.ReadUserWithCarsTest"/>
+            <class name="tests.cars.ReadAllCarTest"/>
+            <class name="tests.api.CarsTest"/>
+            <class name="tests.api.HousesTest"/>
+            <class name="tests.api.UsersTest"/>
+            <class name="tests.api.LoginTest"/>
         </classes>
     </test>
     <test name="Thread#2">
@@ -27,6 +32,11 @@
             <class name="tests.users.ReadAllUsersTest"/>
             <class name="tests.users.CreateNewTest"/>
             <class name="tests.users.ReadUserWithCarsTest"/>
+            <class name="tests.cars.ReadAllCarTest"/>
+            <class name="tests.api.CarsTest"/>
+            <class name="tests.api.HousesTest"/>
+            <class name="tests.api.UsersTest"/>
+            <class name="tests.api.LoginTest"/>
         </classes>
     </test>
 </suite>
