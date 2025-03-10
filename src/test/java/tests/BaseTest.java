@@ -3,6 +3,8 @@ package tests;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
@@ -51,10 +53,10 @@ public class BaseTest {
     public static WebDriverWait wait;
 
     @BeforeMethod
-    public void setup(@Optional("chrome") String browser) {
+    public void setup(@Optional("firefox") String browser) {
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
-//            options.addArguments("start-maximized");
+            options.addArguments("start-maximized");
             options.addArguments("--headless");
             options.setCapability("unhandledPromptBehavior", "accept");
             driver = new ChromeDriver(options);
@@ -64,6 +66,13 @@ public class BaseTest {
             wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
         } else if (browser.equalsIgnoreCase("internetexplorer")) {
             driver = new InternetExplorerDriver();
+        } else if ("firefox".equalsIgnoreCase(browser)) {
+            FirefoxOptions optionsF = new FirefoxOptions();
+            driver = new FirefoxDriver(optionsF);
+            optionsF.addArguments("headless");
+            optionsF.setCapability("unhandledPromptBehavior", "accept");
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(250));
+            wait = new WebDriverWait(driver, Duration.ofSeconds(250));
         }
 
         buyOrSellCarPage = new BuyOrSellCarPage(driver);
@@ -90,6 +99,6 @@ public class BaseTest {
         if (driver != null) {
             driver.quit();
         }
-        }
     }
+}
 
