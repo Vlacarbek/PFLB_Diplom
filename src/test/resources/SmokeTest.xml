@@ -10,14 +10,23 @@
             <class name="tests.login.LoginTest"/>
             <class name="tests.houses.ReadOneByIDTest"/>
             <class name="tests.houses.ReadAllTest"/>
+            <class name="tests.users.AddMoneyTest"/>
+            <class name="tests.users.BuyOrSellCarTest"/>
+            <class name="tests.users.ReadAllUsersTest"/>
+            <class name="tests.users.CreateNewTest"/>
+            <class name="tests.users.ReadUserWithCarsTest"/>
         </classes>
     </test>
     <test name="Thread#2">
         <classes>
+            <class name="tests.login.LoginTest"/>
             <class name="tests.houses.ReadOneByIDTest"/>
             <class name="tests.houses.ReadAllTest"/>
             <class name="tests.users.AddMoneyTest"/>
             <class name="tests.users.BuyOrSellCarTest"/>
+            <class name="tests.users.ReadAllUsersTest"/>
+            <class name="tests.users.CreateNewTest"/>
+            <class name="tests.users.ReadUserWithCarsTest"/>
         </classes>
     </test>
 </suite>

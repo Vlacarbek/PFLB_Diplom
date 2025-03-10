@@ -36,12 +36,12 @@ public class LoginPage {
     public static void login(String user, String password)  {
         log.info("Вход в систему с логином {} и паролем {} ", user, password);
         try {
-            Thread.sleep(2000);
+            Thread.sleep(10000);
             driver.findElement(EMAIL_FIELD).sendKeys(user);
             driver.findElement(PASSWORD_FIELDS).sendKeys(password);
             driver.findElement(LOGIN_BUTTON).click();
             Robot robot = new Robot();
-            Thread.sleep(2000);
+            Thread.sleep(10000);
             robot.keyPress(KeyEvent.VK_ENTER);
             robot.keyRelease(KeyEvent.VK_ENTER);
 
@@ -53,7 +53,7 @@ public class LoginPage {
     @Step("Проверка авторизации ")
     public static String checkAut() throws InterruptedException {
         log.info("Проверка авторизации ");
-        Thread.sleep(2000);
+        Thread.sleep(10000);
         driver.findElement(BUTTON_SECTION_ALL_POST_FOR_CHECK).click();
         List<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
@@ -63,12 +63,12 @@ public class LoginPage {
     @Step("Проверка текста ошибки '{textError}'")
     public static boolean  checkErrorText(String textError) throws InterruptedException {
         log.info("Проверка текста ошибки {}", textError);
-        Thread.sleep(2000);
+        Thread.sleep(10000);
         String pageSource = null;
         try {
-            Thread.sleep(2000);
+            Thread.sleep(10000);
             pageSource = driver.getPageSource();
-            Thread.sleep(2000);
+            Thread.sleep(10000);
         } catch (Exception e) {
             e.printStackTrace();
         }
